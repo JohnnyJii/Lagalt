@@ -1,16 +1,22 @@
-import React from "react";
-import {createButton} from "react-social-login-buttons";
+import React from 'react';
+import FacebookLogin from 'react-facebook-login';
 
-const config = {
-  text: "Log in with Facebook",
-  icon: "facebook",
-  iconFormat: name => `fa fa-${name}`,
-  style: { background: "#3b5998" },
-  activeStyle: { background: "#293e69" },
-  size: "50px",
-  align: "center"
-};
+class MyComponent extends React.Component {
+  responseFacebook(response) {
+    console.log(response);
+  }
 
-const FacebookLogin = createButton(config);
+  render() {
+    return (
+      <FacebookLogin
+        appId="1088597931155576"
+        autoLoad={true}
+        fields="name,email,picture"
+        scope="public_profile,user_friends,user_actions.books"
+        callback={this.responseFacebook}
+      />
+    )
+  }
+}
 
-export default FacebookLogin;
+export default MyComponent;

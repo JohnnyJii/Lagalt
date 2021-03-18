@@ -2,7 +2,7 @@ import React from "react";
 import {createButton} from "react-social-login-buttons";
 
 const config = {
-  text: "Log in with Facebook",
+  text: "Log in with Google",
   icon: "Google",
   iconFormat: name => `fa fa-${name}`,
   style: { background: "#3b5998" },

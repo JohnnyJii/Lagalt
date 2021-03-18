@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 import { Card, Logo, Form, Input, Button } from '../components/AuthForm'
-import FacebookLogin from 'react-facebook-login'
 import Facebook from '../loginbuttons/Facebook'
 import GoogleLogin from "../loginbuttons/Google"
 
