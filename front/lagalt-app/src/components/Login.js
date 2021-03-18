@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from 'react-router-dom'
 import { Card, Logo, Form, Input, Button } from '../components/AuthForm'
 import FacebookLogin from 'react-facebook-login'
+import Facebook from '../loginbuttons/Facebook'
+import GoogleLogin from "../loginbuttons/Google"
 
 
 function Login() {
@@ -19,13 +21,10 @@ function Login() {
             </Form>
             <Link to="/signup">Don't have an account?</Link>
         </Card>
-        <FacebookLogin
-          appId=""
-          autoLoad={true}
-          fields="name, email, picture"
-          //onClick={componentClicked}
-          callback={responseFacebook} 
-          />
+        <Card>
+          <Facebook onClick={() => alert("test")} />
+          <GoogleLogin onClick={() => alert("testgoogle")} />
+        </Card>
     </div>
   );
 }
