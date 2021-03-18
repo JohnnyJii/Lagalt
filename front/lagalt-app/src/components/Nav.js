@@ -15,6 +15,9 @@ function About() {
             <Link to="projects">
                 <li id="li">Projects</li>
             </Link>
+            <Link to="login">
+              <button>login</button>
+            </Link>
         </ul>
     </div>
   );
