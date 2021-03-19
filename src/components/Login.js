@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 import { Card, Logo, Form, Input, Button } from '../components/AuthForm'
-import Facebook from '../loginbuttons/Facebook'
 import GoogleLogin from "../loginbuttons/Google"
 
 
@@ -21,7 +20,6 @@ function Login() {
             <Link to="/signup">Don't have an account?</Link>
         </Card>
         <Card>
-          <Facebook onClick={() => alert("test")} />
           <GoogleLogin onClick={() => alert("testgoogle")} />
         </Card>
     </div>
