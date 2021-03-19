@@ -16,11 +16,13 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "eMail")
+    @Column(name = "e_mail")
     private String eMail;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
     /*
@@ -29,17 +31,19 @@ public class User {
     private Set<ProjectModel> projects;
      */
 
+    @Column(name = "image_source")
     private String imageSource;
 
-    private String skills;
+    @ElementCollection
+    private Set<String> skills;
 
+    @Column(name = "description")
     private String description;
 
-    /*
     public User() {
-        projects = new HashSet<>();
+        //projects = new HashSet<>();
+        skills = new HashSet<>();
     }
-     */
 
     // Getters and setters
     public long getId() {
@@ -58,11 +62,11 @@ public class User {
         this.username = username;
     }
 
-    public String geteMail() {
+    public String getEMail() {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
+    public void setEMail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -90,11 +94,11 @@ public class User {
         this.imageSource = imageSource;
     }
 
-    public String getSkills() {
+    public Set<String> getSkills() {
         return skills;
     }
 
-    public void setSkills(String skills) {
+    public void setSkills(Set<String> skills) {
         this.skills = skills;
     }
 
