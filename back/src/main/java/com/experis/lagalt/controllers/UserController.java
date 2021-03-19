@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable long id) {
+    public ResponseEntity<User> getUser(@PathVariable long id) {
         User user = new User();
         HttpStatus status;
         if (userRepository.existsById(id)) {
