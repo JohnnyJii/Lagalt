@@ -1,7 +1,7 @@
 package com.experis.lagalt.controllers;
 
 import com.experis.lagalt.models.User;
-import com.experis.lagalt.repositories.UserRepository;
+import com.experis.lagalt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,28 +14,27 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.getAll();
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(users, status);
     }
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User newUser = userRepository.save(user);
+        User newUser = userService.saveUser(user);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newUser, status);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
-        User user = new User();
+        User user = userService.find(id);
         HttpStatus status;
-        if (userRepository.existsById(id)) {
-            user = userRepository.findById(id).get();
+        if (userService.exists(id)) {
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
@@ -51,21 +50,20 @@ public class UserController {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnUser, status);
         }
-        boolean userFound = userRepository.existsById(id);
-        returnUser = userRepository.save(newUser);
-        if (userFound) {
+        if (userService.exists(id)) {
             status = HttpStatus.NO_CONTENT;
         } else {
             status = HttpStatus.CREATED;
         }
+        returnUser = userService.saveUser(newUser);
         return new ResponseEntity<>(returnUser, status);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
         HttpStatus status;
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
+        if (userService.exists(id)) {
+            userService.delete(id);
             status = HttpStatus.NO_CONTENT;
         } else {
             status = HttpStatus.NOT_FOUND;
