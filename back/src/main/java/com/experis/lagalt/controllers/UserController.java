@@ -18,8 +18,16 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
-        HttpStatus status = HttpStatus.OK;
         List<User> users = userRepository.findAll();
+        HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(users, status);
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+
+        User newUser = userRepository.save(user);
+        HttpStatus status = HttpStatus.CREATED;
+        return new ResponseEntity<>(newUser, status);
     }
 }
