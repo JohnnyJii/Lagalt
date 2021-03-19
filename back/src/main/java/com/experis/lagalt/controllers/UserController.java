@@ -60,4 +60,16 @@ public class UserController {
         }
         return new ResponseEntity<>(returnUser, status);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable long id) {
+        HttpStatus status;
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            status = HttpStatus.NO_CONTENT;
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(null, status);
+    }
 }
