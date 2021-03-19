@@ -9,11 +9,11 @@ function About() {
         <h1 id="lagalt">Lagalt</h1>
         </Link>
         <ul className="nav-links">
-            <Link to="/about">
-                <li id="li">About</li>
+            <Link to="/profile">
+                <li id="li">Profile</li>
             </Link>
             <Link to="projects">
-                <li id="li">Projects</li>
+                <li id="li">My Projects</li>
             </Link>
             <Link to="login">
               <button>login</button>
