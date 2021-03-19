@@ -42,4 +42,22 @@ public class UserController {
         }
         return new ResponseEntity<>(user, status);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User newUser) {
+        User returnUser = new User();
+        HttpStatus status;
+        if (id != newUser.getId()) {
+            status = HttpStatus.BAD_REQUEST;
+            return new ResponseEntity<>(returnUser, status);
+        }
+        boolean userFound = userRepository.existsById(id);
+        returnUser = userRepository.save(newUser);
+        if (userFound) {
+            status = HttpStatus.NO_CONTENT;
+        } else {
+            status = HttpStatus.CREATED;
+        }
+        return new ResponseEntity<>(returnUser, status);
+    }
 }
