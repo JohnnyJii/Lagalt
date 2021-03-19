@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from 'react-router-dom'
-import { Card, Logo, Form, Input, Button } from '../components/AuthForm'
+import { Card, Form, Input, Button } from '../components/AuthForm'
 // import FacebookLogin from 'react-facebook-login'
 
 
 function Login() {
-  const responseFacebook = (response) => {
+/*   const responseFacebook = (response) => {
     console.log(response);
-  }
+  } */
 
   return (
       <div>

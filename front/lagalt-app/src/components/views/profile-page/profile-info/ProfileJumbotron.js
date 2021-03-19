@@ -10,7 +10,7 @@ function ProfileJumbotron() {
                             <div className="media align-items-end profile-head">
                                 <div className="profile mr-3">
                                     <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" class="rounded mb-2 img-thumbnail" />
-                                    <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                                    <button class="btn btn-outline-dark btn-sm btn-block">Edit profile</button>
                                 </div>
                                 <div className="media-body mb-5 text-white">
                                     <h4 className="mt-0 mb-0">User Name</h4>
@@ -33,7 +33,7 @@ function ProfileJumbotron() {
                                 <p className="font-italic mb-0">Photographer</p>
                             </div>
                             <hr></hr>
-                            <a href="#" class="btn btn-outline-dark btn-sm btn-block">Log Out</a>
+                            <button class="btn btn-outline-dark btn-sm btn-block">Log Out</button>
                         </div>
                     </div>
                 </div>
