@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 import { Card, Logo, Form, Input, Button } from '../components/AuthForm'
-import FacebookLogin from 'react-facebook-login'
+// import FacebookLogin from 'react-facebook-login'
 
 
 function Login() {
@@ -19,13 +19,13 @@ function Login() {
             </Form>
             <Link to="/signup">Don't have an account?</Link>
         </Card>
-        <FacebookLogin
+        {/* <FacebookLogin
           appId=""
           autoLoad={true}
           fields="name, email, picture"
           //onClick={componentClicked}
           callback={responseFacebook} 
-          />
+          /> */}
     </div>
   );
 }
