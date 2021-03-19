@@ -25,9 +25,21 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-
         User newUser = userRepository.save(user);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newUser, status);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id) {
+        User user = new User();
+        HttpStatus status;
+        if (userRepository.existsById(id)) {
+            user = userRepository.findById(id).get();
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(user, status);
     }
 }
