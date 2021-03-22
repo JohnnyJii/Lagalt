@@ -1,10 +1,12 @@
 package com.experis.lagalt.services;
 
+import com.experis.lagalt.models.Project;
 import com.experis.lagalt.models.User;
 import com.experis.lagalt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,5 +35,14 @@ public class UserService {
 
     public void delete(long id) {
         userRepository.deleteById(id);
+    }
+
+    public List<Project> getProjects(long id) {
+        ArrayList<Project> projects = new ArrayList<>();
+        if (exists(id)) {
+            User user = find(id);
+            projects.addAll(user.getProjects());
+        }
+        return projects;
     }
 }

@@ -25,7 +25,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    @OneToMany(mappedBy = "id") //fetch = FetchType.LAZY,
     private Set<Project> projects;
 
     @Column(name = "image_source")

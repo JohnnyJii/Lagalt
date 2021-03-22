@@ -1,5 +1,6 @@
 package com.experis.lagalt.controllers;
 
+import com.experis.lagalt.models.Project;
 import com.experis.lagalt.models.User;
 import com.experis.lagalt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,5 +70,17 @@ public class UserController {
             status = HttpStatus.NOT_FOUND;
         }
         return new ResponseEntity<>(null, status);
+    }
+
+    @GetMapping(value = "/{id}/projects")
+    public ResponseEntity<List<Project>> getUserProjects(@PathVariable long id) {
+        List<Project> projects = userService.getProjects(id);
+        HttpStatus status;
+        if (userService.exists(id)) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(projects, status);
     }
 }
