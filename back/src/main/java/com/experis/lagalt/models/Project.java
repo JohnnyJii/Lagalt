@@ -86,4 +86,12 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

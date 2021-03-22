@@ -107,4 +107,12 @@ public class User {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
 }
