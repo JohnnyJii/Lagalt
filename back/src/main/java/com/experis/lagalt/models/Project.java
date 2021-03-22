@@ -28,6 +28,11 @@ public class Project {
     @ElementCollection
     private Set<String> skills;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @Column(name = "user_id")
+    private User user;
+
     public Project() {
         //projects = new HashSet<>();
         skills = new HashSet<>();
