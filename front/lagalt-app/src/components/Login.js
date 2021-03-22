@@ -1,13 +1,10 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 import { Card, Form, Input, Button } from '../components/AuthForm'
-// import FacebookLogin from 'react-facebook-login'
+import LoginFacebook from './buttons/LoginFacebook'
 
 
 function Login() {
-/*   const responseFacebook = (response) => {
-    console.log(response);
-  } */
 
   return (
       <div>
@@ -19,13 +16,9 @@ function Login() {
             </Form>
             <Link to="/signup">Don't have an account?</Link>
         </Card>
-        {/* <FacebookLogin
-          appId=""
-          autoLoad={true}
-          fields="name, email, picture"
-          //onClick={componentClicked}
-          callback={responseFacebook} 
-          /> */}
+        <Card>
+          <LoginFacebook />
+        </Card>
     </div>
   );
 }
