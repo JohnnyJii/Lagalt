@@ -12,8 +12,11 @@ function About() {
             <Link to="/profile">
                 <li id="li">Profile</li>
             </Link>
-            <Link to="projects">
+            <Link to="/projects">
                 <li id="li">My Projects</li>
+            </Link>
+            <Link to="/chat">
+                <li id="li">Chat</li>
             </Link>
             <Link to="login">
               <button>login</button>
