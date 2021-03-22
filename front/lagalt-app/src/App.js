@@ -10,6 +10,7 @@ import Admin from './containers/Admin'
 import { AuthContext } from './auth/Auth'
 import Login from './components/Login'
 import Signup from './components/Signup'
+import FirebaseChat from './components/views/firebase-chat/firebase-chat-view/FirebaseChat'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/projects" component={ProfileProjects} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+              <Route path="/chat" component={FirebaseChat} />
               <PrivateRoute path="/admin" component={Admin} />
             </Switch>
           <Footer />
