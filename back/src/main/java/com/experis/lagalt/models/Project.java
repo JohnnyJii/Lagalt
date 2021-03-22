@@ -30,7 +30,6 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @Column(name = "user_id")
     private User user;
 
     public Project() {
