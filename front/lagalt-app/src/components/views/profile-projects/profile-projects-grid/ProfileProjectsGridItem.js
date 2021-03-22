@@ -2,7 +2,7 @@ import './ProfileProjectsGridItem.css'
 import React from 'react'
 import ProfileProjectsModal from '../profile-projects-modal/ProfileProjectsModal'
 
-function ProfileProjectsGridItem() {
+function ProfileProjectsGridItem(props) {
     const [modalShow, setModalShow] = React.useState(false);
 
     return(
@@ -17,7 +17,7 @@ function ProfileProjectsGridItem() {
                     </div>
                 </p>
             </div>
-            <ProfileProjectsModal show={modalShow} onHide={() => setModalShow(false)} />
+            <ProfileProjectsModal id={props.id} show={modalShow} onHide={() => setModalShow(false)} />
         </section>
     )
 }
