@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAll() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -24,23 +24,23 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public boolean exists(long id) {
+    public boolean userExists(long id) {
         return userRepository.existsById(id);
     }
 
-    public User find(long id) {
+    public User findUser(long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.orElseGet(User::new);
     }
 
-    public void delete(long id) {
+    public void deleteUser(long id) {
         userRepository.deleteById(id);
     }
 
-    public List<Project> getProjects(long id) {
+    public List<Project> getUserProjects(long id) {
         ArrayList<Project> projects = new ArrayList<>();
-        if (exists(id)) {
-            User user = find(id);
+        if (userExists(id)) {
+            User user = findUser(id);
             projects.addAll(user.getProjects());
         }
         return projects;

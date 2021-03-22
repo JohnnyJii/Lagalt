@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userService.getAll();
+        List<User> users = userService.getAllUsers();
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(users, status);
     }
@@ -33,9 +33,9 @@ public class UserController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
-        User user = userService.find(id);
+        User user = userService.findUser(id);
         HttpStatus status;
-        if (userService.exists(id)) {
+        if (userService.userExists(id)) {
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
@@ -51,7 +51,7 @@ public class UserController {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnUser, status);
         }
-        if (userService.exists(id)) {
+        if (userService.userExists(id)) {
             status = HttpStatus.NO_CONTENT;
         } else {
             status = HttpStatus.CREATED;
@@ -63,8 +63,8 @@ public class UserController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
         HttpStatus status;
-        if (userService.exists(id)) {
-            userService.delete(id);
+        if (userService.userExists(id)) {
+            userService.deleteUser(id);
             status = HttpStatus.NO_CONTENT;
         } else {
             status = HttpStatus.NOT_FOUND;
@@ -74,9 +74,9 @@ public class UserController {
 
     @GetMapping(value = "/{id}/projects")
     public ResponseEntity<List<Project>> getUserProjects(@PathVariable long id) {
-        List<Project> projects = userService.getProjects(id);
+        List<Project> projects = userService.getUserProjects(id);
         HttpStatus status;
-        if (userService.exists(id)) {
+        if (userService.userExists(id)) {
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
