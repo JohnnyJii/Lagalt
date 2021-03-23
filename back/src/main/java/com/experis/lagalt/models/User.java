@@ -38,8 +38,7 @@ public class User {
     @Column(name = "description")
     private String description;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     private Set<Project> projects;
 
     public User() {
