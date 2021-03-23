@@ -42,6 +42,11 @@ public class User {
     @JoinColumn(name = "user_id")
     private Set<Project> projects;
 
+    public User() {
+        projects = new HashSet<>();
+        skills = new HashSet<>();
+    }
+
     @JsonGetter("projects")
     public List<String> projectsGetter() {
         if (projects == null) {
@@ -55,11 +60,6 @@ public class User {
                 .stream()
                 .map(project -> String.valueOf(project.getId()))
                 .collect(Collectors.toList());
-    }
-
-    public User() {
-        projects = new HashSet<>();
-        skills = new HashSet<>();
     }
 
     // Getters and setters

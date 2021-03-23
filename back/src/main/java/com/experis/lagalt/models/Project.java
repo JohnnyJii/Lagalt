@@ -34,17 +34,17 @@ public class Project {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Project() {
+        //projects = new HashSet<>();
+        skills = new HashSet<>();
+    }
+
     @JsonGetter("user")
     public String userGetter() {
         if (user == null) {
             return null;
         }
         return String.valueOf(user.getId());
-    }
-
-    public Project() {
-        //projects = new HashSet<>();
-        skills = new HashSet<>();
     }
 
     // Getters and setters
