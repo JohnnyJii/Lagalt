@@ -1,0 +1,13 @@
+name: Push back end to heroku
+on:
+  workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Run a multi-line script
+        run: |
+          cd back
+          docker build -t lagalt .
+          heroku container:push web
+          heroku container:release web
