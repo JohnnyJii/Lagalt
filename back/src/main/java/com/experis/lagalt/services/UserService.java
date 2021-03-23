@@ -33,8 +33,12 @@ public class UserService {
         return optionalUser.orElseGet(User::new);
     }
 
-    public void deleteUser(long id) {
-        userRepository.deleteById(id);
+    public boolean deleteUser(long id) {
+        if (userExists(id)) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public List<Project> getUserProjects(long id) {
