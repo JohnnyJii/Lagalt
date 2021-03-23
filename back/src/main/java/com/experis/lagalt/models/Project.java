@@ -1,5 +1,7 @@
 package com.experis.lagalt.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,9 +30,21 @@ public class Project {
     @ElementCollection
     private Set<String> skills;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Project() {
         //projects = new HashSet<>();
         skills = new HashSet<>();
+    }
+
+    @JsonGetter("user")
+    public String userGetter() {
+        if (user == null) {
+            return null;
+        }
+        return String.valueOf(user.getId());
     }
 
     // Getters and setters
@@ -80,5 +94,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
