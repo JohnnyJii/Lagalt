@@ -22,7 +22,7 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-function FirebaseChat() {
+function FirebaseChat(props) {
     const [user] = useAuthState(auth);
 
     return(
@@ -30,6 +30,7 @@ function FirebaseChat() {
             <section>
                 {user ?
                     <FirebaseChatRoom
+                        projectId={props.id}
                         user={user}
                         auth={auth}
                         firestore={firestore}

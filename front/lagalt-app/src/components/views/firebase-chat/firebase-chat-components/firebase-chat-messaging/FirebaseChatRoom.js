@@ -3,7 +3,7 @@ import FirebaseChatMessage from '../firebase-chat-messaging/FirebaseChatMessage'
 import firebase from 'firebase/app'
 
 function FirebaseChatRoom(props) {
-    const messagesRef = props.firestore.collection('messages');
+    const messagesRef = props.firestore.collection(`project_comments_${props.projectId}`);
     const query = messagesRef.orderBy('createdAt').limit(25);
     const dummy = props.useRef()
     const [messages] = props.useCollectionData(query, {idField: 'id'});
