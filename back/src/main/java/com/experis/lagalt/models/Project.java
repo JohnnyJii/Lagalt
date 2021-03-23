@@ -1,5 +1,7 @@
 package com.experis.lagalt.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +33,14 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @JsonGetter("user")
+    public String userGetter() {
+        if (user == null) {
+            return null;
+        }
+        return String.valueOf(user.getId());
+    }
 
     public Project() {
         //projects = new HashSet<>();

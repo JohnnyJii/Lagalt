@@ -1,8 +1,12 @@
 package com.experis.lagalt.models;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -10,7 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "user_id")
     private long id;
 
     @Column(name = "username")
@@ -25,9 +29,6 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "id") //fetch = FetchType.LAZY,
-    private Set<Project> projects;
-
     @Column(name = "image_source")
     private String imageSource;
 
@@ -37,8 +38,27 @@ public class User {
     @Column(name = "description")
     private String description;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private Set<Project> projects;
+
+    @JsonGetter("projects")
+    public List<String> projectsGetter() {
+        if (projects == null) {
+            return null;
+        }
+        return projectsToIdArray();
+    }
+
+    private List<String> projectsToIdArray() {
+        return projects
+                .stream()
+                .map(project -> String.valueOf(project.getId()))
+                .collect(Collectors.toList());
+    }
+
     public User() {
-        //projects = new HashSet<>();
+        projects = new HashSet<>();
         skills = new HashSet<>();
     }
 
