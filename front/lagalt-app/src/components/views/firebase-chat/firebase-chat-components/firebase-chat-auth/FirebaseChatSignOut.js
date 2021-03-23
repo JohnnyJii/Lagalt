@@ -1,7 +1,8 @@
-function FirebaseChatSignOut(props) {
-    return props.auth.currentUser && (
-        <button className="btn btn-primary" onClick={() => props.auth.signOut()}>Sign Out</button>
-    )
+import firebase from 'firebase/app'
+
+function FirebaseChatSignOut() {
+    const auth = firebase.auth();
+    auth.signOut();
 }
 
 export default FirebaseChatSignOut

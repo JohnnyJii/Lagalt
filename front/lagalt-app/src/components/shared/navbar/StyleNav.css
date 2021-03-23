@@ -1,24 +1,27 @@
-.navbar {
+.navbar-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 10vh;
     background: rgb(126, 126, 206);
-    color: black;
 }
 
-.navbar .nav-links {
-    width: 40%;
+a {
+    text-decoration: none!important;
+    color: black!important;
+}
+
+a p:hover {
+    color: gray;
+}
+
+.navbar-container .navbar-left {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
+    flex-direction: row;
 }
 
-#li {
-    color: black;
-}
-
-#lagalt {
-    color: black;
+.navbar-container .navbar-right {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
 }

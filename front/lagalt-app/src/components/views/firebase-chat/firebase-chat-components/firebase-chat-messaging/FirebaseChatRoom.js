@@ -8,6 +8,7 @@ function FirebaseChatRoom(props) {
     const dummy = props.useRef()
     const [messages] = props.useCollectionData(query, {idField: 'id'});
     const [formValue, setFormvalue] = props.useState('');
+
     const sendMessage = async(e) => {
         e.preventDefault();
         const { uid } = props.auth.currentUser;
@@ -27,6 +28,8 @@ function FirebaseChatRoom(props) {
         dummy.current.scrollIntoView({ behavior: 'smooth' });
     }
 
+    localStorage.setItem('userName', props.user.displayName)
+
     return(
         <div>
             <div>
@@ -39,7 +42,6 @@ function FirebaseChatRoom(props) {
                 </form>
             </div>
             <div ref={dummy}></div>
-            <FirebaseChatSignOut auth={props.auth}/>
         </div>
     )
 }
