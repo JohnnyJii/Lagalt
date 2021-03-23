@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/* import React, { Component } from 'react'
 import FacebookLogin from 'react-facebook-login'
 
 export default class LoginFacebook extends Component {
@@ -52,3 +52,4 @@ export default class LoginFacebook extends Component {
         )
     }
 }
+ */

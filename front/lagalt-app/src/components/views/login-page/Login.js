@@ -1,8 +1,6 @@
 import React from "react"
 import { Link } from 'react-router-dom'
-import { Card, Form, Input, Button } from '../components/AuthForm'
-import LoginFacebook from './buttons/LoginFacebook'
-
+import { Card, Form, Input, Button } from './AuthForm'
 
 function Login() {
 
@@ -15,9 +13,6 @@ function Login() {
                 <Button>Sign In</Button>
             </Form>
             <Link to="/signup">Don't have an account?</Link>
-        </Card>
-        <Card>
-          <LoginFacebook />
         </Card>
     </div>
   );

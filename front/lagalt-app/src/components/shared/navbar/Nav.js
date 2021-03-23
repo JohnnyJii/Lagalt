@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/StyleNav.css'
+import './StyleNav.css'
 import { Link } from 'react-router-dom'
 
 function About() {

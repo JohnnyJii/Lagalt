@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 function Admin(props) {
   return (
@@ -6,4 +6,4 @@ function Admin(props) {
   )
 }
 
-export default Admin;
+export default Admin; */
