@@ -2,9 +2,21 @@ name: Build docker image and push to heroku
 on:
   workflow_dispatch:
 
-# https://github.com/marketplace/actions/build-push-and-release-a-docker-container-to-heroku
 jobs:
+  job:
+    name: buildJar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+      - run: ./back/gradlew build
+      - uses: actions/upload-artifact@v2
+        with:
+          name lagalt-0.0.1-SNAPSHOT.jar
+          path: ./back/build/libs
+  # https://github.com/marketplace/actions/build-push-and-release-a-docker-container-to-heroku
   build:
+    needs: buildJar
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
