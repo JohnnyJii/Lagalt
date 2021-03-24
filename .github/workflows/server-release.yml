@@ -1,15 +1,6 @@
 name: Build docker image and push to heroku
 on:
-  push:
-    branches:
-      - main
-    paths:
-      ./back/src/**
-  pull_request:
-    branches:
-      - main
-    paths:
-      ./back/src/**
+  workflow_dispatch:
 
 # https://github.com/marketplace/actions/build-push-and-release-a-docker-container-to-heroku
 jobs:
