@@ -9,6 +9,8 @@ on:
   workflow_dispatch:
 jobs:
   job:
-    runs-on: ubuntu-latest
-    name: print when java file is added modified
-      - run: echo "IT WORKS. Java file was modified/added"
+    runs-on: ubuntu-18.04
+    steps:
+      - name: print when java file is added modified
+        run: |
+          echo "IT WORKS. Java file was modified/added"
