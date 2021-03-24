@@ -1,8 +1,8 @@
 import firebase from 'firebase/app'
 
-function FirebaseChatSignOut() {
+function GoogleSignout() {
     const auth = firebase.auth();
     auth.signOut();
 }
 
-export default FirebaseChatSignOut
+export default GoogleSignout

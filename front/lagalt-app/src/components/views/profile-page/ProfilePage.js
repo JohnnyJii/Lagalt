@@ -2,7 +2,7 @@ import ProfileJumbotron from './profile-info/ProfileJumbotron'
 import ProfileNavbar from './profile-navbar/ProfileNavbar'
 
 function ProfilePage() {
-    return (
+    return(
         <div>
             <ProfileNavbar />
             <ProfileJumbotron />

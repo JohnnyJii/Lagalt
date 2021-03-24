@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 function About() {
   // NEED A STATE FOR USERNAME CHANGES!!!!
-  let userName = localStorage.getItem('userName')
   return (
     <div className="navbar-container">
       <div className="navbar-left">
@@ -13,17 +12,9 @@ function About() {
         </Link>
       </div>
       <div className="navbar-right">
-        { userName ? 
           <Link to="/profile">
-            <p>Profile</p>
+            <p>Profile / Login</p>
           </Link>
-          : ''
-      }
-      { userName ? '' :
-        <Link to="login">
-          <p>Log In</p>
-        </Link>
-      }
       </div>
     </div>
   );

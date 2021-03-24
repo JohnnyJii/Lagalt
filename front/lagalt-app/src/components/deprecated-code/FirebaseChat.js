@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+/* import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import './FirebaseChat.css'
@@ -48,4 +48,4 @@ function FirebaseChat(props) {
     )
 }
 
-export default FirebaseChat
+export default FirebaseChat */
