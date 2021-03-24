@@ -18,7 +18,7 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 
-function GoogleAuthentication(props) {
+function GoogleAuthentication() {
     const [user] = useAuthState(auth);
 
     return(
