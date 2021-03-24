@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { Link } from 'react-router-dom';
 import { Card, Form, Input, Button } from './AuthForm';
 
@@ -16,4 +16,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signup; */

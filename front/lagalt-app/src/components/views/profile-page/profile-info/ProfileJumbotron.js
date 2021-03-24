@@ -1,6 +1,14 @@
+import FirebaseChatSignOut from '../../firebase-chat/firebase-chat-components/firebase-chat-auth/FirebaseChatSignOut'
 import './ProfilePage.css'
+import firebase from 'firebase/app'
+
 
 function ProfileJumbotron() {
+
+const signOut = () => {
+    const auth = firebase.auth();
+    auth.signOut();
+}
     return(
         <div>
             <div className="row py-5 px-4">
@@ -33,7 +41,7 @@ function ProfileJumbotron() {
                                 <p className="font-italic mb-0">Photographer</p>
                             </div>
                             <hr></hr>
-                            <button class="btn btn-outline-dark btn-sm btn-block">Log Out</button>
+                            <button class="btn btn-outline-dark btn-sm btn-block" onClick={signOut()}>Log Out</button>
                         </div>
                     </div>
                 </div>

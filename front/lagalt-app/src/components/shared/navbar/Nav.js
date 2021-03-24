@@ -3,25 +3,28 @@ import './StyleNav.css'
 import { Link } from 'react-router-dom'
 
 function About() {
+  // NEED A STATE FOR USERNAME CHANGES!!!!
+  let userName = localStorage.getItem('userName')
   return (
-    <div className="navbar">
+    <div className="navbar-container">
+      <div className="navbar-left">
         <Link to="/">
-        <h1 id="lagalt">Lagalt</h1>
+          <h1>Lagalt</h1>
         </Link>
-        <ul className="nav-links">
-            <Link to="/profile">
-                <li id="li">Profile</li>
-            </Link>
-            <Link to="/projects">
-                <li id="li">My Projects</li>
-            </Link>
-            <Link to="/chat">
-                <li id="li">Chat</li>
-            </Link>
-            <Link to="login">
-              <button>login</button>
-            </Link>
-        </ul>
+      </div>
+      <div className="navbar-right">
+        { userName ? 
+          <Link to="/profile">
+            <p>Profile</p>
+          </Link>
+          : ''
+      }
+      { userName ? '' :
+        <Link to="login">
+          <p>Log In</p>
+        </Link>
+      }
+      </div>
     </div>
   );
 }
