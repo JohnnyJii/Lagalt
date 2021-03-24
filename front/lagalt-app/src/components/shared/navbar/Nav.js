@@ -6,23 +6,24 @@ function About() {
 
    // API here!!! modify to read projects and users!!!!
 
-  const projects = [
+/*   const projects = [
     "jukka",
     "jesse",
     "lauri",
     "nicolas"
-  ]
+  ] */
 
   const [searchTerm, setSearchTerm] = React.useState("");
   const handleChange = event => {
     setSearchTerm(event.target.value);
  };
 
- const results = !searchTerm
+ // remove commaent after deployed to landingpage
+/*  const results = !searchTerm
     ? projects
     : projects.filter(project =>
         project.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-      );
+      ); */
 
 
 

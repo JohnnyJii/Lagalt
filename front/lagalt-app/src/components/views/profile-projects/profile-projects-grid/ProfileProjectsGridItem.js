@@ -1,7 +1,7 @@
 import './ProfileProjectsGridItem.css'
 import React from 'react'
 import ProfileProjectsModal from '../profile-projects-modal/ProfileProjectsModal'
-import { Card } from 'react-bootstrap';
+
 
 function ProfileProjectsGridItem(props) {
     const [modalShow, setModalShow] = React.useState(false);
