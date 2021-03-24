@@ -1,6 +1,8 @@
 import './ProfilePage.css'
 
-function ProfileJumbotron() {
+function ProfileJumbotron(props) {
+
+    
     return(
         <div>
             <div className="row py-5 px-4">

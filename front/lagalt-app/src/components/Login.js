@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 import { Card, Form, Input, Button } from '../components/AuthForm'
-import LoginFacebook from './buttons/LoginFacebook'
+
 
 
 function Login() {
@@ -17,7 +17,7 @@ function Login() {
             <Link to="/signup">Don't have an account?</Link>
         </Card>
         <Card>
-          <LoginFacebook />
+
         </Card>
     </div>
   );
