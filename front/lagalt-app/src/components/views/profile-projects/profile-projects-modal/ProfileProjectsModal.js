@@ -1,5 +1,5 @@
 import { Modal, Button } from 'react-bootstrap'
-import FirebaseChat from '../../firebase-chat/firebase-chat-view/FirebaseChat'
+import ProjectComments from './ProjectComments'
 
 function ProfileProjectsModal(props) {
     return (
@@ -13,7 +13,7 @@ function ProfileProjectsModal(props) {
           <p>Short description about the project</p>
           <div>
             <small>Comments: </small>
-            <FirebaseChat id={props.id} />
+            <ProjectComments projectId={props.id} />
           </div>
         </Modal.Body>
         <Modal.Footer>

@@ -1,0 +1,16 @@
+name: print text when java file is modified
+on:
+  push:
+    paths:
+      - '**.java'
+  pull_request:
+    paths:
+      - '**.java'
+  workflow_dispatch:
+jobs:
+  job:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: print when java file is added modified
+        run: |
+          echo "IT WORKS. Java file was modified/added"
