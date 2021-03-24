@@ -1,17 +1,19 @@
-import FirebaseChatSignOut from '../firebase-chat-auth/FirebaseChatSignOut'
-import FirebaseChatMessage from '../firebase-chat-messaging/FirebaseChatMessage'
 import firebase from 'firebase/app'
+import ProjectComment from './ProjectComment'
+import { useState, useRef } from 'react'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
-function FirebaseChatRoom(props) {
-    const messagesRef = props.firestore.collection(`project_comments_${props.projectId}`);
+function ProjectComments(props) {
+    const auth = firebase.auth();
+    const messagesRef = firebase.firestore().collection(`project_comments_${props.projectId}`);
     const query = messagesRef.orderBy('createdAt').limit(25);
-    const dummy = props.useRef()
-    const [messages] = props.useCollectionData(query, {idField: 'id'});
-    const [formValue, setFormvalue] = props.useState('');
+    const dummy = useRef()
+    const [messages] = useCollectionData(query, {idField: 'id'});
+    const [formValue, setFormvalue] = useState('');
 
     const sendMessage = async(e) => {
         e.preventDefault();
-        const { uid } = props.auth.currentUser;
+        const { uid } = auth.currentUser;
 
         if ((formValue === '') || (formValue === null)) {
             alert('No message!')
@@ -20,7 +22,7 @@ function FirebaseChatRoom(props) {
                 text: formValue,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 uid,
-                userName: props.auth.currentUser.displayName
+                userName: auth.currentUser.displayName
             })
         }
         
@@ -28,17 +30,15 @@ function FirebaseChatRoom(props) {
         dummy.current.scrollIntoView({ behavior: 'smooth' });
     }
 
-    localStorage.setItem('userName', props.user.displayName)
-
     return(
         <div>
             <div>
-                {messages && messages.map(msg => <FirebaseChatMessage key={msg.id} message={msg} auth={props.auth}/>)}
+                {messages && messages.map(msg => <ProjectComment key={msg.id} message={msg} auth={firebase.auth}/>)}
             </div>
             <div>
                 <form onSubmit={sendMessage}>
                     <input value={formValue} onChange={(e) => setFormvalue(e.target.value)}/>
-                    <button className="btn btn-primary" type="submit">Send</button>
+                    <button className="btn btn-primary" type="submit">Post Comment</button>
                 </form>
             </div>
             <div ref={dummy}></div>
@@ -46,4 +46,4 @@ function FirebaseChatRoom(props) {
     )
 }
 
-export default FirebaseChatRoom
+export default ProjectComments

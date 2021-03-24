@@ -1,4 +1,4 @@
-
+/* 
 function FirebaseChatMessage(props) {
     const { text, userName } = props.message;
     return(
@@ -9,4 +9,4 @@ function FirebaseChatMessage(props) {
     )
 }
 
-export default FirebaseChatMessage
+export default FirebaseChatMessage */
