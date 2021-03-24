@@ -1,9 +1,13 @@
 import React from 'react'
+import Carousel from 'react-bootstrap/Carousel'
+import LandingCarousel from './LandingCarousel'
+import './Landing.css'
 
-function Landing(props) {
+function Landing() {
   return (
-    <div className="Landing">
-        <p>landing</p>
+    <div className="landing-carousel">
+      <LandingCarousel />
+      <LandingCarousel />
     </div>
   );
 }
