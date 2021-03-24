@@ -1,7 +1,7 @@
 import './ProfilePage.css'
 import firebase from 'firebase/app'
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import Axios from 'axios'
 
 function ProfileJumbotron() {
 
@@ -25,7 +25,7 @@ const [dbUser, setDbUser] = useState({})
 useEffect(() => {
     async function fetchDbUser() {
         try {
-            const userResponse = await axios('https://lagalt-server.herokuapp.com/api/v1/users/5');
+            const userResponse = await Axios('https://lagalt-server.herokuapp.com/api/v1/users/5');
             setDbUser(userResponse.data);
         } catch (error) {
             console.error(error);
