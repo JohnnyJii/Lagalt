@@ -1,4 +1,5 @@
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
+import CreateProjectTemplate from './CreateProjectTemplate'
 
 function CreateProjectModal(props) {
     return (
@@ -9,27 +10,10 @@ function CreateProjectModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form>
-                <Form.Label>Project name</Form.Label>
-                <Form.Control type="text" placeholder="Project name" />
-                <br/>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Project description</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
-                </Form.Group>
-                <br/>
-                <Form.Label>Related tags</Form.Label>
-                <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Music" />
-                    <Form.Check type="checkbox" label="Video and Photography" />
-                    <Form.Check type="checkbox" label="Web Development" />
-                </Form.Group>
-            </Form>
-          
+          <CreateProjectTemplate />       
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="warning" onClick={props.onHide}>Cancel</Button>
-          <Button variant="success" onClick={props.onHide}>Create</Button>
+          <Button variant="success" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

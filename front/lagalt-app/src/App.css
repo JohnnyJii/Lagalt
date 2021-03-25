@@ -1,7 +1,14 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    bottom: 35px;
+}
+
 .App {
-    text-align: center;
-    background: blue;
-    height: 100%;
 }
 
 

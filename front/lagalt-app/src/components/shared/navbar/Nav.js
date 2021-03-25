@@ -6,28 +6,28 @@ function About() {
 
    // API here!!! modify to read projects and users!!!!
 
-  const projects = [
+/*   const projects = [
     "jukka",
     "jesse",
     "lauri",
     "nicolas"
-  ]
+  ] */
 
   const [searchTerm, setSearchTerm] = React.useState("");
   const handleChange = event => {
     setSearchTerm(event.target.value);
  };
 
- const results = !searchTerm
+ // remove commaent after deployed to landingpage
+/*  const results = !searchTerm
     ? projects
     : projects.filter(project =>
         project.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-      );
+      ); */
 
 
 
   // NEED A STATE FOR USERNAME CHANGES!!!!
-  let userName = localStorage.getItem('userName')
   return (
     <div className="navbar-container">
       <div className="navbar-left">
@@ -44,17 +44,9 @@ function About() {
         />
       </div>
       <div className="navbar-right">
-        { userName ? 
           <Link to="/profile">
-            <p>Profile</p>
+            <p>Profile / Login</p>
           </Link>
-          : ''
-      }
-      { userName ? '' :
-        <Link to="login">
-          <p>Log In</p>
-        </Link>
-      }
       </div>
     </div>
   );

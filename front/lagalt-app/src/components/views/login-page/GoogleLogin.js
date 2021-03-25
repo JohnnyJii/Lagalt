@@ -1,6 +1,6 @@
-import '../../firebase-chat-view/FirebaseChat.css'
+import '../firebase-chat/firebase-chat-view/FirebaseChat.css'
 
-function FirebaseChatSignIn(props) {
+function GoogleLogin(props) {
     const signInWithGoogle = () => {
         const provider = new props.firebase.auth.GoogleAuthProvider();
         props.auth.signInWithPopup(provider)
@@ -17,4 +17,4 @@ function FirebaseChatSignIn(props) {
     )
 }
 
-export default FirebaseChatSignIn
+export default GoogleLogin

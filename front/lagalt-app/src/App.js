@@ -3,10 +3,9 @@ import Footer from './components/shared/footer/Footer'
 import Landing from './components/views/landing-page/Landing'
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom'
 import './App.css';
-import ProfilePage from './components/views/profile-page/ProfilePage'
 import ProfileProjects from './components/views/profile-projects/ProfileProjects'
 import { AuthContext } from './auth/Auth'
-import FirebaseChat from './components/views/firebase-chat/firebase-chat-view/FirebaseChat'
+import GoogleAuthentication from './components/views/login-page/GoogleAuthentication';
 
 function App() {
   return (
@@ -16,10 +15,9 @@ function App() {
           <Nav />
             <Switch>
               <Route path="/" exact component={Landing} />
-              <Route path="/profile" component={ProfilePage} />
+              <Route path="/profile" component={GoogleAuthentication} />
               <Route path="/projects" component={ProfileProjects} />
-              <Route path="/login" component={FirebaseChat} />
-            </Switch>
+              </Switch>
           <Footer />
         </div>
       </Router>
