@@ -15,7 +15,7 @@ jobs:
           java-version: '15.0.1'
       - name: build Jar
         run: ./back/gradlew build
-      - name build image and push to heroku
+      - name: build image and push to heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_SERVER_API_KEY }}
