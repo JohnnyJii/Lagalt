@@ -1,35 +1,33 @@
-import React from 'react'
-import Carousel from 'react-bootstrap/Carousel'
-import ProfileProjectsGridItem from '../profile-projects/profile-projects-grid/ProfileProjectsGridItem'
+// import React from 'react'
+// import Carousel from 'react-bootstrap/Carousel'
+// import ProfileProjectsGridItem from '../profile-projects/profile-projects-grid/ProfileProjectsGridItem'
 
 
-function LandingCarousel() {
-  return (
-    <div className="landing-carousel">
-        <Carousel>
-          <Carousel.Item interval={1500} style={{'height': "300px"}}>
-            <ProfileProjectsGridItem  />
-            <Carousel.Caption>
-             
-             
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item interval={1500} style={{'height': "300px"}}>
-            <ProfileProjectsGridItem />
-            <Carousel.Caption>
+// function LandingCarousel() {
+//   return (
+//     <div className="landing-carousel">
+//         <Carousel>
+//           <Carousel.Item style={{'height': "300px"}}>
+//             <ProfileProjectsGridItem  />
+//             <Carousel.Caption>
 
-            </Carousel.Caption>
-          </Carousel.Item>
-         <Carousel.Item interval={1500} style={{'height': "300px"}}>
-            <ProfileProjectsGridItem />
-            <Carousel.Caption>
-            
-             
-            </Carousel.Caption>
-          </Carousel.Item> 
-      </Carousel>
-    </div>
-  );
-}
+//             </Carousel.Caption>
+//           </Carousel.Item>
+//           <Carousel.Item style={{'height': "300px"}}>
+//             <ProfileProjectsGridItem />
+//             <Carousel.Caption>
 
-export default LandingCarousel;
+//             </Carousel.Caption>
+//           </Carousel.Item>
+//          <Carousel.Item style={{'height': "300px"}}>
+//             <ProfileProjectsGridItem />
+//             <Carousel.Caption>   
+                
+//             </Carousel.Caption>
+//           </Carousel.Item> 
+//       </Carousel>
+//     </div>
+//   );
+// }
+
+// export default LandingCarousel;

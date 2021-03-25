@@ -1,3 +1,4 @@
 .landing-carousel {
-    padding: 15px;
+    padding: 10%;      
+    z-index: -1;
 }

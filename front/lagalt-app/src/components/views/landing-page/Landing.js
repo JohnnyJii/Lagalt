@@ -1,12 +1,16 @@
 import React from 'react'
-import LandingCarousel from './LandingCarousel'
+import Carou from '../../shared/LandCarousel'
+import LandingMain from '../../shared/landingMain/LandingMain'
 import './Landing.css'
 
+
 function Landing() {
+
+
   return (
-    <div className="landing-carousel">
-      <LandingCarousel />
-      <LandingCarousel />
+    <div className="landing">
+      <Carou />
+      <LandingMain />
     </div>
   );
 }
