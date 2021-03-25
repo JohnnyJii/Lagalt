@@ -15,7 +15,7 @@ jobs:
           java-version: '15.0.1'
       - name: build Jar
         run: ./back/gradlew build
-      - name move to back
+      - name: move to back
         run: |
           cd back
           ll
