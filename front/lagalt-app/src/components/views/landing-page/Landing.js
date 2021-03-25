@@ -1,5 +1,6 @@
 import React from 'react'
-import LandCarousel from '../../shared/LandCarousel'
+import Carou from '../../shared/LandCarousel'
+import LandingMain from '../../shared/landingMain/LandingMain'
 import './Landing.css'
 
 
@@ -8,7 +9,8 @@ function Landing() {
 
   return (
     <div className="landing">
-      <LandCarousel />
+      <Carou />
+      <LandingMain />
     </div>
   );
 }
