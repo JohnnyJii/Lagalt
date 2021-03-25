@@ -1,83 +1,80 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 
 class CreateProject extends Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             id: '',
             title: '',
             industry: '',
             description: '',
-            skills: '',
-            user: ''
-        };
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+            gitlink: ''
+        }
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        console.log(this.state);
-        Axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", this.state).then(
-            alert(JSON.stringify(this.state) + "was created")
-        );
+    changeHandler = e => {
+        this.setState({[e.target.name]: e.target.value})
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = event.value;
-        const name = event.name;
-
-        this.setState({
-            [name]: value
-        });
+    submitHandler = e => {
+        e.preventDefault()
+        console.log(this.state)
+        axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", this.state)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
+        const { id, title, industry, description, gitlink } = this.state
         return (
             <div>
-                <form onSubmit={this.handleSubmit} style={{ color: "white" }}>
-                <label>
-                    Navn:
+                <form onSubmit={this.submitHandler}>
+                <label>ID:
                     <input
-                    name="name"
+                    name="id"
                     type="text"
-                    value={this.state.name}
-                    onChange={this.handleInputChange}
+                    value={id}
+                    onChange={this.changeHandler}
                     />
                 </label>
-                <br></br>
-                <label>
-                    EierID:
+                <label>Title:
                     <input
-                    name="ownerId"
+                    name="title"
                     type="text"
-                    value={this.state.ownerID}
-                    onChange={this.handleInputChange}
+                    value={title}
+                    onChange={this.changeHandler}
                     />
                 </label>
-                <br></br>
-                <label>
-                    Status:
+                <label>Industry:
                     <input
-                    name="status"
-                    value={this.state.status}
-                    onChange={this.handleInputChange}
+                    name="industry"
+                    type="text"
+                    value={industry}
+                    onChange={this.changeHandler}
                     />
                 </label>
-                <br></br>
-                <label>
-                    Beskrivelse:
+                <label>Description:
                     <textarea
                     name="description"
                     type="text"
-                    value={this.state.description}
-                    onChange={this.handleInputChange}
+                    value={description}
+                    onChange={this.changeHandler}
                     />
                 </label>
-                <br></br>
-                <input type="submit" value="Send" />
+                <label>Gitlink:
+                    <input
+                    name="gitlink"
+                    type="text"
+                    value={gitlink}
+                    onChange={this.changeHandler}
+                    />
+                </label>
+                <button type="submit">Create</button>
                 </form>
             </div>
         )

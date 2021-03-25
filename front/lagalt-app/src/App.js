@@ -11,6 +11,10 @@ import { AuthContext } from './auth/Auth'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import FirebaseChat from './components/views/firebase-chat/firebase-chat-view/FirebaseChat'
+import CreateProject from './api/CreateProject'
+
+import CreateUser from './api/CreateUser'
+
 
 function App() {
   return (
@@ -25,6 +29,8 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/chat" component={FirebaseChat} />
+              <Route path="/createuser" component={CreateUser} />
+              <Route path="/createproject" component={CreateProject} />
               <PrivateRoute path="/admin" component={Admin} />
             </Switch>
           <Footer />
