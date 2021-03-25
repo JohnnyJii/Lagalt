@@ -24,3 +24,7 @@ jobs:
           email: ${{ secrets.HEROKU_SERVER_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_SERVER_API_KEY }}
           heroku_app_name: lagalt-server
+          dockerfile_directory: ./
+          dockerfile_name: Dockerfile
+          docker_options: "--no-cache"
+          process_type: web
