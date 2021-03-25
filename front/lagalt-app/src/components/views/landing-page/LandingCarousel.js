@@ -7,24 +7,22 @@ function LandingCarousel() {
   return (
     <div className="landing-carousel">
         <Carousel>
-          <Carousel.Item interval={1500} style={{'height': "300px"}}>
+          <Carousel.Item style={{'height': "300px"}}>
             <ProfileProjectsGridItem  />
             <Carousel.Caption>
-             
-             
+
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item interval={1500} style={{'height': "300px"}}>
+          <Carousel.Item style={{'height': "300px"}}>
             <ProfileProjectsGridItem />
             <Carousel.Caption>
 
             </Carousel.Caption>
           </Carousel.Item>
-         <Carousel.Item interval={1500} style={{'height': "300px"}}>
+         <Carousel.Item style={{'height': "300px"}}>
             <ProfileProjectsGridItem />
-            <Carousel.Caption>
-            
-             
+            <Carousel.Caption>   
+                
             </Carousel.Caption>
           </Carousel.Item> 
       </Carousel>
