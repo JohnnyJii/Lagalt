@@ -1,21 +1,20 @@
 .navbar-container {
-    position: fixed;
     top: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 10vh;
-    background: rgb(126, 126, 206);
+    background:#F09D51;
 }
 
 a {
     text-decoration: none!important;
-    color: black!important;
+    color: #313638!important;
 }
 
 a p:hover {
-    color: gray;
+    color: #F06543;
 }
 
 .navbar-container .navbar-left {

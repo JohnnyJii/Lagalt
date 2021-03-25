@@ -1,11 +1,11 @@
 .footer {
-    position: sticky;
+    position: absolute;
     left: 0;
     bottom: 0;
     height: 35px;
     width: 100%;
-    background: rgb(20, 20, 108);
-    color: white;
+    overflow: hidden;
+    background: #F09D51;
+    color: #313638;
     text-align: center;
-    opacity: 0.7;
 }
