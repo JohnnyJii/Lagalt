@@ -1,0 +1,29 @@
+name: Push jar to heroku
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'back/build/libs/*.jar'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'back/build/libs/*.jar'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: build image and push to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_SERVER_API_KEY }}
+          heroku_app_name: lagalt-server
+          heroku_email: ${{ secrets.HEROKU_SERVER_EMAIL }}
+          usedocker: true
+          appdir: ./back
+          healthcheck: https://lagalt-server.herokuapp.com/api/v1/health
