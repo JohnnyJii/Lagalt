@@ -15,14 +15,35 @@ jobs:
           java-version: '15.0.1'
       - name: build Jar
         run: ./back/gradlew build
-      - name: Build, Push and Release to Heroku.
-        uses: gonuit/heroku-docker-deploy@v1.3.2
-        run: cd back
+      - name build image and push to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          email: ${{ secrets.HEROKU_SERVER_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_SERVER_API_KEY }}
           heroku_app_name: lagalt-server
-          dockerfile_directory: ./
-          dockerfile_name: Dockerfile
-          docker_options: "--no-cache"
-          process_type: web
+          heroku_email: ${{ secrets.HEROKU_SERVER_EMAIL }}
+          usedocker: true
+          appdir: ./back
+          healthcheck: https://lagalt-server.herokuapp.com/api/v1/health
+
+
+#      - name: build docker image
+#        run: docker build -t lagalt .
+#        working-directory: back
+#      - name: push heroku
+#        uses: akhileshns/heroku-deploy@v3.12.12
+#        run: |
+#          heroku container:push web
+#          heroku container:release web
+#        working-directory: back
+
+        #- name: Build, Push and Release to Heroku.
+        #uses: gonuit/heroku-docker-deploy@v1.3.2
+        #run: cd back
+          #with:
+          #email: ${{ secrets.HEROKU_SERVER_EMAIL }}
+          #heroku_api_key: ${{ secrets.HEROKU_SERVER_API_KEY }}
+          #heroku_app_name: lagalt-server
+          #dockerfile_directory: ./
+          #dockerfile_name: Dockerfile
+          #docker_options: "--no-cache"
+        #process_type: web
