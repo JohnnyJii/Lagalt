@@ -18,7 +18,6 @@ jobs:
       - name: move to back
         run: |
           cd back
-          ll
       - name: Build, Push and Release to Heroku.
         uses: gonuit/heroku-docker-deploy@v1.3.2
         with:
