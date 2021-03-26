@@ -1,12 +1,10 @@
 import React from 'react'
-import ProfileProjectsGridItem from '../../views/profile-projects/profile-projects-grid/ProfileProjectsGridItem'
+import ProfileProjectsGrid from '../../views/profile-projects/profile-projects-grid/ProfileProjectsGrid'
 
 
 function LandingMain() {
     return (
-        <div>
-            <ProfileProjectsGridItem />
-        </div>
+        <ProfileProjectsGrid />
     )
 }
 

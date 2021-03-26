@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ProfileProjectsGridItem from '../views/profile-projects/profile-projects-grid/ProfileProjectsGridItem'
 
 
-function Carou() {
+function Carousel() {
     const settings = {
         dots: false,
         infinite: true,
@@ -44,4 +44,4 @@ function Carou() {
       );
 }
 
-export default Carou;
+export default Carousel;

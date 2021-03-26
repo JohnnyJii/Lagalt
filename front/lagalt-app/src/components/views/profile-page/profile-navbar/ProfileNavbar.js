@@ -3,14 +3,20 @@ import { Link } from 'react-router-dom'
 
 function ProfileNavbar() {
     return(
-        <Nav variant="tabs" defaultActiveKey="/profile">
-            <Nav.Item>
-                    <Link to="/profile">Profile</Link>
-            </Nav.Item>
-            <Nav.Item>
-                    <Link to="/projects">My Projects</Link>
-            </Nav.Item>
-        </Nav>
+        <div>
+            <Nav text-center fill variant="tabs" defaultActiveKey="profile">
+                <Nav.Item>
+                    <Nav.Link className="navLink" eventKey="profile" as={Link} to="/profile">
+                        Profile
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link className="navLink" eventKey="projects" as={Link} to="/projects">
+                        Projects
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
+        </div>
     )
 }
 
