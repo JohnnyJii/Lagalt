@@ -1,12 +1,13 @@
-.landing {
+.landing-main {
     background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
-    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
+    background-image: linear-gradient(to bottom right, rgb(165, 132, 216), rgb(172, 23, 115));
 }
 
 .landing-carousel {
     z-index: -1;
 }
 
-.navLink {
-
+.container {
+    background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
 }

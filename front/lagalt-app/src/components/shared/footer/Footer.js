@@ -4,7 +4,7 @@ import './StyleFooter.css'
 function Footer() {
   return (
     <div className="footer">
-        <p>Footer</p>
+        <p className="footer-info">Contact for more information</p>
     </div>
   );
 }
