@@ -1,6 +1,6 @@
 import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav, Link, Item } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 import './StyleNav.css'
 
 
