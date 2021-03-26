@@ -6,6 +6,10 @@ import './App.css';
 import ProfileProjects from './components/views/profile-projects/ProfileProjects'
 import { AuthContext } from './auth/Auth'
 import GoogleAuthentication from './components/views/login-page/GoogleAuthentication';
+import Movies from './components/views/navbarItems/Movies'
+import Music from './components/views/navbarItems/Music'
+import Codes from './components/views/navbarItems/Codes';
+
 
 function App() {
   return (
@@ -17,6 +21,9 @@ function App() {
               <Route path="/" exact component={Landing} />
               <Route path="/profile" component={GoogleAuthentication} />
               <Route path="/projects" component={ProfileProjects} />
+              <Route path="/movies" component={Movies} />
+              <Route path="/music" component={Music}/>
+              <Route path="/codes" component={Codes} />
               </Switch>
           <Footer />
         </div>

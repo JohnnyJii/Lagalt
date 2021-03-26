@@ -1,6 +1,6 @@
 import './ProfilePage.css'
 import firebase from 'firebase/app'
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import Axios from 'axios'
 
 function ProfileJumbotron() {

@@ -8,9 +8,25 @@ function Landing() {
 
 
   return (
-    <div className="landing">
-      <Carou />
-      <LandingMain />
+    <div  className="landing">
+      <div>
+      <Container>
+        <Row>
+          <Col></Col>
+            <Col>
+              <Carou />
+            </Col>
+          <Col></Col>
+        </Row>
+    </Container>
+    </div>
+    <br />
+    <div>
+      {/* <LowerNav /> */}
+    </div>
+      <div>
+        <LandingMain />
+      </div>
     </div>
   );
 }
