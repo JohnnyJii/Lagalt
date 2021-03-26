@@ -1,7 +1,9 @@
 import React from 'react'
 import Carou from '../../shared/LandCarousel'
 import LandingMain from '../../shared/landingMain/LandingMain'
+import { Container, Row, Col } from 'react-bootstrap'
 import './Landing.css'
+import LowerNav from '../../shared/navbar/LowerNav'
 
 
 function Landing() {
@@ -22,7 +24,7 @@ function Landing() {
     </div>
     <br />
     <div>
-      {/* <LowerNav /> */}
+      <LowerNav />
     </div>
       <div>
         <LandingMain />
