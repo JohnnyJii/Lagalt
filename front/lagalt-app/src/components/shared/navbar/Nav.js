@@ -1,6 +1,5 @@
 import React from 'react'
 import './StyleNav.css'
-import { Link } from 'react-router-dom'
 
 function About() {
 
@@ -31,9 +30,6 @@ function About() {
   return (
     <div className="navbar-container">
         <a href="/">Lagalt</a>
-        <a href="/movies">Movies</a>
-        <a href="/music">Music</a>
-        <a href="/codes">Codes</a>
           <input 
           type="text"
           placeholder="search"

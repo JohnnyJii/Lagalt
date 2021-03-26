@@ -1,34 +1,25 @@
 import React from 'react'
-import Carou from '../../shared/LandCarousel'
-import LandingMain from '../../shared/landingMain/LandingMain'
 import { Container, Row, Col } from 'react-bootstrap'
-import './Landing.css'
+import Carousel from '../../shared/LandCarousel'
+import LandingMain from '../../shared/landingMain/LandingMain'
 import LowerNav from '../../shared/navbar/LowerNav'
-
+/* import './Landing.css'
+ */
 
 function Landing() {
 
 
   return (
-    <div  className="landing">
-      <div>
+    <div  className="container">
       <Container>
         <Row>
-          <Col></Col>
-            <Col>
-              <Carou />
-            </Col>
-          <Col></Col>
+          <Col>
+            <Carousel />
+          </Col>
         </Row>
-    </Container>
-    </div>
-    <br />
-    <div>
+      </Container>
       <LowerNav />
-    </div>
-      <div>
-        <LandingMain />
-      </div>
+      <LandingMain />
     </div>
   );
 }
