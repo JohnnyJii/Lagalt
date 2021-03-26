@@ -30,25 +30,18 @@ function About() {
   // NEED A STATE FOR USERNAME CHANGES!!!!
   return (
     <div className="navbar-container">
-      <div className="navbar-left">
-        <Link to="/">
-          <h1>Lagalt</h1>
-        </Link>
+        <a href="/">Lagalt</a>
+        <a href="/movies">Movies</a>
+        <a href="/music">Music</a>
+        <a href="/codes">Codes</a>
+          <input 
+          type="text"
+          placeholder="search"
+          value={searchTerm}
+          onChange={handleChange}
+          />
+        <a href="/profile">Profile / Login</a>
       </div>
-      <div>
-        <input 
-        type="text"
-        placeholder="search"
-        value={searchTerm}
-        onChange={handleChange}
-        />
-      </div>
-      <div className="navbar-right">
-          <Link to="/profile">
-            <p>Profile / Login</p>
-          </Link>
-      </div>
-    </div>
   );
 }
 
