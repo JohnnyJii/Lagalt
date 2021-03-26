@@ -31,9 +31,6 @@ function About() {
   return (
     <div className="navbar-container">
         <a href="/">Lagalt</a>
-        <a href="/movies">Movies</a>
-        <a href="/music">Music</a>
-        <a href="/codes">Codes</a>
           <input 
           type="text"
           placeholder="search"

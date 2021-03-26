@@ -7,10 +7,10 @@ import ProfileProjectsGridItem from '../views/profile-projects/profile-projects-
 
 function Carou() {
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         autoplay: true,
         speed: 1000,
         autoplaySpeed: 5000,

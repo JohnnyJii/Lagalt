@@ -24,7 +24,7 @@ function Landing() {
     </div>
     <br />
     <div>
-      {/* <LowerNav /> */}
+      <LowerNav />
     </div>
       <div>
         <LandingMain />
