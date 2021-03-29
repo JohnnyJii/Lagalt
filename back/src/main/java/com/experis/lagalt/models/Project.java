@@ -15,6 +15,12 @@ public class Project {
     @Column(name = "id")
     private long id;
 
+    @Column(name = "googleid")
+    private String googleid;
+
+    @Column(name = "progress")
+    private String progress;
+
     @Column(name = "title")
     private String title;
 
