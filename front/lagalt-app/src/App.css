@@ -6,6 +6,8 @@ html {
 body {
     margin: 0 0 100px;
     bottom: 35px;
+    background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
 }
 
 .App {

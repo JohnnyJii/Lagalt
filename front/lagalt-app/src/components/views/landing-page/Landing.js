@@ -3,14 +3,14 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Carousel from '../../shared/LandCarousel'
 import LandingMain from '../../shared/landingMain/LandingMain'
 import LowerNav from '../../shared/navbar/LowerNav'
-/* import './Landing.css'
- */
+import './Landing.css'
+ 
 
 function Landing() {
 
 
   return (
-    <div  className="container">
+    <div className="container">
       <Container>
         <Row>
           <Col>
