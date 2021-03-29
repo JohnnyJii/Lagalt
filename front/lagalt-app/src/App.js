@@ -24,7 +24,7 @@ function App() {
               <Route path="/movies" component={Movies} />
               <Route path="/music" component={Music}/>
               <Route path="/codes" component={Codes} />
-              </Switch>
+            </Switch>
           <Footer />
         </div>
       </Router>

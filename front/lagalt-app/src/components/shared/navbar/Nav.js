@@ -1,41 +1,16 @@
 import React from 'react'
+import Search from './Search';
 import './StyleNav.css'
 
+
 function About() {
-
-   // API here!!! modify to read projects and users!!!!
-
-/*   const projects = [
-    "jukka",
-    "jesse",
-    "lauri",
-    "nicolas"
-  ] */
-
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
- };
-
- // remove commaent after deployed to landingpage
-/*  const results = !searchTerm
-    ? projects
-    : projects.filter(project =>
-        project.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-      ); */
-
 
 
   // NEED A STATE FOR USERNAME CHANGES!!!!
   return (
     <div className="navbar-container">
         <a href="/">Lagalt</a>
-          <input 
-          type="text"
-          placeholder="search"
-          value={searchTerm}
-          onChange={handleChange}
-          />
+          <Search />
         <a href="/profile">Profile / Login</a>
       </div>
   );
