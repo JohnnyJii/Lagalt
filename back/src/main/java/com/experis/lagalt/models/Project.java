@@ -109,4 +109,14 @@ public class Project {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
+    }
+
+    public String getGoogleid() { return googleid; }
 }

@@ -136,4 +136,14 @@ public class User {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
+
+    public String getGoogleid() { return googleid; }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
+    }
 }
