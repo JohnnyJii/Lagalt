@@ -48,7 +48,7 @@ public class ProjectController {
     public ResponseEntity<Project> updateProject(@PathVariable String googleid, @RequestBody Project newProject) {
         Project returnProject = new Project();
         HttpStatus status;
-        if (googleid != newProject.getId()) {
+        if (googleid != newProject.getGoogleid()) {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnProject, status);
         }

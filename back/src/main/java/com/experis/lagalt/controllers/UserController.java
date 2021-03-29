@@ -48,7 +48,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable String googleid, @RequestBody User newUser) {
         User returnUser = new User();
         HttpStatus status;
-        if (googleid != newUser.getId()) {
+        if (googleid != newUser.getGoogleid()) {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnUser, status);
         }
