@@ -31,12 +31,12 @@ public class ProjectController {
         return new ResponseEntity<>(newProject, status);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Project> getProject(@PathVariable long id) {
+    @GetMapping(value = "/{googleid}")
+    public ResponseEntity<Project> getProject(@PathVariable String googleid) {
         Project project = new Project();
         HttpStatus status;
-        if (projectRepository.existsById(id)) {
-            project = projectRepository.findById(id).get();
+        if (projectRepository.existsByGoogleid(googleid)) {
+            project = projectRepository.findByGoogleid(googleid).get();
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
@@ -44,15 +44,15 @@ public class ProjectController {
         return new ResponseEntity<>(project, status);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody Project newProject) {
+    @PutMapping(value = "/{googleid}")
+    public ResponseEntity<Project> updateProject(@PathVariable String googleid, @RequestBody Project newProject) {
         Project returnProject = new Project();
         HttpStatus status;
-        if (id != newProject.getId()) {
+        if (googleid != newProject.getId()) {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnProject, status);
         }
-        boolean projectFound = projectRepository.existsById(id);
+        boolean projectFound = projectRepository.existsByGoogleid(googleid);
         returnProject = projectRepository.save(newProject);
         if (projectFound) {
             status = HttpStatus.NO_CONTENT;
@@ -62,11 +62,11 @@ public class ProjectController {
         return new ResponseEntity<>(returnProject, status);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Project> deleteProject(@PathVariable long id) {
+    @DeleteMapping(value = "/{googleid}")
+    public ResponseEntity<Project> deleteProject(@PathVariable String googleid) {
         HttpStatus status;
-        if (projectRepository.existsById(id)) {
-            projectRepository.deleteById(id);
+        if (projectRepository.existsByGoogleid(googleid)) {
+            projectRepository.deleteByGoogleid(googleid);
             status = HttpStatus.NO_CONTENT;
         } else {
             status = HttpStatus.NOT_FOUND;
