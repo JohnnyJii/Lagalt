@@ -3,6 +3,8 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    padding-left: 100px;
+    padding-right: 100px;
     align-items: center;
     min-height: 10vh;
     background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
