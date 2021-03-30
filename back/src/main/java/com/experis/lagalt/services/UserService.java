@@ -24,27 +24,35 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public boolean userExists(long id) {
-        return userRepository.existsById(id);
+    public boolean userExists(String googleid) {
+        return userRepository.existsByGoogleid(googleid);
     }
 
-    public User findUser(long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
+    public User findUser(String googleid) {
+        Optional<User> optionalUser = userRepository.findByGoogleid(googleid);
         return optionalUser.orElseGet(User::new);
     }
 
+    public boolean deleteUser(String googleid) {
+        if (userExists(googleid)) {
+            userRepository.deleteAll(userRepository.findAllByGoogleid(googleid));
+            return true;
+        }
+        return false;
+    }
+
     public boolean deleteUser(long id) {
-        if (userExists(id)) {
+        if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
             return true;
         }
         return false;
     }
 
-    public List<Project> getUserProjects(long id) {
+    public List<Project> getUserProjects(String googleid) {
         ArrayList<Project> projects = new ArrayList<>();
-        if (userExists(id)) {
-            User user = findUser(id);
+        if (userExists(googleid)) {
+            User user = findUser(googleid);
             projects.addAll(user.getProjects());
         }
         return projects;

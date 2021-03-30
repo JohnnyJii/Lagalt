@@ -27,15 +27,17 @@ public class Project {
     @Column(name = "gitlink")
     private String gitlink;
 
+    @Column(name = "progress")
+    private String progress;
+
     @ElementCollection
     private Set<String> skills;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "googleid")
     private User user;
 
     public Project() {
-        //projects = new HashSet<>();
         skills = new HashSet<>();
     }
 
@@ -44,7 +46,15 @@ public class Project {
         if (user == null) {
             return null;
         }
-        return String.valueOf(user.getId());
+        return user.getGoogleid();
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     // Getters and setters
