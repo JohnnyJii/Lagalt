@@ -34,11 +34,10 @@ public class Project {
     private Set<String> skills;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "googleid")
     private User user;
 
     public Project() {
-        //projects = new HashSet<>();
         skills = new HashSet<>();
     }
 
@@ -47,7 +46,7 @@ public class Project {
         if (user == null) {
             return null;
         }
-        return String.valueOf(user.getGoogleid());
+        return user.getGoogleid();
     }
 
     public String getProgress() {
