@@ -12,13 +12,16 @@ function LowerNav() {
                     <Nav.Link className="navLink" href="/">All</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="navLink" href="/codes">Programming</Nav.Link>
+                    <Nav.Link className="navLink" href="/codes">Game development</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="navLink" href="/movies">Movies and Art</Nav.Link>
+                    <Nav.Link className="navLink" href="/movies">Film</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link className="navLink" href="/music">Music</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link className="navLink" href="/web">Web development</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link className="navLink" eventKey="other">Other</Nav.Link>

@@ -8,7 +8,8 @@ import { AuthContext } from './auth/Auth'
 import GoogleAuthentication from './components/views/login-page/GoogleAuthentication';
 import Movies from './components/views/navbarItems/Movies'
 import Music from './components/views/navbarItems/Music'
-import Codes from './components/views/navbarItems/Codes';
+import Codes from './components/views/navbarItems/Codes'
+import Web from './components/views/navbarItems/Web'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/movies" component={Movies} />
               <Route path="/music" component={Music}/>
               <Route path="/codes" component={Codes} />
+              <Route path="/web" component={Web} />
             </Switch>
           <Footer />
         </div>
