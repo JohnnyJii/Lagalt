@@ -17,6 +17,9 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
+    @Column(name = "googleid")
+    private String googleid;
+
     @Column(name = "username")
     private String username;
 
@@ -132,5 +135,15 @@ public class User {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
+    }
+
+    public String getGoogleid() { return googleid; }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public void setGoogleid(String googleid) {
+        this.googleid = googleid;
     }
 }

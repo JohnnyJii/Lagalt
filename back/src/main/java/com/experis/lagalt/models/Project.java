@@ -27,6 +27,9 @@ public class Project {
     @Column(name = "gitlink")
     private String gitlink;
 
+    @Column(name = "progress")
+    private String progress;
+
     @ElementCollection
     private Set<String> skills;
 
@@ -44,7 +47,15 @@ public class Project {
         if (user == null) {
             return null;
         }
-        return String.valueOf(user.getId());
+        return String.valueOf(user.getGoogleid());
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     // Getters and setters
