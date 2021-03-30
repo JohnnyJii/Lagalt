@@ -23,25 +23,25 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public boolean projectExists(String googleid) {
-        return projectRepository.existsByGoogleid(googleid);
+    public boolean projectExists(long id) {
+        return projectRepository.existsById(id);
     }
 
-    public Project findProject(String googleid) {
-        Optional<Project> optionalProject = projectRepository.findByGoogleid(googleid);
+    public Project findProject(long id) {
+        Optional<Project> optionalProject = projectRepository.findById(id);
         return optionalProject.orElseGet(Project::new);
     }
 
-    public void deleteProject(String googleid) {
-        if(projectExists(googleid)) {
-            projectRepository.deleteByGoogleid(googleid);
+    public void deleteProject(long id) {
+        if(projectExists(id)) {
+            projectRepository.deleteById(id);
         }
     }
 
-    public User getProjectUser(String googleid) {
+    public User getProjectUser(long id) {
         User projectUser = new User();
-        if (projectExists(googleid)) {
-            Project project = findProject(googleid);
+        if (projectExists(id)) {
+            Project project = findProject(id);
             projectUser = project.getUser();
         }
         return projectUser;

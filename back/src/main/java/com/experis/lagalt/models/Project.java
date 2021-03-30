@@ -15,12 +15,6 @@ public class Project {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "googleid")
-    private String googleid;
-
-    @Column(name = "progress")
-    private String progress;
-
     @Column(name = "title")
     private String title;
 
@@ -32,6 +26,9 @@ public class Project {
 
     @Column(name = "gitlink")
     private String gitlink;
+
+    @Column(name = "progress")
+    private String progress;
 
     @ElementCollection
     private Set<String> skills;
@@ -50,7 +47,15 @@ public class Project {
         if (user == null) {
             return null;
         }
-        return String.valueOf(user.getId());
+        return String.valueOf(user.getGoogleid());
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     // Getters and setters
@@ -109,14 +114,4 @@ public class Project {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public void setGoogleid(String googleid) {
-        this.googleid = googleid;
-    }
-
-    public void setProgress(String progress) {
-        this.progress = progress;
-    }
-
-    public String getGoogleid() { return googleid; }
 }
