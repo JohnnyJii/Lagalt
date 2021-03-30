@@ -35,7 +35,15 @@ public class UserService {
 
     public boolean deleteUser(String googleid) {
         if (userExists(googleid)) {
-            userRepository.deleteByGoogleid(googleid);
+            userRepository.deleteAll(userRepository.findAllByGoogleid(googleid));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteUser(long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
             return true;
         }
         return false;
