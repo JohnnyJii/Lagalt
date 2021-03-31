@@ -35,7 +35,6 @@ public class Project {
     private User user;
 
     public Project() {
-        //projects = new HashSet<>();
         skills = new HashSet<>();
     }
 
