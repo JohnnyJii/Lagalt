@@ -29,12 +29,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        http.cors().and().csrf().disable()
+        http
+                .cors().and()
+                .csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(authEntryPointJwt).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/health").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/health").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/projects").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/projects").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/v1/projects/*").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/v1/projects/*").hasRole("OWNER")
+                .antMatchers(HttpMethod.DELETE, "/api/v1/projects/*").hasRole("OWNER")
+                .antMatchers(HttpMethod.GET, "/api/v1/users").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/v1/users").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/v1/users/*").hasRole("OWNER")
+                .antMatchers(HttpMethod.PUT, "/api/v1/users/*").hasRole("OWNER")
+                .antMatchers(HttpMethod.DELETE, "/api/v1/users/*").hasRole("OWNER")
+                .antMatchers(HttpMethod.GET, "/api/v1/users/*/projects").hasRole("OWNER")
                 .anyRequest()
                 .authenticated()
         ;
