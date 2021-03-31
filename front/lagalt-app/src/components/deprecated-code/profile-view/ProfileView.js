@@ -1,13 +1,11 @@
-import ProfileJumbotron from './profile-info/ProfileJumbotron'
-import ProfileNavbar from './profile-navbar/ProfileNavbar'
+import ProfileNavbar from '../../views/profile-page/profile-navbar/ProfileNavbar'
+import ProfilePage from '../../views/profile-page/ProfilePage'
+import ProfileProjects from '../../views/profile-projects/ProfileProjects'
 import { useEffect, useState } from 'react';
 import Axios from 'axios'
 import firebase from 'firebase/app'
-import { Button } from 'react-bootstrap'
-import CreateProject from '../profile-projects/profile-create-project/CreateProject';
-import React from 'react'
 
-function ProfilePage() {
+function ProfileView() {
     let user = firebase.auth().currentUser;
     const [dbUser, setDbUser] = useState({})
 
@@ -22,21 +20,17 @@ function ProfilePage() {
         }
         fetchDbUser();
     }, [user]);
-
-    const [modalShow, setModalShow] = React.useState(false);
-
     return(
         <div>
             <ProfileNavbar />
-            <ProfileJumbotron
+            <ProfilePage
                 dbUser={dbUser}
                 user={user}/>
-            <div style={{textAlign: "center"}}>
-                <Button variant="primary" onClick={() => setModalShow(true)}>Create Project</Button>
-                <CreateProject show={modalShow} onHide={() => setModalShow(false)} dbUser={dbUser.id}/>
-            </div>
+            <ProfileProjects 
+                dbUser={dbUser}
+                user={user}/>
         </div>
     )
 }
 
-export default ProfilePage
+export default ProfileView

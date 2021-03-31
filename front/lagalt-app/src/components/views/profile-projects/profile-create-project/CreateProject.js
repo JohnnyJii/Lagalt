@@ -10,7 +10,7 @@ function CreateProjectModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CreateProjectTemplate />       
+          <CreateProjectTemplate dbUser={props.dbUser}/>       
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={props.onHide}>Close</Button>

@@ -1,9 +1,8 @@
-import ProfileProjectsGridItem from "./ProfileProjectsGridItem";
+import ProfileProjectsGridItem from '../../../views/profile-projects/profile-projects-grid/ProfileProjectsGridItem'
 import React, { Component } from 'react'
 import axios from 'axios'
-import firebase from 'firebase/app'
 
-class ProfileProjectsGrid extends Component {
+class AllProjectsGrid extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,8 +11,7 @@ class ProfileProjectsGrid extends Component {
     }
 
     componentDidMount() {
-        const googleid = firebase.auth().currentUser.uid
-        axios.get(`https://lagalt-server.herokuapp.com/api/v1/users/${googleid}/projects`)
+        axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
             .then(response => {
                 console.log(response)
                 this.setState({posts: response.data})
@@ -43,4 +41,4 @@ class ProfileProjectsGrid extends Component {
     }
 }
 
-export default ProfileProjectsGrid
+export default AllProjectsGrid

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function ProfileNavbar() {
     return(
         <div>
-            <Nav text-center fill variant="tabs" defaultActiveKey="profile">
+            <Nav text-center="true" fill variant="tabs" defaultActiveKey="profile">
                 <Nav.Item>
                     <Nav.Link className="navLink" eventKey="profile" as={Link} to="/profile">
                         Profile
