@@ -23,9 +23,9 @@ public class JwtUtil {
         String uid = getUID(token);
         System.out.println("uid: " + uid);
         // TODO get user by UID
-        User user = userService.findUser(6L);
-        if(user.getId() != 6L){
-            throw new NotFoundException("User with ID not found");
+        User user = userService.findUser(3L);
+        if(user.getId() != 3L){
+            throw new NotFoundException("User with ID 3 not found");
         }
         return UserDetail.build(user);
     }

@@ -2,6 +2,7 @@ package com.experis.lagalt.security.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -27,6 +28,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
                 UserDetails user = jwtUtil.getUser(jwt);
+                for (GrantedAuthority ga : user.getAuthorities()) {
+                    System.out.println(ga.getAuthority());
+                }
+
                 UsernamePasswordAuthenticationToken authToken = authToken(user);
                 authToken.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request));

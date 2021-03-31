@@ -14,9 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        jsr250Enabled = true,
-        prePostEnabled = true)
+@EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -30,28 +28,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             System.out.println(e.getMessage());
         }
         http
-                .cors().and()
+                .cors()
+                .and()
                 .csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(authEntryPointJwt).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .exceptionHandling().authenticationEntryPoint(authEntryPointJwt)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/v1/health").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/projects").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/projects").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/v1/projects/*").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/v1/projects/*").hasRole("OWNER")
-                .antMatchers(HttpMethod.DELETE, "/api/v1/projects/*").hasRole("OWNER")
-                .antMatchers(HttpMethod.GET, "/api/v1/users").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/v1/users").authenticated()
-                .antMatchers(HttpMethod.GET, "/api/v1/users/*").hasRole("OWNER")
-                .antMatchers(HttpMethod.PUT, "/api/v1/users/*").hasRole("OWNER")
-                .antMatchers(HttpMethod.DELETE, "/api/v1/users/*").hasRole("OWNER")
-                .antMatchers(HttpMethod.GET, "/api/v1/users/*/projects").hasRole("OWNER")
-                .anyRequest()
-                .authenticated()
-        ;
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
+                .anyRequest().authenticated()
+                .and()
+                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
