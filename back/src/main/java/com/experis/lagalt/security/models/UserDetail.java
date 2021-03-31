@@ -1,44 +1,62 @@
 package com.experis.lagalt.security.models;
 
 import com.experis.lagalt.models.User;
+import com.experis.lagalt.models.role.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UserDetail implements UserDetails {
 
-    private String id;
-    private String username;
-    private String email;
+    private long id;
+    private User user;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetail(String id, String username, String email,
+    public UserDetail(long id, User user,
                       Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.username = username;
-        this.email = email;
+        this.user = user;
         this.authorities = authorities;
     }
 
     public static UserDetail build(User user) {
-        List<GrantedAuthority> authorityList = new ArrayList<>();
-        // TODO Add user roles
-        return new UserDetail(
-                String.valueOf(user.getId()),
-                user.getUsername(),
-                user.getEMail(),
-                authorityList
-        );
+        List<GrantedAuthority> authorityList = convertRolesToAuthority(user.getRoles());
+        return new UserDetail(user.getId(), user, authorityList);
+    }
+
+    private static List<GrantedAuthority> convertRolesToAuthority(Set<Role> roles) {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getRole().name()))
+                .collect(Collectors.toList());
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
@@ -48,42 +66,26 @@ public class UserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
+        return false;
     }
 }
