@@ -1,6 +1,7 @@
 package com.experis.lagalt.models;
 
 import com.experis.lagalt.models.role.Role;
+import com.experis.lagalt.models.role.RoleType;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
@@ -65,6 +66,20 @@ public class User {
         return projects
                 .stream()
                 .map(project -> String.valueOf(project.getId()))
+                .collect(Collectors.toList());
+    }
+
+    @JsonGetter("roles")
+    public List<RoleType> rolesGetter() {
+        if (roles == null) {
+            return null;
+        }
+        return rolesToArray();
+    }
+
+    private List<RoleType> rolesToArray() {
+        return roles.stream()
+                .map(role -> role.getRole())
                 .collect(Collectors.toList());
     }
 
