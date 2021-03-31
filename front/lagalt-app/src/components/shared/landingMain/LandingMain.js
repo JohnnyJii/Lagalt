@@ -1,11 +1,11 @@
 import React from 'react'
-import ProfileProjectsGrid from '../../views/profile-projects/profile-projects-grid/ProfileProjectsGrid'
+import AllProjectsGrid from './all-projects/AllProjectsGrid'
 import '../../views/landing-page/Landing.css'
 
 function LandingMain() {
     return (
         <div className="landing-main">
-        <ProfileProjectsGrid />
+        <AllProjectsGrid />
         </div>
     )
 }
