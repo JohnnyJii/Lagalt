@@ -1,0 +1,12 @@
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 25px;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
+    color: #313638;
+    text-align: center;
+}

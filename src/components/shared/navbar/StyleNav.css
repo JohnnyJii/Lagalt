@@ -1,0 +1,30 @@
+.navbar-container {
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
+}
+
+a {
+    text-decoration: none!important;
+    color: #7dbfbf!important;
+}
+
+a p:hover {
+    color: #a29793;
+}
+
+.navbar-container .navbar-left {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-container .navbar-right {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
