@@ -1,5 +1,6 @@
 package com.experis.lagalt.models;
 
+import com.experis.lagalt.models.role.Role;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
@@ -40,6 +41,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Project> projects;
+
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public User() {
         projects = new HashSet<>();
@@ -132,5 +139,13 @@ public class User {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
