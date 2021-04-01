@@ -49,4 +49,13 @@ public class UserService {
         }
         return projects;
     }
+
+    public boolean userExists(String googleid) {
+        return userRepository.existsByGoogleid(googleid);
+    }
+
+    public User findUser(String googleid) {
+        Optional<User> optionalUser = userRepository.findByGoogleid(googleid);
+        return optionalUser.orElseGet(User::new);
+    }
 }
