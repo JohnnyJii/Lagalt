@@ -85,7 +85,7 @@ public class UserController {
         return new ResponseEntity<>(projects, status);
     }
 
-    @GetMapping(value = "/{googleid}")
+    @GetMapping(value = "/googleid/{googleid}")
     public ResponseEntity<User> getUser(@PathVariable String googleid) {
         User user = userService.findUser(googleid);
         HttpStatus status;
