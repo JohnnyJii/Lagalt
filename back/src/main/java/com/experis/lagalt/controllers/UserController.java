@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
-        if(!authService.isAdmin()){
+        if (!authService.isAdmin()) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         List<User> users = userService.getAllUsers();
@@ -34,7 +34,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        if(!authService.isLoggedUser(user)){
+        if (!authService.isLoggedUser(user)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         User newUser = userService.saveUser(user);
@@ -44,13 +44,14 @@ public class UserController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
-        User user = userService.findUser(id);
-        HttpStatus status;
-        if (userService.userExists(id)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (!userService.userExists(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.isLoggedUser(id)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        User user = userService.findUser(id);
+        HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(user, status);
     }
 
@@ -85,25 +86,27 @@ public class UserController {
 
     @GetMapping(value = "/{id}/projects")
     public ResponseEntity<List<Project>> getUserProjects(@PathVariable long id) {
-        List<Project> projects = userService.getUserProjects(id);
-        HttpStatus status;
-        if (userService.userExists(id)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (!userService.userExists(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.isLoggedUser(id)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        List<Project> projects = userService.getUserProjects(id);
+        HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(projects, status);
     }
 
-    @GetMapping(value = "/googleid/{googleid}")
-    public ResponseEntity<User> getUser(@PathVariable String googleid) {
-        User user = userService.findUser(googleid);
-        HttpStatus status;
-        if (userService.userExists(googleid)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+    @GetMapping(value = "/googleid/{googleId}")
+    public ResponseEntity<User> getUser(@PathVariable String googleId) {
+        if (!userService.userExists(googleId)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.isLoggedUser(googleId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        User user = userService.findUser(googleId);
+        HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(user, status);
     }
 }

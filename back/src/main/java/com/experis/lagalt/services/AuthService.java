@@ -23,9 +23,22 @@ public class AuthService {
     private final SimpleGrantedAuthority OWNER = new SimpleGrantedAuthority(RoleType.ROLE_OWNER.name());
     private final SimpleGrantedAuthority ADMIN = new SimpleGrantedAuthority(RoleType.ROLE_ADMIN.name());
 
+    public boolean isLoggedUser(long id) {
+        User foundUser = userService.findUser(id);
+        return isLoggedUser(foundUser);
+    }
+
+    public boolean isLoggedUser(String googleId) {
+        User foundUser = userService.findUser(googleId);
+        return isLoggedUser(foundUser);
+    }
+
     public boolean isLoggedUser(User user) {
         if (isAdmin()) {
             return true;
+        }
+        if (user == null) {
+            return false;
         }
         return getLoggedGoogleId().equals(user.getGoogleid());
     }
