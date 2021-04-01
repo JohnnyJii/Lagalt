@@ -27,6 +27,9 @@ public class Project {
     @Column(name = "gitlink")
     private String gitlink;
 
+    @Column(name = "progress")
+    private String progress;
+
     @ElementCollection
     private Set<String> skills;
 
@@ -35,7 +38,6 @@ public class Project {
     private User user;
 
     public Project() {
-        //projects = new HashSet<>();
         skills = new HashSet<>();
     }
 
@@ -45,6 +47,14 @@ public class Project {
             return null;
         }
         return String.valueOf(user.getId());
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     // Getters and setters
