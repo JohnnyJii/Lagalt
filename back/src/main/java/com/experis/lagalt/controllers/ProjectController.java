@@ -53,6 +53,9 @@ public class ProjectController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody Project newProject) {
+        if(!authService.isLoggedUsersProject(newProject)){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         Project returnProject = new Project();
         HttpStatus status;
         if (id != newProject.getId()) {
