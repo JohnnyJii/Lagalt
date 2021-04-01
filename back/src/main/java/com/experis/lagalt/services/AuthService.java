@@ -16,6 +16,9 @@ public class AuthService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ProjectService projectService;
+
     private final SimpleGrantedAuthority USER = new SimpleGrantedAuthority(RoleType.ROLE_USER.name());
     private final SimpleGrantedAuthority OWNER = new SimpleGrantedAuthority(RoleType.ROLE_OWNER.name());
     private final SimpleGrantedAuthority ADMIN = new SimpleGrantedAuthority(RoleType.ROLE_ADMIN.name());
@@ -24,6 +27,10 @@ public class AuthService {
         if (isAdmin()) {
             return true;
         }
+        return loggedUserOwnsProject(project);
+    }
+
+    private boolean loggedUserOwnsProject(Project project) {
         // TODO handle missing content
         // Adding required params solves???
         if (project.getUser() == null) {
@@ -36,7 +43,7 @@ public class AuthService {
             System.out.println("NO GOOGLE ID FOR PROJECT USER");
             return false;
         }
-        return projectUser.getGoogleid().equals(getLoggedGoogleId());
+        return getLoggedGoogleId().equals(projectUser.getGoogleid());
     }
 
     public String getLoggedGoogleId() {
