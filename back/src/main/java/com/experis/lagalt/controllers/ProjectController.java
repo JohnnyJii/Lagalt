@@ -74,6 +74,9 @@ public class ProjectController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Project> deleteProject(@PathVariable long id) {
+        if(!authService.canDeleteProject(id)){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         HttpStatus status;
         if (projectRepository.existsById(id)) {
             projectRepository.deleteById(id);

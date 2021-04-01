@@ -30,9 +30,21 @@ public class AuthService {
         return loggedUserOwnsProject(project);
     }
 
+    public boolean canDeleteProject(long projectId) {
+        if (isAdmin()) {
+            return true;
+        }
+        Project project = projectService.findProject(projectId);
+        return loggedUserOwnsProject(project);
+    }
+
     private boolean loggedUserOwnsProject(Project project) {
         // TODO handle missing content
         // Adding required params solves???
+        if(project == null){
+            System.out.println("No project");
+            return false;
+        }
         if (project.getUser() == null) {
             System.out.println("NO USER FOR PROJECT");
             return false;
