@@ -20,6 +20,9 @@ public class User {
     @Column(name = "googleid")
     private String googleid;
 
+    @Column(name = "firebaseid")
+    private String firebaseid;
+
     @Column(name = "username")
     private String username;
 
@@ -101,9 +104,15 @@ public class User {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public String getGoogleid() { return googleid; }
+
+    public void setGoogleid(String googleid) { this.googleid = googleid; }
+
+    public String getFirebaseid() { return firebaseid; }
+
+    public void setFirebaseid(String firebaseid) { this.firebaseid = firebaseid; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public String getImageSource() {
         return imageSource;
@@ -135,15 +144,5 @@ public class User {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
-    }
-
-    public String getGoogleid() { return googleid; }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
-    }
-
-    public void setGoogleid(String googleid) {
-        this.googleid = googleid;
     }
 }

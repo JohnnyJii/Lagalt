@@ -32,11 +32,11 @@ public class UserController {
         return new ResponseEntity<>(newUser, status);
     }
 
-    @GetMapping(value = "/{googleid}")
-    public ResponseEntity<User> getUser(@PathVariable String googleid) {
-        User user = userService.findUser(googleid);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<User> getUser(@PathVariable long id) {
+        User user = userService.findUser(id);
         HttpStatus status;
-        if (userService.userExists(googleid)) {
+        if (userService.userExists(id)) {
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
@@ -44,15 +44,15 @@ public class UserController {
         return new ResponseEntity<>(user, status);
     }
 
-    @PutMapping(value = "/{googleid}")
-    public ResponseEntity<User> updateUser(@PathVariable String googleid, @RequestBody User newUser) {
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User newUser) {
         User returnUser = new User();
         HttpStatus status;
-        if (googleid.equals(newUser.getGoogleid())) {
+        if (id != newUser.getId()) {
             status = HttpStatus.BAD_REQUEST;
             return new ResponseEntity<>(returnUser, status);
         }
-        if (userService.userExists(googleid)) {
+        if (userService.userExists(id)) {
             status = HttpStatus.NO_CONTENT;
         } else {
             status = HttpStatus.CREATED;
@@ -61,23 +61,8 @@ public class UserController {
         return new ResponseEntity<>(returnUser, status);
     }
 
-    // TODO NOT WORKING
-    @DeleteMapping(value = "/{googleid}")
-    public ResponseEntity<User> deleteUserByGoogleId(@PathVariable String googleid) {
-        System.out.println("poop");
-        HttpStatus status;
-        boolean userDeleted = userService.deleteUser(googleid);
-        if (userDeleted) {
-            status = HttpStatus.NO_CONTENT;
-        } else {
-            status = HttpStatus.NOT_FOUND;
-        }
-        return new ResponseEntity<>(null, status);
-    }
-
-    @DeleteMapping(value = "/id/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
-        System.out.println("poop2");
         HttpStatus status;
         boolean userDeleted = userService.deleteUser(id);
         if (userDeleted) {
@@ -88,15 +73,27 @@ public class UserController {
         return new ResponseEntity<>(null, status);
     }
 
-    @GetMapping(value = "/{googleid}/projects")
-    public ResponseEntity<List<Project>> getUserProjects(@PathVariable String googleid) {
-        List<Project> projects = userService.getUserProjects(googleid);
+    @GetMapping(value = "/{id}/projects")
+    public ResponseEntity<List<Project>> getUserProjects(@PathVariable long id) {
+        List<Project> projects = userService.getUserProjects(id);
+        HttpStatus status;
+        if (userService.userExists(id)) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(projects, status);
+    }
+
+    @GetMapping(value = "/{googleid}")
+    public ResponseEntity<User> getUser(@PathVariable String googleid) {
+        User user = userService.findUser(googleid);
         HttpStatus status;
         if (userService.userExists(googleid)) {
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
         }
-        return new ResponseEntity<>(projects, status);
+        return new ResponseEntity<>(user, status);
     }
 }
