@@ -30,7 +30,7 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
-        if(!authService.isLoggedUsersProject(project)){
+        if (!authService.isLoggedUsersProject(project)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         Project newProject = projectRepository.save(project);
@@ -53,7 +53,7 @@ public class ProjectController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody Project newProject) {
-        if(!authService.isLoggedUsersProject(newProject)){
+        if (!authService.isLoggedUsersProject(newProject)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         Project returnProject = new Project();
@@ -74,16 +74,14 @@ public class ProjectController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Project> deleteProject(@PathVariable long id) {
-        if(!authService.canDeleteProject(id)){
+        if (!projectRepository.existsById(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        if (!authService.canDeleteProject(id)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
-        HttpStatus status;
-        if (projectRepository.existsById(id)) {
-            projectRepository.deleteById(id);
-            status = HttpStatus.NO_CONTENT;
-        } else {
-            status = HttpStatus.NOT_FOUND;
-        }
+        HttpStatus status = HttpStatus.NO_CONTENT;
+        projectRepository.deleteById(id);
         return new ResponseEntity<>(null, status);
     }
 }
