@@ -57,6 +57,9 @@ public class UserController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User newUser) {
+        if(!authService.isLoggedUser(newUser)){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         User returnUser = new User();
         HttpStatus status;
         if (id != newUser.getId()) {
