@@ -19,9 +19,6 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
-    @Column(name = "googleid")
-    private String googleid;
-
     @Column(name = "username")
     private String username;
 
@@ -165,11 +162,5 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public String getGoogleid() { return googleid; }
-
-    public void setGoogleid(String googleid) {
-        this.googleid = googleid;
     }
 }
