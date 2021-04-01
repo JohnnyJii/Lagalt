@@ -28,10 +28,6 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
                 UserDetails user = jwtUtil.getUser(jwt);
-                for (GrantedAuthority ga : user.getAuthorities()) {
-                    System.out.println(ga.getAuthority());
-                }
-
                 UsernamePasswordAuthenticationToken authToken = authToken(user);
                 authToken.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request));

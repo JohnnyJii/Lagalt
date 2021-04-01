@@ -21,10 +21,12 @@ public class JwtUtil {
 
     public UserDetails getUser(String token) throws Exception{
         String uid = getUID(token);
-        System.out.println("uid: " + uid);
         // TODO get user by UID
         User user = userService.findUser(3L);
         if(user.getId() != 3L){
+            User notFoundUser = new User();
+            // TODO set googleId
+            // TODO return UserDetail.build(notFoundUser);
             throw new NotFoundException("User with ID 3 not found");
         }
         return UserDetail.build(user);
@@ -52,5 +54,4 @@ public class JwtUtil {
     private FirebaseToken getToken(String token) throws FirebaseAuthException {
         return FirebaseAuth.getInstance().verifyIdToken(token);
     }
-
 }
