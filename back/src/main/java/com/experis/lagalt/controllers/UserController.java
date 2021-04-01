@@ -2,6 +2,7 @@ package com.experis.lagalt.controllers;
 
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.models.User;
+import com.experis.lagalt.services.AuthService;
 import com.experis.lagalt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
+        if(!authService.isAdmin()){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         List<User> users = userService.getAllUsers();
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(users, status);
