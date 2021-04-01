@@ -22,7 +22,7 @@ public class JwtUtil {
     public UserDetails getUser(String token) throws Exception{
         String uid = getUID(token);
         // TODO get user by UID
-        User user = userService.findUser(3L);
+        User user = userService.findUser(uid);
         if(user.getId() != 3L){
             User notFoundUser = new User();
             // TODO set googleId

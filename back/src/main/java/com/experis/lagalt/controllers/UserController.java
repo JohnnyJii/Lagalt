@@ -84,4 +84,16 @@ public class UserController {
         }
         return new ResponseEntity<>(projects, status);
     }
+
+    @GetMapping(value = "/googleid/{googleid}")
+    public ResponseEntity<User> getUser(@PathVariable String googleid) {
+        User user = userService.findUser(googleid);
+        HttpStatus status;
+        if (userService.userExists(googleid)) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(user, status);
+    }
 }

@@ -26,8 +26,7 @@ public class UserDetail implements UserDetails {
 
     public static UserDetail build(User user) {
         List<GrantedAuthority> authorityList = convertRolesToAuthority(user.getRoles());
-        // TODO GET user googleId
-        return new UserDetail("fakeIdFromUserDetailConstructor", user, authorityList);
+        return new UserDetail(user.getGoogleid(), user, authorityList);
     }
 
     private static List<GrantedAuthority> convertRolesToAuthority(Set<Role> roles) {
