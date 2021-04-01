@@ -2,6 +2,7 @@ package com.experis.lagalt.controllers;
 
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.repositories.ProjectRepository;
+import com.experis.lagalt.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class ProjectController {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectRepository.findAll();
@@ -26,6 +30,9 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
+        if(!authService.isLoggedUsersProject(project)){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         Project newProject = projectRepository.save(project);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newProject, status);
