@@ -77,13 +77,14 @@ public class UserController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
-        HttpStatus status;
-        boolean userDeleted = userService.deleteUser(id);
-        if (userDeleted) {
-            status = HttpStatus.NO_CONTENT;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if(!userService.userExists(id)){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if(!authService.isLoggedUser(id)){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        userService.deleteUser(id);
+        HttpStatus status = HttpStatus.NO_CONTENT;
         return new ResponseEntity<>(null, status);
     }
 
