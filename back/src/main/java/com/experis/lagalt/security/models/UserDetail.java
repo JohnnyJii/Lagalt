@@ -5,6 +5,7 @@ import com.experis.lagalt.models.role.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -12,20 +13,21 @@ import java.util.stream.Collectors;
 
 public class UserDetail implements UserDetails {
 
-    private long id;
+    private String googleId;
     private User user;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetail(long id, User user,
+    public UserDetail(String googleId, User user,
                       Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
+        this.googleId = googleId;
         this.user = user;
         this.authorities = authorities;
     }
 
     public static UserDetail build(User user) {
         List<GrantedAuthority> authorityList = convertRolesToAuthority(user.getRoles());
-        return new UserDetail(user.getId(), user, authorityList);
+        // TODO GET user googleId
+        return new UserDetail("fakeIdFromUserDetailConstructor", user, authorityList);
     }
 
     private static List<GrantedAuthority> convertRolesToAuthority(Set<Role> roles) {
@@ -34,16 +36,16 @@ public class UserDetail implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    public long getId() {
-        return id;
+    public String getGoogleId() {
+        return googleId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(User user) {
