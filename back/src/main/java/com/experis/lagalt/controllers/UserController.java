@@ -34,6 +34,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        if(!authService.isLoggedUser(user)){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         User newUser = userService.saveUser(user);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newUser, status);
