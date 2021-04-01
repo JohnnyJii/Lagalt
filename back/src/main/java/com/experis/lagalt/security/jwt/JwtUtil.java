@@ -19,15 +19,13 @@ public class JwtUtil {
     @Autowired
     private UserService userService;
 
-    public UserDetails getUser(String token) throws Exception{
-        String uid = getUID(token);
-        // TODO get user by UID
-        User user = userService.findUser(uid);
-        if(user.getId() != 3L){
-            User notFoundUser = new User();
-            // TODO set googleId
-            // TODO return UserDetail.build(notFoundUser);
-            throw new NotFoundException("User with ID 3 not found");
+    public UserDetails getUser(String token){
+        String googleId = getUID(token);
+        User user = userService.findUser(googleId);
+        if (user.getGoogleid() == null) {
+            // TODO remove sout
+            System.out.println("User not found. Creating new user with firebase ID");
+            user.setGoogleid(googleId);
         }
         return UserDetail.build(user);
     }
