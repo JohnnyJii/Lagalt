@@ -33,9 +33,14 @@ public class ProjectService {
     }
 
     public void deleteProject(long id) {
-        if(projectExists(id)) {
+        if (projectExists(id)) {
             projectRepository.deleteById(id);
         }
+    }
+
+    public boolean deleteAll(Iterable<Project> projects) {
+        projectRepository.deleteAll(projects);
+        return true;
     }
 
     public User getProjectUser(long id) {

@@ -16,6 +16,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProjectService projectService;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -44,6 +47,7 @@ public class UserService {
 
     public boolean deleteUser(long id) {
         if (userExists(id)) {
+            projectService.deleteAll(getUserProjects(id));
             userRepository.deleteById(id);
             return true;
         }
