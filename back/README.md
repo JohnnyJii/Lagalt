@@ -225,13 +225,18 @@ Request body. Attributes starting with ? are optionals.
     "title": "String",
     "industry": "String",
     "description": "String",
-    "gitlink": "String",
     "progress": "String",
     "skills": ["String"],
-    "user": { "id":"long" },
     "?tags": ["String"],
+    "?gitlink": "String",
+    "user": { "id":"long" },
 }
 ```
+Returns :
+- 201 if project added to database
+- 400 if user not found from database
+- 400 if missing required attributes
+
 
 [&#8593; TOP](#back-end-lagalt-project)
 
@@ -242,17 +247,22 @@ Request body. Attributes starting with ? are optionals.
 ```JSON
 {
     "id": "long",
-    "?title": "String",
-    "?industry": "String",
-    "?description": "String",
+    "title": "String",
+    "industry": "String",
+    "description": "String",
+    "progress": "String",
+    "skills": ["String"],
+    "?tags": ["String"],
     "?gitlink": "String",
-    "?skills": ["String"],
-    "?user": { "id": "userId" }
+    "user": { "id":"long" },
+}
 }
 ```
+Returns :
 - 201 if new User created
 - 204 if User updated
-- Returns 400 BAD REQUEST if path id and request body id different
+- 400 BAD REQUEST if path id and request body id different
+- 400 if user not found
 
 [&#8593; TOP](#back-end-lagalt-project)
 
