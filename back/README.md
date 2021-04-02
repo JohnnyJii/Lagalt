@@ -1,5 +1,20 @@
 # Back end Lagalt-project
 
+``` JS
+axios.get(
+  `${URL_DOMAIN}/api/v1/users/googleid/${googleid}`, 
+  {
+    headers: { Authorization: `Bearer ${JWT}` }
+  }
+)
+  .then(response => console.log(response.data)) // status 200
+  .catch(error => console.error(error)); // status 401 OR 403 OR 404
+  
+  // 401 invalid JWT
+  // 403 Valid JWT. Not authorized
+  // 404 Not found
+```
+
 V1 is running at [heroku](https://lagalt-server.herokuapp.com/api/v1/health).
 
 - [Back end Lagalt-project](#back-end-lagalt-project)
