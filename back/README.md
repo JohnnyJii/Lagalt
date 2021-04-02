@@ -2,12 +2,21 @@
 
 V1 is running at [heroku](https://lagalt-server.herokuapp.com/api/v1/health).
 
+Developed using Java version 15.0.1 and build using Gradle.
+
+Application uses spring-boot, hibernate and Postgres db.
+
 - [Back end Lagalt-project](#back-end-lagalt-project)
   - [V1 usage](#v1-usage)
+    - [Security](#security)
+      - [Access non public endpoints](#access-non-public-endpoints)
+      - [HTTP 401](#http-401)
+      - [HTTP 403](#http-403)
     - [Set Authorization header using Axios](#set-authorization-header-using-axios)
+    - [Models](#models)
       - [User object](#user-object)
       - [Project object](#project-object)
-    - [User endpoint](#user-endpoint)
+    - [User endpoints](#user-endpoints)
       - [GET users](#get-users)
       - [GET user by id](#get-user-by-id)
       - [GET user by google id](#get-user-by-google-id)
@@ -15,7 +24,7 @@ V1 is running at [heroku](https://lagalt-server.herokuapp.com/api/v1/health).
       - [POST user](#post-user)
       - [PUT user](#put-user)
       - [DELETE user](#delete-user)
-    - [Project endpoint](#project-endpoint)
+    - [Project endpoints](#project-endpoints)
       - [GET projects](#get-projects)
       - [GET project](#get-project)
       - [POST Project](#post-project)
@@ -25,7 +34,38 @@ V1 is running at [heroku](https://lagalt-server.herokuapp.com/api/v1/health).
 ## V1 usage
 Base url for V1 API is [https://lagalt-server.herokuapp.com/api/v1/](https://lagalt-server.herokuapp.com/api/v1/)
 
+[&#8593; TOP](#back-end-lagalt-project)
+
+### Security
+
+API has three public endpoints
+- [GET projects](#get-projects)
+- [GET project](#get-project)
+- [GET health](https://lagalt-server.herokuapp.com/api/v1/health)
+
+Other endpoints requests valid JWT token. See [how to set token using axios on React application](#set-authorization-header-using-axios).
+
+#### Access non public endpoints
+- Set valid firebase JWT token to auth header
+- Make request to valid API andpoint
+- Response varies with made request. See [user](#user-endpoints) or [project](#project-endpoints) endpoints.
+
+
+#### HTTP 401
+Using invalid or expired token results in HTTP status code 401 for non public endpoints.
+
+#### HTTP 403
+
+Clients can not access resources that they do not own. Trying to access resources not owned by the users results in HTTP status 403.
+
+Status code 403 is also returned when adding resources with another users id.
+
+
+[&#8593; TOP](#back-end-lagalt-project)
+
 ### Set Authorization header using Axios
+**NOTE!**
+There must be 'Bearer ' before the token. 
 ``` JS
 axios.get(
   URL_ENDPOINT, 
@@ -38,7 +78,9 @@ axios.get(
   // 401 invalid JWT
   // 403 Valid JWT. Not authorized
 ```
+[&#8593; TOP](#back-end-lagalt-project)
 
+### Models
 #### User object
 Attributes with ! must be unique
 
@@ -60,6 +102,8 @@ Attributes with # must not be part of any request
 }
 ```
 
+[&#8593; TOP](#back-end-lagalt-project)
+
 #### Project object
 Attributes with ! must be unique
 
@@ -79,7 +123,7 @@ Attributes with ? are optional
 ```
 [&#8593; TOP](#back-end-lagalt-project)
 
-### User endpoint
+### User endpoints
 Contains
 - CRUD functionality
 - Get user projects
@@ -124,7 +168,7 @@ returns single [userObject](#userobject)
 #### GET user projects
 [https://lagalt-server.herokuapp.com/api/v1/users/:id/projects](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects)
 
-returns list of [projectObjects](#projectObject)
+returns list of [projectObjects](#projectObject) for that user
 ```JSON
 [
   "projectObject",
@@ -184,11 +228,15 @@ Returns
 - 204 if User deleted from database
 - 404 if User can not be deleted AKA. already deleted
 
+**NOTE!**
+
+Deleting user with projects also deletes users projects.
+
 [&#8593; TOP](#back-end-lagalt-project)
 
 <hr>
 
-### Project endpoint
+### Project endpoints
 Contains
 - CRUD functionality
 
@@ -255,7 +303,6 @@ Request body. Attributes starting with ? are optionals.
     "?tags": ["String"],
     "?gitlink": "String",
     "user": { "id":"long" },
-}
 }
 ```
 Returns :
