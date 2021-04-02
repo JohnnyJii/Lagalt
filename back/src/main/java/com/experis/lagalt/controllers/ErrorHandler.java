@@ -24,7 +24,19 @@ public class ErrorHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleIntegrityViolations(DataIntegrityViolationException ex) {
         // TODO log error via logger
-        System.out.println(ex.getMessage());
-        return new ResponseEntity<>("Google id already in use", HttpStatus.BAD_REQUEST);
+        String detail = getDataIntegrityDetailMessage(ex);
+        if(detail.contains("is not present in table")){
+            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
+        }
+        if(detail.contains("already exists")){
+            return new ResponseEntity<>("Google id already in use", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    private String getDataIntegrityDetailMessage(DataIntegrityViolationException ex){
+        String errorMessage = ex.getMostSpecificCause().getMessage();
+        int detailIndex = errorMessage.indexOf("Detail:");
+        return errorMessage.substring(detailIndex);
     }
 }
