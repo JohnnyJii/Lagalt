@@ -51,11 +51,11 @@ public class UserService {
     }
 
     public boolean userExists(String googleId) {
-        return userRepository.existsByGoogleId(googleId);
+        return userRepository.existsByGoogleid(googleId);
     }
 
     public User findUser(String googleId) {
-        Optional<User> optionalUser = userRepository.findByGoogleId(googleId);
+        Optional<User> optionalUser = userRepository.findByGoogleid(googleId);
         return optionalUser.orElseGet(User::new);
     }
 }

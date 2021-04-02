@@ -3,7 +3,10 @@ package com.experis.lagalt.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,21 +21,25 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
-    @NotNull
-    @Column(name = "google_id")
-    private String googleId;
+    @NotBlank(message = "googleid required")
+    @Column(name = "googleid", unique = true)
+    private String googleid;
 
-    @NotNull
+    @NotBlank(message = "username required")
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "email required")
+    @Pattern(regexp = "^(.+)@(.+)\\.(.+)$", message = "not email")
     @Column(name = "e_mail")
     private String eMail;
 
+    @NotBlank(message = "firstname required")
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
+    @NotBlank(message = "lastname required")
     private String lastName;
 
     @Column(name = "image_source")
@@ -76,12 +83,12 @@ public class User {
         this.id = id;
     }
 
-    public String getGoogleId() {
-        return googleId;
+    public String getGoogleid() {
+        return googleid;
     }
 
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
+    public void setGoogleid(String googleId) {
+        this.googleid = googleId;
     }
 
     public String getUsername() {
