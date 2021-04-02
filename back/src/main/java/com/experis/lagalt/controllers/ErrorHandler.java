@@ -1,5 +1,6 @@
 package com.experis.lagalt.controllers;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -18,5 +19,12 @@ public class ErrorHandler {
         String name = ((FieldError) e).getField();
         String message = e.getDefaultMessage();
         return new ResponseEntity<>(name + ": " + message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> handleIntegrityViolations(DataIntegrityViolationException ex) {
+        // TODO log error via logger
+        System.out.println(ex.getMessage());
+        return new ResponseEntity<>("Google id already in use", HttpStatus.BAD_REQUEST);
     }
 }
