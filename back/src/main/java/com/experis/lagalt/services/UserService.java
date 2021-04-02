@@ -2,7 +2,6 @@ package com.experis.lagalt.services;
 
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.models.User;
-import com.experis.lagalt.repositories.ProjectRepository;
 import com.experis.lagalt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
