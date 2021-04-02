@@ -28,7 +28,7 @@ public class User {
     private String username;
 
     @NotBlank(message = "email required")
-    @Pattern(regexp = "^(.+)@(.+)\\.(.+)$", message = "not email")
+    @Pattern(regexp = "^(.+)@(.+)\\.(.+)$", message = "invalid email. Example email: example@email.com")
     @Column(name = "e_mail")
     private String eMail;
 
