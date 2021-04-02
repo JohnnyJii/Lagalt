@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+    public ResponseEntity<Project> createProject(@Valid @RequestBody Project project) {
         Project newProject = projectRepository.save(project);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newProject, status);
@@ -45,7 +46,7 @@ public class ProjectController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable long id, @RequestBody Project newProject) {
+    public ResponseEntity<Project> updateProject(@PathVariable long id,@Valid @RequestBody Project newProject) {
         Project returnProject = new Project();
         HttpStatus status;
         if (id != newProject.getId()) {
