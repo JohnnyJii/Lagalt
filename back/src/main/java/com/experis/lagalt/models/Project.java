@@ -3,6 +3,8 @@ package com.experis.lagalt.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,23 +17,34 @@ public class Project {
     @Column(name = "id")
     private long id;
 
+    @NotBlank(message = "title required")
     @Column(name = "title")
     private String title;
 
+    @NotBlank(message = "industry required")
     @Column(name = "industry")
     private String industry;
 
+    @NotBlank(message = "description required")
     @Column(name = "description")
     private String description;
 
     @Column(name = "gitlink")
     private String gitlink;
 
+    @Column(name = "progress")
+    @NotBlank(message = "progress required")
+    private String progress;
+
+    @ElementCollection
+    private Set<String> tags;
+
     @ElementCollection
     private Set<String> skills;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     public Project() {
@@ -101,5 +114,21 @@ public class Project {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 }

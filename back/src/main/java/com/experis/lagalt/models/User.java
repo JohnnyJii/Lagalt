@@ -3,6 +3,8 @@ package com.experis.lagalt.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,23 +19,27 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
-    @Column(name = "googleid")
+    @NotBlank(message = "googleid required")
+    @Column(name = "googleid", unique = true)
     private String googleid;
 
-    @Column(name = "firebaseid")
-    private String firebaseid;
-
+    @NotBlank(message = "username required")
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "email required")
+    @Pattern(regexp = "^(.+)@(.+)\\.(.+)$", message = "invalid email. Example email: example@email.com")
     @Column(name = "e_mail")
     private String eMail;
 
+    @NotBlank(message = "firstname required")
     @Column(name = "first_name")
-    private String firstName;
+    private String firstname;
 
+
+    @NotBlank(message = "lastname required")
     @Column(name = "last_name")
-    private String lastName;
+    private String lastname;
 
     @Column(name = "image_source")
     private String imageSource;
@@ -76,6 +82,14 @@ public class User {
         this.id = id;
     }
 
+    public String getGoogleid() {
+        return googleid;
+    }
+
+    public void setGoogleid(String googleId) {
+        this.googleid = googleId;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -84,35 +98,29 @@ public class User {
         this.username = username;
     }
 
-    public String getEMail() {
+    public String geteMail() {
         return eMail;
     }
 
-    public void setEMail(String eMail) {
+    public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstName) {
+        this.firstname = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public String getGoogleid() { return googleid; }
-
-    public void setGoogleid(String googleid) { this.googleid = googleid; }
-
-    public String getFirebaseid() { return firebaseid; }
-
-    public void setFirebaseid(String firebaseid) { this.firebaseid = firebaseid; }
-
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setLastname(String lastName) {
+        this.lastname = lastName;
+    }
 
     public String getImageSource() {
         return imageSource;
