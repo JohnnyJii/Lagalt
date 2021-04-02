@@ -3,9 +3,7 @@ package com.experis.lagalt.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.HashSet;
 import java.util.List;
@@ -36,11 +34,12 @@ public class User {
 
     @NotBlank(message = "firstname required")
     @Column(name = "first_name")
-    private String firstName;
+    private String firstname;
 
-    @Column(name = "last_name")
+
     @NotBlank(message = "lastname required")
-    private String lastName;
+    @Column(name = "last_name")
+    private String lastname;
 
     @Column(name = "image_source")
     private String imageSource;
@@ -107,20 +106,20 @@ public class User {
         this.eMail = eMail;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstName) {
+        this.firstname = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastName) {
+        this.lastname = lastName;
     }
 
     public String getImageSource() {
