@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +32,10 @@ public class Project {
     @Column(name = "gitlink")
     private String gitlink;
 
+    @Column(name = "progress")
+    @NotBlank(message = "progress required")
+    private String progress;
+
     @ElementCollection
     private Set<String> tags;
 
@@ -39,6 +44,7 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     public Project() {
@@ -116,5 +122,13 @@ public class Project {
 
     public void setTags(Set<String> tags) {
         this.tags = tags;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 }
