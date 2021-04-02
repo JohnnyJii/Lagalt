@@ -2,6 +2,7 @@ package com.experis.lagalt.services;
 
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.models.User;
+import com.experis.lagalt.repositories.ProjectRepository;
 import com.experis.lagalt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjectService projectService;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -35,6 +39,7 @@ public class UserService {
 
     public boolean deleteUser(long id) {
         if (userExists(id)) {
+            projectService.deleteAll(getUserProjects(id));
             userRepository.deleteById(id);
             return true;
         }
