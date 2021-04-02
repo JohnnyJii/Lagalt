@@ -17,8 +17,8 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
-    @Column(name = "googleid")
-    private String googleid;
+    @Column(name = "google_id")
+    private String googleId;
 
     @Column(name = "username")
     private String username;
@@ -73,6 +73,14 @@ public class User {
         this.id = id;
     }
 
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -81,11 +89,11 @@ public class User {
         this.username = username;
     }
 
-    public String getEMail() {
+    public String geteMail() {
         return eMail;
     }
 
-    public void setEMail(String eMail) {
+    public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -99,14 +107,6 @@ public class User {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public String getGoogleid() {
-        return googleid;
-    }
-
-    public void setGoogleid(String googleid) {
-        this.googleid = googleid;
     }
 
     public void setLastName(String lastName) {
