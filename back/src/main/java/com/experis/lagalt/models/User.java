@@ -3,6 +3,7 @@ package com.experis.lagalt.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +18,11 @@ public class User {
     @Column(name = "user_id")
     private long id;
 
+    @NotNull
     @Column(name = "google_id")
     private String googleId;
 
+    @NotNull
     @Column(name = "username")
     private String username;
 

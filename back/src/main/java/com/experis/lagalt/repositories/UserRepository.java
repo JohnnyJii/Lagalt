@@ -8,7 +8,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<User> findByGoogleid(String googleid);
+    Optional<User> findByGoogleId(String googleId);
 
-    boolean existsByGoogleid(String googleid);
+    boolean existsByGoogleId(String googleId);
 }

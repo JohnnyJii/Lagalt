@@ -50,12 +50,12 @@ public class UserService {
         return projects;
     }
 
-    public boolean userExists(String googleid) {
-        return userRepository.existsByGoogleid(googleid);
+    public boolean userExists(String googleId) {
+        return userRepository.existsByGoogleId(googleId);
     }
 
-    public User findUser(String googleid) {
-        Optional<User> optionalUser = userRepository.findByGoogleid(googleid);
+    public User findUser(String googleId) {
+        Optional<User> optionalUser = userRepository.findByGoogleId(googleId);
         return optionalUser.orElseGet(User::new);
     }
 }
