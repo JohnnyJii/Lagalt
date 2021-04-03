@@ -1,32 +1,14 @@
 import React from 'react'
 import './StyleNav.css'
+import firebase from 'firebase/app'
 
 function About() {
-
-   // API here!!! modify to read projects and users!!!!
-
-/*   const projects = [
-    "jukka",
-    "jesse",
-    "lauri",
-    "nicolas"
-  ] */
-
   const [searchTerm, setSearchTerm] = React.useState("");
+  const user = firebase.auth().currentUser
   const handleChange = event => {
     setSearchTerm(event.target.value);
  };
 
- // remove commaent after deployed to landingpage
-/*  const results = !searchTerm
-    ? projects
-    : projects.filter(project =>
-        project.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-      ); */
-
-
-
-  // NEED A STATE FOR USERNAME CHANGES!!!!
   return (
     <div className="navbar-container">
         <a href="/">Lagalt</a>
@@ -36,7 +18,7 @@ function About() {
           value={searchTerm}
           onChange={handleChange}
           />
-        <a href="/profile">Profile / Login</a>
+        <a href="/profile">{ user ? "Profile" : "Login" }</a>
       </div>
   );
 }
