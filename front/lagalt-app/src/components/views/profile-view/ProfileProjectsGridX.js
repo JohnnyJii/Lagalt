@@ -16,7 +16,7 @@ function ProfileProjectsGridX(props) {
                             progress={post.progress}
                             gitlink={post.gitlink}
                         />) :
-                        <p>No projects</p>
+                        <h1>No projects</h1>
                 }
             </div>
         )

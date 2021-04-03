@@ -7,7 +7,8 @@ function ProfilePageX(props) {
         <div>
             <ProfileJumbotronX
                 dbuser={props.dbuser}
-                user={props.user}/>
+                user={props.user}
+            />
         </div>
     )
 }

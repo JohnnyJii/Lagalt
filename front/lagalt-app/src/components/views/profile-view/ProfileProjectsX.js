@@ -6,7 +6,6 @@ import axios from 'axios'
 
 function ProfileProjectsX(props) {
     const [modalShow, setModalShow] = React.useState(false);
-
     const dbuserid = props.dbuser.id
     const [posts, setPosts] = useState({});
     const [load, setLoad] = useState(false)
@@ -36,8 +35,11 @@ function ProfileProjectsX(props) {
                     setload={setLoad}
                     posts={posts}
                     setposts={setPosts} />
-                <Button variant="primary"
-                    onClick={() => setModalShow(true)}>Create Project</Button>
+                <Button
+                    variant="primary"
+                    onClick={() => setModalShow(true)}>
+                    Create Project
+                </Button>
             </div>
                 <ProfileProjectsGridX
                     posts={posts} />

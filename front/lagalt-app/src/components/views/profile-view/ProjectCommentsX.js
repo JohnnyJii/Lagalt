@@ -33,7 +33,11 @@ function ProjectCommentsX(props) {
     return(
         <div>
             <div>
-                {messages && messages.map(msg => <ProjectCommentX key={msg.id} message={msg} auth={firebase.auth}/>)}
+                {messages && messages.map(msg => <ProjectCommentX
+                                                    key={msg.id}
+                                                    message={msg}
+                                                    auth={firebase.auth}
+                                                />)}
             </div>
             <div>
                 <form onSubmit={sendMessage}>

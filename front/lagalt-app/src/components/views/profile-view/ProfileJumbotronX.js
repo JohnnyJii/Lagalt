@@ -49,7 +49,11 @@ function ProfileJumbotronX(props) {
                     </div>
                 </div>
             </div>
-            <ChangeInfoX show={modalShow} onHide={() => setModalShow(false)} dbuser={props.dbuser}/>
+            <ChangeInfoX
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                dbuser={props.dbuser}
+            />
         </div>
     )
 }

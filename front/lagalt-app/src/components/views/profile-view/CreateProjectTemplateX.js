@@ -53,59 +53,76 @@ class CreateProjectTemplateX extends Component {
                     <Form.Label>Industry</Form.Label>
                     {['radio'].map((type) => (
                         <div key={`inline-${type}`} className="mb-3" onChange={this.changeHandler}>
+
                             <Form.Check
-                            inline name="industry"
-                            label="Programming"
-                            type={type}
-                            value={"Programming"} 
-                            id={`inline-${type}-1`} />
+                                inline name="industry"
+                                label="Programming"
+                                type={type}
+                                value={"Programming"} 
+                                id={`inline-${type}-1`}
+                            />
+
                             <Form.Check 
-                            inline name="industry" 
-                            label="Movies and Art" 
-                            type={type} 
-                            value={"Movies and Art"} 
-                            id={`inline-${type}-2`} />
+                                inline name="industry" 
+                                label="Movies and Art" 
+                                type={type} 
+                                value={"Movies and Art"} 
+                                id={`inline-${type}-2`}
+                            />
+
                             <Form.Check 
-                            inline name="industry" 
-                            label="Music" 
-                            type={type} 
-                            value={"Music"} 
-                            id={`inline-${type}-3`} />
+                                inline name="industry" 
+                                label="Music" 
+                                type={type} 
+                                value={"Music"} 
+                                id={`inline-${type}-3`}
+                            />
+
                             <Form.Check 
-                            inline name="industry" 
-                            label="Other" 
-                            type={type}
-                            value={"Other"} 
-                            id={`inline-${type}-4`} />
+                                inline name="industry" 
+                                label="Other" 
+                                type={type}
+                                value={"Other"} 
+                                id={`inline-${type}-4`}
+                            />
                         </div>
                     ))}
                     <Form.Label>Progress</Form.Label>
                     {['radio'].map((type) => (
                         <div key={`inline-${type}`} className="mb-3" onChange={this.changeHandler}>
+
                             <Form.Check
-                            inline name="progress"
-                            label="Not Started"
-                            type={type}
-                            value={"Not Started"} 
-                            id={`inline-${type}-5`} />
+                                inline name="progress"
+                                label="Not Started"
+                                type={type}
+                                value={"Not Started"} 
+                                id={`inline-${type}-5`}
+                            />
+
                             <Form.Check 
-                            inline name="progress" 
-                            label="Ongoing" 
-                            type={type} 
-                            value={"Ongoing"} 
-                            id={`inline-${type}-6`} />
+                                inline name="progress" 
+                                label="Ongoing" 
+                                type={type} 
+                                value={"Ongoing"} 
+                                id={`inline-${type}-6`}
+                            />
+
                             <Form.Check 
-                            inline name="progress" 
-                            label="Needs Funding" 
-                            type={type} 
-                            value={"Needs Funding"} 
-                            id={`inline-${type}-7`} />
+                                inline name="progress" 
+                                label="Needs Funding" 
+                                type={type} 
+                                value={"Needs Funding"} 
+                                id={`inline-${type}-7`}
+                            />
+
                             <Form.Check 
-                            inline name="progress" 
-                            label="Released" 
-                            type={type}
-                            value={"Released"} 
-                            id={`inline-${type}-8`} />
+                                inline name="progress" 
+                                label="Released" 
+                                type={type}
+                                value={"Released"} 
+                                id={`inline-${type}-8`}
+                            />
+                            
                         </div>
                     ))}
                 <Form.Group controlId="exampleForm.ControlTextarea1">

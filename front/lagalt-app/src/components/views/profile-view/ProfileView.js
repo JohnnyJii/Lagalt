@@ -1,4 +1,4 @@
-import ProfileNavbarX from './ProfileNavbarX'
+/* import ProfileNavbarX from './ProfileNavbarX' */
 import ProfilePageX from './ProfilePageX'
 import ProfileProjectsX from './ProfileProjectsX'
 import { useEffect, useState } from 'react';
@@ -25,14 +25,23 @@ function ProfileView() {
 
     if (redirect) {
         return(
-            <CreateUserX user={user} setDbUser={setDbUser} setRedirect={setRedirect}/>
+            <CreateUserX
+                user={user}
+                setDbUser={setDbUser}
+                setRedirect={setRedirect}
+            />
         )
     } else {
         return(
             <div>
-                <ProfileNavbarX />
-                <ProfilePageX user={user} dbuser={dbuser} />
-                <ProfileProjectsX dbuser={dbuser} />
+                {/* <ProfileNavbarX /> */}                
+                <ProfilePageX
+                    user={user}
+                    dbuser={dbuser}
+                />
+                <ProfileProjectsX
+                    dbuser={dbuser}
+                />
             </div>
         )
     }
