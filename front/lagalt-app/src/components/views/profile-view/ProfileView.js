@@ -1,10 +1,10 @@
-/* import ProfileNavbarX from './ProfileNavbarX' */
-import ProfilePageX from './ProfilePageX'
-import ProfileProjectsX from './ProfileProjectsX'
+/* import ProfileNavbarX from './profile-nav/ProfileNavbarX' */
+import ProfilePageX from './profile-page/ProfilePageX'
+import ProfileProjectsX from './my-projects/ProfileProjectsX'
 import { useEffect, useState } from 'react';
 import Axios from 'axios'
 import firebase from 'firebase/app'
-import CreateUserX from './CreateUserX'
+import CreateUserX from './profile-page/create-user/CreateUserX'
 
 function ProfileView() {
     let user = firebase.auth().currentUser;

@@ -3,14 +3,10 @@ import Footer from './components/shared/footer/Footer'
 import Landing from './components/views/landing-page/Landing'
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom'
 import './App.css';
-import ProfileProjects from './components/views/profile-projects/ProfileProjects'
 import { AuthContext } from './auth/Auth'
-import GoogleAuthentication from './components/views/login-page/GoogleAuthentication';
-import Movies from './components/views/navbarItems/Movies'
-import Music from './components/views/navbarItems/Music'
-import Codes from './components/views/navbarItems/Codes';
-import GoogleAuthenticationX from './components/views/profile-view/GoogleAuthenticationX'
-import CreateUserX from './components/views/profile-view/CreateUserX'
+
+import GoogleAuthenticationX from './components/views/profile-view/google-authentication/GoogleAuthenticationX'
+import CreateUserX from './components/views/profile-view/profile-page/create-user/CreateUserX'
 
 
 function App() {
@@ -21,14 +17,9 @@ function App() {
           <Nav />
             <Switch>
               <Route path="/" exact component={Landing} />
-{/*               <Route path="/profile" component={GoogleAuthentication} />
- */}              <Route path="/projects" component={ProfileProjects} />
-              <Route path="/movies" component={Movies} />
               <Route path="/createuser" component={CreateUserX} />
-              <Route path="/music" component={Music}/>
-              <Route path="/codes" component={Codes} />
-              <Route path="/profilex" component={GoogleAuthenticationX} />
-              </Switch>
+              <Route path="/profile" component={GoogleAuthenticationX} />
+            </Switch>
           <Footer />
         </div>
       </Router>
