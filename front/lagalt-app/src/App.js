@@ -9,6 +9,8 @@ import GoogleAuthentication from './components/views/login-page/GoogleAuthentica
 import Movies from './components/views/navbarItems/Movies'
 import Music from './components/views/navbarItems/Music'
 import Codes from './components/views/navbarItems/Codes';
+import GoogleAuthenticationX from './components/views/profile-view/GoogleAuthenticationX'
+import CreateUserX from './components/views/profile-view/CreateUserX'
 
 
 function App() {
@@ -19,11 +21,13 @@ function App() {
           <Nav />
             <Switch>
               <Route path="/" exact component={Landing} />
-              <Route path="/profile" component={GoogleAuthentication} />
-              <Route path="/projects" component={ProfileProjects} />
+{/*               <Route path="/profile" component={GoogleAuthentication} />
+ */}              <Route path="/projects" component={ProfileProjects} />
               <Route path="/movies" component={Movies} />
+              <Route path="/createuser" component={CreateUserX} />
               <Route path="/music" component={Music}/>
               <Route path="/codes" component={Codes} />
+              <Route path="/profilex" component={GoogleAuthenticationX} />
               </Switch>
           <Footer />
         </div>

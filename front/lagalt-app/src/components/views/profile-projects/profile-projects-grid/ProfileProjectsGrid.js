@@ -12,8 +12,7 @@ class ProfileProjectsGrid extends Component {
     }
 
     componentDidMount() {
-        const googleid = firebase.auth().currentUser.uid
-        axios.get(`https://lagalt-server.herokuapp.com/api/v1/users/${googleid}/projects`)
+        axios.get(`https://lagalt-server.herokuapp.com/api/v1/users/24/projects`)
             .then(response => {
                 console.log(response)
                 this.setState({posts: response.data})

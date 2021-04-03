@@ -14,7 +14,7 @@ function ProfilePage() {
     useEffect(() => {
         async function fetchDbUser() {
             try {
-                const userResponse = await Axios(`https://lagalt-server.herokuapp.com/api/v1/users/${user.uid}`);
+                const userResponse = await Axios(`https://lagalt-server.herokuapp.com/api/v1/users/googleid/${user.uid}`);
                 setDbUser(userResponse.data);
             } catch  {
                 Axios.post("https://lagalt-server.herokuapp.com/api/v1/users", {googleid: user.uid})
@@ -22,6 +22,7 @@ function ProfilePage() {
         }
         fetchDbUser();
     }, [user]);
+    console.log('dbuser',dbUser)
 
     const [modalShow, setModalShow] = React.useState(false);
 

@@ -1,11 +1,11 @@
-/* import firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
 import { useAuthState } from 'react-firebase-hooks/auth'
 
-import ProfilePage from '../profile-page/ProfilePage'
-import GoogleLogin from './GoogleLogin'
+import ProfileView from './ProfileView'
+import GoogleLoginX from './GoogleLoginX'
 
 firebase.initializeApp({
     apiKey: "AIzaSyA--ECU9qYpiANv4sCcW0PWXTxGdAj807M",
@@ -18,7 +18,7 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 
-function GoogleAuthentication() {
+function GoogleAuthenticationX() {
     const [user] = useAuthState(auth);
     console.log(user)
 
@@ -26,8 +26,8 @@ function GoogleAuthentication() {
         <div className="FirebaseChat">
             <section>
                 {user ?
-                    <ProfilePage /> :
-                    <GoogleLogin
+                    <ProfileView /> :
+                    <GoogleLoginX
                         auth={auth}
                         firebase={firebase}
                     />
@@ -37,4 +37,4 @@ function GoogleAuthentication() {
     )
 }
 
-export default GoogleAuthentication */
+export default GoogleAuthenticationX
