@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ErrorHandler {
 
+    // TODO log errors via logger
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
@@ -23,18 +25,21 @@ public class ErrorHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleIntegrityViolations(DataIntegrityViolationException ex) {
-        // TODO log error via logger
         String detail = getDataIntegrityDetailMessage(ex);
-        if(detail.contains("is not present in table")){
+        if (detail.contains("is not present in table")) {
             return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
         }
-        if(detail.contains("already exists")){
+        if (detail.contains("already exists")) {
             return new ResponseEntity<>("Google id already in use", HttpStatus.BAD_REQUEST);
+        }
+        if (detail.contains("is still referenced from table")) {
+            String message = "Could not delete entity. The entity is still referred somewhere...";
+            return new ResponseEntity<>(message, HttpStatus.I_AM_A_TEAPOT);
         }
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    private String getDataIntegrityDetailMessage(DataIntegrityViolationException ex){
+    private String getDataIntegrityDetailMessage(DataIntegrityViolationException ex) {
         String errorMessage = ex.getMostSpecificCause().getMessage();
         int detailIndex = errorMessage.indexOf("Detail:");
         return errorMessage.substring(detailIndex);
