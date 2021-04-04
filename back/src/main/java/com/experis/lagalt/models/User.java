@@ -58,6 +58,10 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private Set<Project> projectsPartOf;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "applicants")
+    private Set<Project> applications;
+
     public User() {
         projects = new HashSet<>();
         skills = new HashSet<>();
@@ -173,5 +177,13 @@ public class User {
 
     public void setProjectsPartOf(Set<Project> projectsPartOf) {
         this.projectsPartOf = projectsPartOf;
+    }
+
+    public Set<Project> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Set<Project> applications) {
+        this.applications = applications;
     }
 }

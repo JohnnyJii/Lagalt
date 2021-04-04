@@ -52,5 +52,8 @@ public class ProjectService {
         for (Project project : user.getProjectsPartOf()) {
             project.getUsers().remove(user);
         }
+        for (Project project : user.getApplications()) {
+            project.getApplicants().remove(user);
+        }
     }
 }
