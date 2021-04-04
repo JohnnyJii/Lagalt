@@ -38,7 +38,7 @@ public class UserService {
 
     public boolean deleteUser(long id) {
         if (userExists(id)) {
-            projectService.deleteAll(getUserProjects(id));
+            projectService.deleteUsersProjects(findUser(id));
             userRepository.deleteById(id);
             return true;
         }

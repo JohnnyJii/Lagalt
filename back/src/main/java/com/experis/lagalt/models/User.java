@@ -71,7 +71,7 @@ public class User {
         return projectsToIdArray(projects);
     }
 
-    @JsonGetter("partOf")
+    @JsonGetter("projectsPartOf")
     public List<String> projectsPartOfGetter() {
         if (projectsPartOf == null) {
             return null;
