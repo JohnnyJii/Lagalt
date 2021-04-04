@@ -21,6 +21,7 @@ Application uses spring-boot, hibernate and Postgres db.
       - [GET user by id](#get-user-by-id)
       - [GET user by google id](#get-user-by-google-id)
       - [GET user projects](#get-user-projects)
+      - [GET projects that user is part of](#get-projects-that-user-is-part-of)
       - [POST user](#post-user)
       - [PUT user](#put-user)
       - [DELETE user](#delete-user)
@@ -35,7 +36,7 @@ Application uses spring-boot, hibernate and Postgres db.
 Base url for V1 API is [https://lagalt-server.herokuapp.com/api/v1/](https://lagalt-server.herokuapp.com/api/v1/)
 
 [&#8593; TOP](#back-end-lagalt-project)
-
+<hr/>
 ### Security
 
 API has three public endpoints
@@ -62,6 +63,7 @@ Status code 403 is also returned when adding resources with another users id.
 
 
 [&#8593; TOP](#back-end-lagalt-project)
+<hr/>
 
 ### Set Authorization header using Axios
 **NOTE!**
@@ -79,6 +81,7 @@ axios.get(
   // 403 Valid JWT. Not authorized
 ```
 [&#8593; TOP](#back-end-lagalt-project)
+<hr/>
 
 ### Models
 #### User object
@@ -122,6 +125,7 @@ Attributes with ? are optional
 }
 ```
 [&#8593; TOP](#back-end-lagalt-project)
+<hr/>
 
 ### User endpoints
 Contains
@@ -163,12 +167,24 @@ returns single [userObject](#userobject)
 }
 ```
 
-
+[&#8593; TOP](#back-end-lagalt-project)
 
 #### GET user projects
 [https://lagalt-server.herokuapp.com/api/v1/users/:id/projects](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects)
 
 returns list of [projectObjects](#projectObject) for that user
+```JSON
+[
+  "projectObject",
+]
+```
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+#### GET projects that user is part of
+[https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/participant](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/participant)
+
+returns list of [projectObjects](#projectObject) where user is participant but not the owner.
 ```JSON
 [
   "projectObject",
@@ -233,7 +249,6 @@ Returns
 Deleting user with projects also deletes users projects.
 
 [&#8593; TOP](#back-end-lagalt-project)
-
 <hr>
 
 ### Project endpoints
@@ -321,5 +336,4 @@ Returns
 - 404 if User can not be deleted AKA. already deleted
 
 [&#8593; TOP](#back-end-lagalt-project)
-
 <hr>
