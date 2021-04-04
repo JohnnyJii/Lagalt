@@ -26,12 +26,11 @@ public class ApplicantController {
         return new ResponseEntity<>(applicants, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(value = "/{userId}")
     public ResponseEntity<User> createApplication(
             @PathVariable long projectId,
-            @RequestBody User user
+            @PathVariable long userId
     ) {
-        long userId = user.getId();
         if (!applicantService.projectAndUserExists(projectId, userId)) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
