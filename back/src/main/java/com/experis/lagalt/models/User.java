@@ -1,6 +1,7 @@
 package com.experis.lagalt.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -53,6 +54,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Project> projects;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "users")
+    private Set<Project> projectsPartOf;
+
     public User() {
         projects = new HashSet<>();
         skills = new HashSet<>();
@@ -63,10 +68,18 @@ public class User {
         if (projects == null) {
             return null;
         }
-        return projectsToIdArray();
+        return projectsToIdArray(projects);
     }
 
-    private List<String> projectsToIdArray() {
+    @JsonGetter("partOf")
+    public List<String> projectsPartOfGetter() {
+        if (projectsPartOf == null) {
+            return null;
+        }
+        return projectsToIdArray(projectsPartOf);
+    }
+
+    private List<String> projectsToIdArray(Set<Project> projects) {
         return projects
                 .stream()
                 .map(project -> String.valueOf(project.getId()))
@@ -152,5 +165,13 @@ public class User {
 
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
+    }
+
+    public Set<Project> getProjectsPartOf() {
+        return projectsPartOf;
+    }
+
+    public void setProjectsPartOf(Set<Project> projectsPartOf) {
+        this.projectsPartOf = projectsPartOf;
     }
 }
