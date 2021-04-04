@@ -235,17 +235,18 @@ Request body. Attributes starting with ? are optionals.
     "?description": "String"
 }
 ```
+HTTP response
 - 201 if new User created
 - 204 if User updated
-- Returns 400 BAD REQUEST if path id and request body id different
-- Returns 400 if users google id already in use
+- 400 if path id and request body id different
+- 400 if users google id is already in use
 
 [&#8593; TOP](#back-end-lagalt-project)
 
 #### DELETE user
 [https://lagalt-server.herokuapp.com/api/v1/users/:id](https://lagalt-server.herokuapp.com/api/v1/users/:id)
 
-Returns 
+HTTP response
 - 204 if User deleted from database
 - 404 if User can not be deleted AKA. already deleted
 
@@ -300,7 +301,7 @@ Request body. Attributes starting with ? are optionals.
     "user": { "id":"long" },
 }
 ```
-Returns :
+HTTP response
 - 201 if project added to database
 - 400 if user not found from database
 - 400 if missing required attributes
@@ -325,7 +326,7 @@ Request body. Attributes starting with ? are optionals.
     "user": { "id":"long" },
 }
 ```
-Returns :
+HTTP response
 - 201 if new User created
 - 204 if User updated
 - 400 BAD REQUEST if path id and request body id different
@@ -336,7 +337,7 @@ Returns :
 #### DELETE project
 [https://lagalt-server.herokuapp.com/api/v1/projects/:id](https://lagalt-server.herokuapp.com/api/v1/projects/:id)
 
-Returns 
+HTTP response
 - 204 if User deleted from database
 - 404 if User can not be deleted AKA. already deleted
 
