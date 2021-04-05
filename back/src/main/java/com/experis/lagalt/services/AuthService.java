@@ -64,6 +64,9 @@ public class AuthService {
     }
 
     public boolean loggedUserIsPartOfProject(Project project) {
+        if (isAdmin()) {
+            return true;
+        }
         if (project == null) {
             return false;
         }
