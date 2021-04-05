@@ -58,7 +58,7 @@ public class UserController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @Valid @RequestBody User newUser) {
-        if(!authService.isLoggedUser(newUser)){
+        if (!authService.isLoggedUser(newUser)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         User returnUser = new User();
@@ -78,10 +78,10 @@ public class UserController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
-        if(!userService.userExists(id)){
+        if (!userService.userExists(id)) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        if(!authService.isLoggedUser(id)){
+        if (!authService.isLoggedUser(id)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         userService.deleteUser(id);
@@ -116,15 +116,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/{userId}/projects/participant")
-    public ResponseEntity<List<Project>> getProjectsUserPartOf(@PathVariable long userId){
-        // TODO protect
-        List<Project> projects = userService.getUserProjectsPartOf(userId);
-        HttpStatus status;
-        if (userService.userExists(userId)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+    public ResponseEntity<List<Project>> getProjectsUserPartOf(@PathVariable long userId) {
+        if (!userService.userExists(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(projects, status);
+        if (!authService.isLoggedUser(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        List<Project> projects = userService.getUserProjectsPartOf(userId);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 }
