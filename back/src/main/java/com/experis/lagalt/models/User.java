@@ -3,6 +3,7 @@ package com.experis.lagalt.models;
 import com.experis.lagalt.models.role.Role;
 import com.experis.lagalt.models.role.RoleType;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements GetUserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +53,9 @@ public class User {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "portfolio")
+    private String portfolio;
+
     @OneToMany(mappedBy = "user")
     private Set<Project> projects;
 
@@ -60,6 +64,14 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "users")
+    private Set<Project> projectsPartOf;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Applicant> applications;
 
     public User() {
         projects = new HashSet<>();
@@ -71,10 +83,18 @@ public class User {
         if (projects == null) {
             return null;
         }
-        return projectsToIdArray();
+        return projectsToIdArray(projects);
     }
 
-    private List<String> projectsToIdArray() {
+    @JsonGetter("projectsPartOf")
+    public List<String> projectsPartOfGetter() {
+        if (projectsPartOf == null) {
+            return null;
+        }
+        return projectsToIdArray(projectsPartOf);
+    }
+
+    private List<String> projectsToIdArray(Set<Project> projects) {
         return projects
                 .stream()
                 .map(project -> String.valueOf(project.getId()))
@@ -178,6 +198,30 @@ public class User {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public Set<Project> getProjectsPartOf() {
+        return projectsPartOf;
+    }
+
+    public void setProjectsPartOf(Set<Project> projectsPartOf) {
+        this.projectsPartOf = projectsPartOf;
+    }
+
+    public Set<Applicant> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Set<Applicant> applications) {
+        this.applications = applications;
+    }
+
+    public String getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(String portfolio) {
+        this.portfolio = portfolio;
     }
 
     public void setRoles(Set<Role> roles) {

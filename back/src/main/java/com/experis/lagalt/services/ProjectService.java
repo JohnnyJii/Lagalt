@@ -15,6 +15,9 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private ApplicantService applicantService;
+
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
@@ -34,21 +37,23 @@ public class ProjectService {
 
     public void deleteProject(long id) {
         if (projectExists(id)) {
+            applicantService.deleteProjectApplications(findProject(id));
             projectRepository.deleteById(id);
         }
     }
 
-    public boolean deleteAll(Iterable<Project> projects) {
-        projectRepository.deleteAll(projects);
-        return true;
+    public void deleteUsersProjects(User user) {
+        deleteAllProjects(user.getProjects());
+        deleteUserReferenceFromProjects(user);
     }
 
-    public User getProjectUser(long id) {
-        User projectUser = new User();
-        if (projectExists(id)) {
-            Project project = findProject(id);
-            projectUser = project.getUser();
+    private void deleteAllProjects(Iterable<Project> projects) {
+        projectRepository.deleteAll(projects);
+    }
+
+    private void deleteUserReferenceFromProjects(User user) {
+        for (Project project : user.getProjectsPartOf()) {
+            project.getUsers().remove(user);
         }
-        return projectUser;
     }
 }
