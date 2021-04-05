@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User implements GetUserDetails{
+public class User implements GetUserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,8 +59,8 @@ public class User implements GetUserDetails{
     private Set<Project> projectsPartOf;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "applicants")
-    private Set<Project> applications;
+    @OneToMany(mappedBy = "user")
+    private Set<Applicant> applications;
 
     public User() {
         projects = new HashSet<>();
@@ -179,11 +179,11 @@ public class User implements GetUserDetails{
         this.projectsPartOf = projectsPartOf;
     }
 
-    public Set<Project> getApplications() {
+    public Set<Applicant> getApplications() {
         return applications;
     }
 
-    public void setApplications(Set<Project> applications) {
+    public void setApplications(Set<Applicant> applications) {
         this.applications = applications;
     }
 }

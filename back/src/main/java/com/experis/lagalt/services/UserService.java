@@ -20,6 +20,9 @@ public class UserService {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private ApplicantService applicantService;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -40,6 +43,7 @@ public class UserService {
     public boolean deleteUser(long id) {
         if (userExists(id)) {
             projectService.deleteUsersProjects(findUser(id));
+            applicantService.deleteUserApplications(findUser(id));
             userRepository.deleteById(id);
             return true;
         }
