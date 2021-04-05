@@ -51,6 +51,9 @@ public class User {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "portfolio")
+    private String portfolio;
+
     @OneToMany(mappedBy = "user")
     private Set<Project> projects;
 
@@ -185,5 +188,13 @@ public class User {
 
     public void setApplications(Set<Project> applications) {
         this.applications = applications;
+    }
+
+    public String getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(String portfolio) {
+        this.portfolio = portfolio;
     }
 }
