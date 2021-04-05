@@ -21,6 +21,7 @@ Application uses spring-boot, hibernate and Postgres db.
       - [GET user by id](#get-user-by-id)
       - [GET user by google id](#get-user-by-google-id)
       - [GET user projects](#get-user-projects)
+      - [GET projects that user is part of](#get-projects-that-user-is-part-of)
       - [POST user](#post-user)
       - [PUT user](#put-user)
       - [DELETE user](#delete-user)
@@ -30,12 +31,17 @@ Application uses spring-boot, hibernate and Postgres db.
       - [POST Project](#post-project)
       - [PUT Project](#put-project)
       - [DELETE project](#delete-project)
+    - [Applying to project](#applying-to-project)
+      - [GET applications](#get-applications)
+      - [POST application](#post-application)
+      - [GET application](#get-application)
+      - [POST accept application](#post-accept-application)
 
 ## V1 usage
 Base url for V1 API is [https://lagalt-server.herokuapp.com/api/v1/](https://lagalt-server.herokuapp.com/api/v1/)
 
 [&#8593; TOP](#back-end-lagalt-project)
-
+<hr/>
 ### Security
 
 API has three public endpoints
@@ -62,6 +68,7 @@ Status code 403 is also returned when adding resources with another users id.
 
 
 [&#8593; TOP](#back-end-lagalt-project)
+<hr/>
 
 ### Set Authorization header using Axios
 **NOTE!**
@@ -79,6 +86,7 @@ axios.get(
   // 403 Valid JWT. Not authorized
 ```
 [&#8593; TOP](#back-end-lagalt-project)
+<hr/>
 
 ### Models
 #### User object
@@ -122,6 +130,7 @@ Attributes with ? are optional
 }
 ```
 [&#8593; TOP](#back-end-lagalt-project)
+<hr/>
 
 ### User endpoints
 Contains
@@ -163,12 +172,24 @@ returns single [userObject](#userobject)
 }
 ```
 
-
+[&#8593; TOP](#back-end-lagalt-project)
 
 #### GET user projects
 [https://lagalt-server.herokuapp.com/api/v1/users/:id/projects](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects)
 
 returns list of [projectObjects](#projectObject) for that user
+```JSON
+[
+  "projectObject",
+]
+```
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+#### GET projects that user is part of
+[https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/participant](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/participant)
+
+returns list of [projectObjects](#projectObject) where user is participant but not the owner.
 ```JSON
 [
   "projectObject",
@@ -214,17 +235,18 @@ Request body. Attributes starting with ? are optionals.
     "?description": "String"
 }
 ```
+HTTP response
 - 201 if new User created
 - 204 if User updated
-- Returns 400 BAD REQUEST if path id and request body id different
-- Returns 400 if users google id already in use
+- 400 if path id and request body id different
+- 400 if users google id is already in use
 
 [&#8593; TOP](#back-end-lagalt-project)
 
 #### DELETE user
 [https://lagalt-server.herokuapp.com/api/v1/users/:id](https://lagalt-server.herokuapp.com/api/v1/users/:id)
 
-Returns 
+HTTP response
 - 204 if User deleted from database
 - 404 if User can not be deleted AKA. already deleted
 
@@ -233,7 +255,6 @@ Returns
 Deleting user with projects also deletes users projects.
 
 [&#8593; TOP](#back-end-lagalt-project)
-
 <hr>
 
 ### Project endpoints
@@ -280,7 +301,7 @@ Request body. Attributes starting with ? are optionals.
     "user": { "id":"long" },
 }
 ```
-Returns :
+HTTP response
 - 201 if project added to database
 - 400 if user not found from database
 - 400 if missing required attributes
@@ -305,7 +326,7 @@ Request body. Attributes starting with ? are optionals.
     "user": { "id":"long" },
 }
 ```
-Returns :
+HTTP response
 - 201 if new User created
 - 204 if User updated
 - 400 BAD REQUEST if path id and request body id different
@@ -316,10 +337,88 @@ Returns :
 #### DELETE project
 [https://lagalt-server.herokuapp.com/api/v1/projects/:id](https://lagalt-server.herokuapp.com/api/v1/projects/:id)
 
-Returns 
+HTTP response
 - 204 if User deleted from database
 - 404 if User can not be deleted AKA. already deleted
 
 [&#8593; TOP](#back-end-lagalt-project)
-
 <hr>
+
+### Applying to project
+Part of project endpoint.
+
+#### GET applications
+[https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications)
+
+Returns a list of [applications](#user-object) for project.
+```JSON
+[
+  "userObject",
+]
+```
+HTTP response
+- 200 if aplications found
+- 404 if project with project id not found
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+#### POST application
+[https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId)
+
+HTTP Post method for applying project. Returns [application](#user-object).
+```JSON
+{
+  "userObjectAttributes"
+}
+```
+HTTP response
+- 201 when application created
+- 400 if user already part of the project or application is still pending
+- 404 if user or project not found
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+#### GET application
+[https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId)
+
+Returns [application](#user-object).
+```JSON
+{
+  "userObjectAttributes"
+}
+```
+HTTP response
+- 200 when application found
+- 404 if project or application not found
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+#### POST accept application
+[https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId/:accepted](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId/:accepted)
+
+Takes in three path variables
+- project id, type long (number)
+- user id, type long (number)
+- accepted, type boolean (true | false)
+
+True value will add user to be part of the project.
+
+
+False value won't add user to be part of the project.
+
+Application is deleted and user can apply again if not accepted.
+
+Returns boolean value
+```JSON
+{
+  "true | false"
+}
+```
+HTTP response
+- 200 when application is processed
+- 400 if path variables are invalid
+- 404 if project or application is not found
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+<hr/>

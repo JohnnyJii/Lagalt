@@ -1,11 +1,13 @@
 package com.experis.lagalt.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -47,9 +49,19 @@ public class Project {
     @NotNull
     private User user;
 
-    public Project() {
-        skills = new HashSet<>();
-    }
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "applicants",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> applicants;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "project_users",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users;
 
     @JsonGetter("user")
     public String userGetter() {
@@ -130,5 +142,21 @@ public class Project {
 
     public void setProgress(String progress) {
         this.progress = progress;
+    }
+
+    public List<User> getApplicants() {
+        return applicants;
+    }
+
+    public void setApplicants(ArrayList<User> applications) {
+        this.applicants = applications;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
