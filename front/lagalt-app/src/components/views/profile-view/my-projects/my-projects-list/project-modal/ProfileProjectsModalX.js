@@ -19,6 +19,9 @@ function ProfileProjectsModalX(props) {
           <small><strong>Progress:</strong> {props.progress ? props.progress : "Progress"}</small>
           <br />
           <small><strong>Git Link:</strong> <a href="{props.gitlink}" target="blank_">{props.gitlink ? props.gitlink : "Gitlink"}</a></small>
+          <br />
+          <small><strong>Skills needed:</strong> {props.skills ? props.skills : "Skills"}</small>
+          <br />
           <div>
             <small><strong>Message Board</strong></small>
             <ProjectCommentsX projectId={props.id} />

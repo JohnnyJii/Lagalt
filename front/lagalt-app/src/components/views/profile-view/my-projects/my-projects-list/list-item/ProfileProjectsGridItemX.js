@@ -13,6 +13,7 @@ function ProfileProjectsGridItemX(props) {
                 <Card.Body>
                     <Card.Title>{props.title ? props.title : 'Title'}</Card.Title>
                     <Card.Text>{props.desc ? props.desc : 'Description'}</Card.Text>
+                    <Card.Footer>{props.skills ? props.skills : 'skills'}</Card.Footer>
                 </Card.Body>
             </Card>
             <ProfileProjectsModalX
@@ -23,8 +24,10 @@ function ProfileProjectsGridItemX(props) {
                 desc={props.desc}
                 gitlink={props.gitlink}
                 show={modalShow}
+                skills={props.skills}
                 onHide={() => setModalShow(false)}
             />
+            
         </div>
     )
 }
