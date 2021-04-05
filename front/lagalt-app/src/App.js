@@ -11,6 +11,7 @@ import CreateUserX from './components/views/profile-view/profile-page/create-use
 
 function App() {
   const [userName, setUserName] = useState('Login')
+  console.log(userName)
 
   return (
     <AuthContext.Provider value={false}>

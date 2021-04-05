@@ -42,7 +42,8 @@ function ProfileProjectsX(props) {
                 </Button>
             </div>
                 <ProfileProjectsGridX
-                    posts={posts} />
+                    posts={posts}
+                />
         </div>
     )
 }

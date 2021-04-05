@@ -7,6 +7,7 @@ function ProfileJumbotronX(props) {
 /*     const projects = props.dbuser.projects.length
  */
     function GoogleSignOut() {
+        localStorage.clear();
         const auth = firebase.auth();
         auth.signOut();
     }

@@ -8,7 +8,6 @@ import CreateUserX from './profile-page/create-user/CreateUserX'
 
 function ProfileView(props) {
     let user = firebase.auth().currentUser;
-    props.setUserName(user.displayName[0].toUpperCase() + user.displayName.substring(1))
     const [dbuser, setDbUser] = useState({})
     const [redirect, setRedirect] = useState(false)
 
@@ -23,6 +22,7 @@ function ProfileView(props) {
         }
         fetchDbUser();
     }, [user.uid]);
+    localStorage.setItem('dbuserid', dbuser.id);
 
     if (redirect) {
         return(
@@ -37,6 +37,7 @@ function ProfileView(props) {
             <div>
                 {/* <ProfileNavbarX /> */}                
                 <ProfilePageX
+                    setUserName={props.setUserName}
                     user={user}
                     dbuser={dbuser}
                 />

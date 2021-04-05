@@ -20,6 +20,7 @@ const auth = firebase.auth();
 
 function GoogleAuthenticationX(props) {
     const [user] = useAuthState(auth);
+    user ? props.setUserName('Profile') : props.setUserName('Login')
 
     return(
         <div className="FirebaseChat">

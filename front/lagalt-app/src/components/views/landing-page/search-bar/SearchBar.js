@@ -39,9 +39,12 @@ function SearchBar () {
                     <ProfileProjectsGridItemX
                         key={val.id}
                         id={val.id}
-                        title={val.title}
-                        desc={val.description}
                         industry={val.industry}
+                        progress={val.progress}
+                        title={val.title}
+                        description={val.description}
+                        gitlink={val.gitlink}
+                        creator={val.user}
                     />
                 </div>
                 )
