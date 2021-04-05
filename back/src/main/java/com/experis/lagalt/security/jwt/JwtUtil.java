@@ -6,7 +6,6 @@ import com.experis.lagalt.services.UserService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -23,8 +22,6 @@ public class JwtUtil {
         String googleId = getUID(token);
         User user = userService.findUser(googleId);
         if (user.getGoogleid() == null) {
-            // TODO remove sout
-            System.out.println("User not found. Creating new user with firebase ID");
             user.setGoogleid(googleId);
         }
         return UserDetail.build(user);

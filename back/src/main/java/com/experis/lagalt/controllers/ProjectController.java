@@ -53,18 +53,18 @@ public class ProjectController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable long id, @Valid @RequestBody Project newProject) {
+    public ResponseEntity<Project> updateProject(
+            @PathVariable long id, @Valid @RequestBody Project newProject
+    ) {
         if (!authService.isLoggedUsersProject(newProject)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
-        Project returnProject = new Project();
-        HttpStatus status;
         if (id != newProject.getId()) {
-            status = HttpStatus.BAD_REQUEST;
-            return new ResponseEntity<>(returnProject, status);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         boolean projectFound = projectService.projectExists(id);
-        returnProject = projectService.saveProject(newProject);
+        Project returnProject = projectService.saveProject(newProject);
+        HttpStatus status;
         if (projectFound) {
             status = HttpStatus.NO_CONTENT;
         } else {

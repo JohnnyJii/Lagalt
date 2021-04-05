@@ -117,6 +117,7 @@ public class UserController {
 
     @GetMapping(value = "/{userId}/projects/participant")
     public ResponseEntity<List<Project>> getProjectsUserPartOf(@PathVariable long userId){
+        // TODO protect
         List<Project> projects = userService.getUserProjectsPartOf(userId);
         HttpStatus status;
         if (userService.userExists(userId)) {

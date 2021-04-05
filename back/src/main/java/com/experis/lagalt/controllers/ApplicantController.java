@@ -19,6 +19,7 @@ public class ApplicantController {
 
     @GetMapping
     public ResponseEntity<List<Applicant>> getApplications(@PathVariable long projectId) {
+        // TODO secure
         List<Applicant> applicants = applicantService.getApplicants(projectId);
         if (applicants == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -32,6 +33,7 @@ public class ApplicantController {
             @PathVariable long userId,
             @RequestBody Applicant applicant
     ) {
+        // TODO secure
         if (!applicantService.projectAndUserExists(projectId, userId)) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -47,6 +49,7 @@ public class ApplicantController {
             @PathVariable long projectId,
             @PathVariable long userId
     ) {
+        // TODO secure
         Applicant applicant = applicantService.findApplicant(projectId, userId);
         if (applicant == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -58,7 +61,9 @@ public class ApplicantController {
     public ResponseEntity<Boolean> acceptApplication(
             @PathVariable long projectId,
             @PathVariable long userId,
-            @PathVariable boolean accepted) {
+            @PathVariable boolean accepted
+    ) {
+        // TODO secure
         Boolean applicantAccepted =
                 applicantService.acceptApplicant(projectId, userId, accepted);
         if (applicantAccepted == null) {

@@ -53,5 +53,4 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private WebAuthenticationDetails setBuildDetails(HttpServletRequest request) {
         return new WebAuthenticationDetailsSource().buildDetails(request);
     }
-
 }

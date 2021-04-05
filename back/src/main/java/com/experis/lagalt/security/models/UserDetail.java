@@ -2,7 +2,6 @@ package com.experis.lagalt.security.models;
 
 import com.experis.lagalt.models.User;
 import com.experis.lagalt.models.role.Role;
-import com.experis.lagalt.models.role.RoleType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

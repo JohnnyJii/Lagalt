@@ -19,8 +19,6 @@ public class AuthService {
     @Autowired
     private ProjectService projectService;
 
-    private final SimpleGrantedAuthority USER = new SimpleGrantedAuthority(RoleType.ROLE_USER.name());
-    private final SimpleGrantedAuthority OWNER = new SimpleGrantedAuthority(RoleType.ROLE_OWNER.name());
     private final SimpleGrantedAuthority ADMIN = new SimpleGrantedAuthority(RoleType.ROLE_ADMIN.name());
 
     public boolean isLoggedUser(long id) {
@@ -59,8 +57,6 @@ public class AuthService {
     }
 
     private boolean loggedUserOwnsProject(Project project) {
-        // TODO handle missing content
-        // Adding required params solves???
         if (project == null) {
             System.out.println("No project");
             return false;
@@ -82,19 +78,11 @@ public class AuthService {
         return getLoggedUserDetail().getUser();
     }
 
-    public boolean isUser() {
-        return userHasRole(USER);
-    }
-
-    public boolean isOwner() {
-        return userHasRole(OWNER);
-    }
-
     public boolean isAdmin() {
-        return userHasRole(ADMIN);
+        return loggedUserHasRole(ADMIN);
     }
 
-    private boolean userHasRole(SimpleGrantedAuthority role) {
+    private boolean loggedUserHasRole(SimpleGrantedAuthority role) {
         UserDetail userDetail = getLoggedUserDetail();
         return userDetail.getAuthorities().contains(role);
     }
