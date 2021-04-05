@@ -6,8 +6,9 @@ import Axios from 'axios'
 import firebase from 'firebase/app'
 import CreateUserX from './profile-page/create-user/CreateUserX'
 
-function ProfileView() {
+function ProfileView(props) {
     let user = firebase.auth().currentUser;
+    props.setUserName(user.displayName[0].toUpperCase() + user.displayName.substring(1))
     const [dbuser, setDbUser] = useState({})
     const [redirect, setRedirect] = useState(false)
 

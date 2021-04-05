@@ -1,11 +1,11 @@
 import React from 'react'
-import AllProjectsGrid from './AllProjectsGrid'
 import '../Landing.css'
+import SearchBar from '../search-bar/SearchBar'
 
 function LandingMain() {
     return (
         <div className="landing-main">
-            <AllProjectsGrid />
+            <SearchBar />
         </div>
     )
 }

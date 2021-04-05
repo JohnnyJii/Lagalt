@@ -18,14 +18,16 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 
-function GoogleAuthenticationX() {
+function GoogleAuthenticationX(props) {
     const [user] = useAuthState(auth);
 
     return(
         <div className="FirebaseChat">
             <section>
                 {user ?
-                    <ProfileView /> :
+                    <ProfileView                         
+                        setUserName={props.setUserName}
+                    /> :
                     <GoogleLoginX
                         auth={auth}
                         firebase={firebase}

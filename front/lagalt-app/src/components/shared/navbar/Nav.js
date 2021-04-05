@@ -1,24 +1,14 @@
 import React from 'react'
 import './StyleNav.css'
-import firebase from 'firebase/app'
+import { Link } from 'react-router-dom'
 
-function About() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const user = firebase.auth().currentUser
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
- };
-
+function About(props) {
   return (
     <div className="navbar-container">
-        <a href="/">Lagalt</a>
-          <input 
-          type="text"
-          placeholder="search"
-          value={searchTerm}
-          onChange={handleChange}
-          />
-        <a href="/profile">{ user ? "Profile" : "Login" }</a>
+      <div className="container">
+        <span className="lagalt-logo-text"><Link to="/">Lagalt.no</Link></span>
+        <span className="profile-link"><Link to="/profile">{ props.userName && props.userName }</Link></span>
+      </div>
       </div>
   );
 }
