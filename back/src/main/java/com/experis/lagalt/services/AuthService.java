@@ -75,6 +75,9 @@ public class AuthService {
             return true;
         }
         Set<User> participants = project.getUsers();
+        if (participants == null) {
+            return false;
+        }
         return participants.contains(loggedUser);
     }
 
