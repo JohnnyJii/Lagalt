@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,11 +48,8 @@ public class Project {
     private User user;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "applicants",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> applicants;
+    @OneToMany(mappedBy = "project")
+    private Set<Applicant> applications;
 
     @JsonIgnore
     @ManyToMany
@@ -144,19 +139,19 @@ public class Project {
         this.progress = progress;
     }
 
-    public List<User> getApplicants() {
-        return applicants;
-    }
-
-    public void setApplicants(ArrayList<User> applications) {
-        this.applicants = applications;
-    }
-
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public Set<Applicant> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Set<Applicant> applications) {
+        this.applications = applications;
     }
 }

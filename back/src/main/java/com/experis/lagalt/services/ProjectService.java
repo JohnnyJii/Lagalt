@@ -15,6 +15,9 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private ApplicantService applicantService;
+
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
@@ -34,7 +37,7 @@ public class ProjectService {
 
     public void deleteProject(long id) {
         if (projectExists(id)) {
-            findProject(id).getApplicants().clear();
+            applicantService.deleteProjectApplications(findProject(id));
             projectRepository.deleteById(id);
         }
     }
@@ -51,9 +54,6 @@ public class ProjectService {
     private void deleteUserReferenceFromProjects(User user) {
         for (Project project : user.getProjectsPartOf()) {
             project.getUsers().remove(user);
-        }
-        for (Project project : user.getApplications()) {
-            project.getApplicants().remove(user);
         }
     }
 }

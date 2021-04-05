@@ -16,6 +16,7 @@ Application uses spring-boot, hibernate and Postgres db.
     - [Models](#models)
       - [User object](#user-object)
       - [Project object](#project-object)
+      - [Application object](#application-object)
     - [User endpoints](#user-endpoints)
       - [GET users](#get-users)
       - [GET user by id](#get-user-by-id)
@@ -33,8 +34,8 @@ Application uses spring-boot, hibernate and Postgres db.
       - [DELETE project](#delete-project)
     - [Applying to project](#applying-to-project)
       - [GET applications](#get-applications)
-      - [POST application](#post-application)
       - [GET application](#get-application)
+      - [POST application](#post-application)
       - [POST accept application](#post-accept-application)
 
 ## V1 usage
@@ -127,6 +128,24 @@ Attributes with ? are optional
     "?tags": ["String"],
     "?gitlink": "String",
     "user": "userId"
+}
+```
+[&#8593; TOP](#back-end-lagalt-project)
+<hr/>
+
+#### Application object
+Project id, user id and motivation letter are only attributes part of application object. Other attributes comes from [user object](#user-object).
+```JSON
+{
+    "motivationLetter": "String",
+    "description": "String",
+    "lastname": "String",
+    "eMail": "Email",
+    "firstname": "String",
+    "imageSource": "String",
+    "skills": ["String"],
+    "projectId":"long",
+    "userId":"long"
 }
 ```
 [&#8593; TOP](#back-end-lagalt-project)
@@ -350,10 +369,10 @@ Part of project endpoint.
 #### GET applications
 [https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications)
 
-Returns a list of [applications](#user-object) for project.
+Returns a list of [applications](#application-object) for project.
 ```JSON
 [
-  "userObject",
+  "applicationObject",
 ]
 ```
 HTTP response
@@ -362,10 +381,34 @@ HTTP response
 
 [&#8593; TOP](#back-end-lagalt-project)
 
+#### GET application
+[https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId)
+
+Returns [application](#application-object).
+```JSON
+{
+  "userObjectAttributes"
+}
+```
+HTTP response
+- 200 when application found
+- 404 if project or application not found
+
+[&#8593; TOP](#back-end-lagalt-project)
+
 #### POST application
 [https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId)
 
-HTTP Post method for applying project. Returns [application](#user-object).
+HTTP Post method for applying project.
+Motivation letter is optional attribute and can be added using request body.
+
+Request body
+```JSON
+{
+  "motivationLetter":"String",
+}
+```
+Returns [application](#application-object).
 ```JSON
 {
   "userObjectAttributes"
@@ -375,21 +418,6 @@ HTTP response
 - 201 when application created
 - 400 if user already part of the project or application is still pending
 - 404 if user or project not found
-
-[&#8593; TOP](#back-end-lagalt-project)
-
-#### GET application
-[https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId](https://lagalt-server.herokuapp.com/api/v1/projects/:projectId/applications/:userId)
-
-Returns [application](#user-object).
-```JSON
-{
-  "userObjectAttributes"
-}
-```
-HTTP response
-- 200 when application found
-- 404 if project or application not found
 
 [&#8593; TOP](#back-end-lagalt-project)
 
