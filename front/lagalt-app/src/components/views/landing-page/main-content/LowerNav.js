@@ -6,7 +6,7 @@ import './LowerNav.css'
 function LowerNav() {
     return (
         <div>
-            <Nav text-center fill variant="tabs" defaultActiveKey="all">
+            <Nav text-center="true" fill variant="tabs" defaultActiveKey="all">
                 <Nav.Item>
                     <Nav.Link className="navLink" href="/">All</Nav.Link>
                 </Nav.Item>
