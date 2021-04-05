@@ -3,6 +3,7 @@ import axios from 'axios'
 import './SearchBar.css'
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 
+
 function SearchBar () {
     const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState([]);

@@ -1,22 +1,57 @@
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import Carousel from '../../shared/LandCarousel'
-import LowerNav from '../../shared/navbar/LowerNav'
-import './Items.css'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import '../../views/landing-page/search-bar/SearchBar.css'
+import ProfileProjectsGridItemX from '../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX'
+import LowerNav from '../landing-page/main-content/LowerNav'
+import '../landing-page/main-content/LowerNav.css'
 
-function Codes() {
+
+function SearchBar () {
+    const [searchTerm] = useState("gameDevelopment");
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
+        .then(response => {
+            console.log(response)
+            setData([...response.data])
+        })
+        .catch(error => {
+            console.log(error)
+        })
+       }, [])
+    
     return (
-        <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <Carousel />
-                    </Col>
-                </Row>
-            </Container>
+        <div className="container">
             <LowerNav />
+            {/* <input 
+                type="text"
+                placeholder="code related projects"
+                onChange={event => {setSearchTerm(event.target.value)}}
+            /> */}
+            { data.filter((val) => {
+                if (searchTerm === "") {
+                    return val
+                } else if (val.industry.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else {
+                    return null
+                }
+            }).map((val,  key) => {
+                return( 
+                <div className="container" key={key}>
+                    <ProfileProjectsGridItemX
+                        key={val.id}
+                        id={val.id}
+                        title={val.title}
+                        desc={val.description}
+                        industry={val.industry}
+                    />
+                </div>
+                )
+            })}
         </div>
     )
-}
+};
 
-export default Codes;
+export default SearchBar;

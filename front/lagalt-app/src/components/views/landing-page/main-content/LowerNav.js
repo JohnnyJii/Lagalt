@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav } from 'react-bootstrap'
 import './LowerNav.css'
@@ -8,19 +9,19 @@ function LowerNav() {
         <div>
             <Nav text-center="true" fill variant="tabs" defaultActiveKey="all">
                 <Nav.Item>
-                    <Nav.Link className="navLink" href="/">All</Nav.Link>
+                    <Link to="/">All </Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="navLink" href="/codes">Programming</Nav.Link>
+                <Link to="/codes"> Programming </Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="navLink" href="/movies">Movies and Art</Nav.Link>
+                <Link to="/movies"> Movies </Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="navLink" href="/music">Music</Nav.Link>
+                <Link to="/music"> Music </Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className="navLink" eventKey="other">Other</Nav.Link>
+                <Link to="/web"> Web  development </Link>
                 </Nav.Item>
             </Nav>
         </div>

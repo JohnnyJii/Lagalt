@@ -4,10 +4,10 @@ import '../../views/landing-page/search-bar/SearchBar.css'
 import ProfileProjectsGridItemX from '../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX'
 import LowerNav from '../landing-page/main-content/LowerNav'
 import '../landing-page/main-content/LowerNav.css'
-import '../landing-page/search-bar/SearchBar.css'
+
 
 function SearchBar () {
-    const [searchTerm] = useState("movies");
+    const [searchTerm] = useState("webDevelopment");
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -26,8 +26,8 @@ function SearchBar () {
             <LowerNav />
             {/* <input 
                 type="text"
-                placeholder="movie related projects"
-                onChange={event => {setSearchTerm(event.target.programming)}}
+                placeholder="web related projects"
+                onChange={event => {setSearchTerm(event.target.value)}}
             /> */}
             { data.filter((val) => {
                 if (searchTerm === "") {
