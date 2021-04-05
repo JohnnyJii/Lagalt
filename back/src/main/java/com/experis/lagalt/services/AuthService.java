@@ -10,6 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class AuthService {
 
@@ -54,6 +56,23 @@ public class AuthService {
         }
         Project project = projectService.findProject(projectId);
         return loggedUserOwnsProject(project);
+    }
+
+    public boolean loggedUserIsPartOfProject(long projectId) {
+        Project project = projectService.findProject(projectId);
+        return loggedUserIsPartOfProject(project);
+    }
+
+    public boolean loggedUserIsPartOfProject(Project project) {
+        if (project == null) {
+            return false;
+        }
+        User loggedUser = getLoggedUser();
+        if (loggedUserOwnsProject(project)) {
+            return true;
+        }
+        Set<User> participants = project.getUsers();
+        return participants.contains(loggedUser);
     }
 
     private boolean loggedUserOwnsProject(Project project) {

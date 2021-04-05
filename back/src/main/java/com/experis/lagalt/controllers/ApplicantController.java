@@ -2,6 +2,7 @@ package com.experis.lagalt.controllers;
 
 import com.experis.lagalt.models.Applicant;
 import com.experis.lagalt.services.ApplicantService;
+import com.experis.lagalt.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,14 @@ public class ApplicantController {
     @Autowired
     private ApplicantService applicantService;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping
     public ResponseEntity<List<Applicant>> getApplications(@PathVariable long projectId) {
-        // TODO secure
+        if (!authService.loggedUserIsPartOfProject(projectId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         List<Applicant> applicants = applicantService.getApplicants(projectId);
         if (applicants == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -33,7 +39,9 @@ public class ApplicantController {
             @PathVariable long userId,
             @RequestBody Applicant applicant
     ) {
-        // TODO secure
+        if (!authService.isLoggedUser(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         if (!applicantService.projectAndUserExists(projectId, userId)) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -49,7 +57,9 @@ public class ApplicantController {
             @PathVariable long projectId,
             @PathVariable long userId
     ) {
-        // TODO secure
+        if (!authService.loggedUserIsPartOfProject(projectId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         Applicant applicant = applicantService.findApplicant(projectId, userId);
         if (applicant == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -63,7 +73,9 @@ public class ApplicantController {
             @PathVariable long userId,
             @PathVariable boolean accepted
     ) {
-        // TODO secure
+        if (!authService.loggedUserIsPartOfProject(projectId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         Boolean applicantAccepted =
                 applicantService.acceptApplicant(projectId, userId, accepted);
         if (applicantAccepted == null) {
