@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
+import ProjectTag from '../../ProjectTags/ProjectTag'
 
 class CreateProjectTemplateX extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class CreateProjectTemplateX extends Component {
             description: '',
             progress: '',
             skills: [],
-            tags: [],
+            tags: [], //
             gitlink: '',
             user: {
                 id: this.dbuserid
@@ -132,6 +133,7 @@ class CreateProjectTemplateX extends Component {
                     <Form.Label>Git Link</Form.Label>
                     <Form.Control name="gitlink" type="text" placeholder="Github repo link" value={gitlink} onChange={this.changeHandler} />
                     <br/>
+                    <ProjectTag />
                 <Button variant="primary" type="submit">Create</Button>
             </Form>
             </div>

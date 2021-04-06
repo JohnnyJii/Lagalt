@@ -1,0 +1,21 @@
+export const LANGUAGES = [ 
+    "Javascipt",
+    "Java",
+    "Python",
+    "C++",
+    "C#",
+    "Ruby",
+    "Ruby on rails",
+    "HTML",
+    "JavaScript",
+    "C Language",
+    "PHP",
+    "Objective C",
+    "SQL",
+    "Swift",
+    "Jquery",
+    "React",
+    "Bootstrap",
+    "React-router",
+    "Redux"
+]

@@ -17,6 +17,7 @@ class CreateUserX extends Component {
             lastname: '',
             eMail: '',
             description: '',
+            portfolio: '',
             imageSource: '',
             redirect: false
         }
@@ -43,7 +44,7 @@ class CreateUserX extends Component {
     }
 
     render () {
-        const { username, eMail, firstname, lastname, description, imageSource } = this.state
+        const { username, eMail, firstname, lastname, description, portfolio, imageSource } = this.state
         const { redirect } = this.state;
         if (redirect) {
             return <Redirect to='/profile' />;
@@ -70,8 +71,9 @@ class CreateUserX extends Component {
                         </Row>
                         <br />
                         <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>About You</Form.Label>
-                            <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler}/>
+                            <Form.Label style={{color: "white"}}>About You</Form.Label>
+                            <Form.Control name="description" placeholder="About you" as="textarea" rows={3} value={description} onChange={this.changeHandler}/>
+                            <Form.Control name="portfolio" placeholder="Previous projects, portfolio by own text" as="textarea" rows={3} value={portfolio} onChange={this.changeHandler}/>
                             <Form.Control name="imageSource" placeholder="Link to your image (ie. LinkedIn)" value={imageSource} onChange={this.changeHandler}/>
                         </Form.Group>
                         <br/>

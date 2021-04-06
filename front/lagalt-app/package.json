@@ -27,6 +27,8 @@
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
     "react-social-login-buttons": "^3.4.0",
+    "react-tag-autocomplete": "^6.1.0",
+    "react-tag-input": "^6.5.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.1.1"
