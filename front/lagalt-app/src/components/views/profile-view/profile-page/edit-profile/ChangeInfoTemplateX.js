@@ -5,6 +5,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 class ChangeInfoTemplateX extends Component {
     constructor(props) {
         super(props)
+        this.setLoad = this.props.setload
         this.dbuser = this.props.dbuser
         this.state = {
             id: this.dbuser.id,
@@ -16,6 +17,7 @@ class ChangeInfoTemplateX extends Component {
             imageSource: this.dbuser.imageSource,
             skills: this.dbuser.skills,
             description: this.dbuser.description,
+            portfolio: this.dbuser.portfolio
         }
     }
     
@@ -25,11 +27,15 @@ class ChangeInfoTemplateX extends Component {
 
     submitHandler = e => {
         e.preventDefault()
-        const form = this.state
-        console.log(form)
-        axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form)
+        let config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            }
+          }
+        const form = {...this.state, skills: this.state.skills.split(' ')}
+        axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
             .then(response => {
-                console.log(response)
+                this.setLoad(true)
                 alert("Updated your profile!")
             })
             .catch(error => {
@@ -38,7 +44,7 @@ class ChangeInfoTemplateX extends Component {
     }
 
     render() {
-        const { username, eMail, firstname, lastname, description, imageSource } = this.state
+        const { username, eMail, firstname, lastname, description, imageSource, portfolio, skills } = this.state
         return (
             <div>
                 <Form onSubmit={this.submitHandler}>
@@ -63,6 +69,11 @@ class ChangeInfoTemplateX extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>About You</Form.Label>
                     <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler}/>
+                        <Form.Label>Portfolio</Form.Label>
+                    <Form.Control name="portfolio" as="textarea" rows={3} value={portfolio} onChange={this.changeHandler}/>
+                        <Form.Label>Skills</Form.Label>
+                    <Form.Control name="skills" placeholder="Skills separated with space" value={skills} onChange={this.changeHandler}/>
+                        <Form.Label>Image Link</Form.Label>
                     <Form.Control name="imageSource" placeholder="Link to your image (ie. LinkedIn)" value={imageSource} onChange={this.changeHandler}/>
                 </Form.Group>
                 <br/>

@@ -10,7 +10,6 @@ function SearchBar () {
     useEffect(() => {
         axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
         .then(response => {
-            console.log(response)
             setData([...response.data])
         })
         .catch(error => {
@@ -39,9 +38,12 @@ function SearchBar () {
                     <ProfileProjectsGridItemX
                         key={val.id}
                         id={val.id}
-                        title={val.title}
-                        desc={val.description}
                         industry={val.industry}
+                        progress={val.progress}
+                        title={val.title}
+                        description={val.description}
+                        gitlink={val.gitlink}
+                        creator={val.user}
                     />
                 </div>
                 )

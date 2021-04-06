@@ -11,10 +11,11 @@ function ProfileProjectsGridX(props) {
                             key={post.id}
                             id={post.id}
                             title={post.title}
-                            desc={post.description}
+                            description={post.description}
                             industry={post.industry}
                             progress={post.progress}
                             gitlink={post.gitlink}
+                            creator={post.user}
                         />) :
                         <h1>No projects</h1>
                 }
