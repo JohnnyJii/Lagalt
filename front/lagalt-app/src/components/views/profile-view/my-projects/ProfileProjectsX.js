@@ -5,29 +5,29 @@ import React from 'react';
 import useUserProjects from '../../../../hooks/useUserProjects';
 
 function ProfileProjectsX(props) {
-    const [modalShow, setModalShow] = React.useState(false);
-    const dbuserid = props.dbuser.id;
-    const [projects, addProject] = useUserProjects(dbuserid);
+  const [modalShow, setModalShow] = React.useState(false);
+  const dbuserid = props.dbuser.id;
+  const [projects, addProject] = useUserProjects(dbuserid);
 
-    return (
-        <div>
-            <div style={{ textAlign: 'center' }}>
-                <CreateProjectX
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    dbuserid={dbuserid}
-                    addProject={addProject} />
-                <Button
-                    variant="primary"
-                    onClick={() => setModalShow(true)}>
+  return (
+    <div>
+      <div style={{ textAlign: 'center' }}>
+        <CreateProjectX
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          dbuserid={dbuserid}
+          addProject={addProject} />
+        <Button
+          variant="primary"
+          onClick={() => setModalShow(true)}>
                     Create Project
-                </Button>
-            </div>
-            <ProfileProjectsGridX
-                projects={projects}
-            />
-        </div>
-    );
+        </Button>
+      </div>
+      <ProfileProjectsGridX
+        projects={projects}
+      />
+    </div>
+  );
 }
 
 export default ProfileProjectsX;

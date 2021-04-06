@@ -7,46 +7,46 @@ import '../landing-page/main-content/LowerNav.css';
 
 
 function MusicFilter () {
-    const [searchTerm] = useState('Music');
-    const [data, setData] = useState([]);
+  const [searchTerm] = useState('Music');
+  const [data, setData] = useState([]);
 
-    useEffect(() => {
-        axios.get('https://lagalt-server.herokuapp.com/api/v1/projects')
-        .then(response => {
-            console.log(response);
-            setData([...response.data]);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-       }, []);
+  useEffect(() => {
+    axios.get('https://lagalt-server.herokuapp.com/api/v1/projects')
+      .then(response => {
+        console.log(response);
+        setData([...response.data]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
-    return (
-        <div className="container">
-            <LowerNav />
-            { data.filter((val) => {
-                if (searchTerm === '') {
-                    return val;
-                } else if (val.industry.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    return val;
-                } else {
-                    return null;
-                }
-            }).map((val,  key) => {
-                return(
-                <div className="container" key={key}>
-                    <ProfileProjectsGridItemX
-                        key={val.id}
-                        id={val.id}
-                        title={val.title}
-                        desc={val.description}
-                        industry={val.industry}
-                    />
-                </div>
-                );
-            })}
-        </div>
-    );
+  return (
+    <div className="container">
+      <LowerNav />
+      { data.filter((val) => {
+        if (searchTerm === '') {
+          return val;
+        } else if (val.industry.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return val;
+        }
+        return null;
+
+      }).map((val,  key) => {
+        return(
+          <div className="container" key={key}>
+            <ProfileProjectsGridItemX
+              key={val.id}
+              id={val.id}
+              title={val.title}
+              desc={val.description}
+              industry={val.industry}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default MusicFilter;

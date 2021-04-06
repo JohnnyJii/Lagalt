@@ -9,7 +9,7 @@ function About(props) {
         <span className="lagalt-logo-text"><Link to="/">Lagalt.no</Link></span>
         <span className="profile-link"><Link to="/profile">{ props.userName && props.userName }</Link></span>
       </div>
-      </div>
+    </div>
   );
 }
 

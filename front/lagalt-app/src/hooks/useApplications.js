@@ -9,10 +9,10 @@ function useApplications(projectId) {
     const fetchAndSetApplications = async () => {
       const { data } = await axios.get(
         APPLICATIONS_URL(projectId), {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      });
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+          }
+        });
       setApplications(data);
     };
     if (projectId !== undefined) {

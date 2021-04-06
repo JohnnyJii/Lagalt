@@ -6,42 +6,42 @@ import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects
 
 
 function Carousel() {
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 5000,
-        cssEase: 'linear',
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 5000,
+    cssEase: 'linear',
 
-      };
+  };
 
-      return (
-        <div className="landing-carousel">
-          <Slider {...settings}>
-            <div>
-              <ProfileProjectsGridItemX />
-            </div>
-            <div>
-              <ProfileProjectsGridItemX />
-            </div>
-            <div>
-              <ProfileProjectsGridItemX />
-            </div>
-            <div>
-              <ProfileProjectsGridItemX />
-            </div>
-            <div>
-              <ProfileProjectsGridItemX />
-            </div>
-            <div>
-              <ProfileProjectsGridItemX />
-            </div>
-        </Slider>
+  return (
+    <div className="landing-carousel">
+      <Slider {...settings}>
+        <div>
+          <ProfileProjectsGridItemX />
         </div>
-      );
+        <div>
+          <ProfileProjectsGridItemX />
+        </div>
+        <div>
+          <ProfileProjectsGridItemX />
+        </div>
+        <div>
+          <ProfileProjectsGridItemX />
+        </div>
+        <div>
+          <ProfileProjectsGridItemX />
+        </div>
+        <div>
+          <ProfileProjectsGridItemX />
+        </div>
+      </Slider>
+    </div>
+  );
 }
 
 export default Carousel;

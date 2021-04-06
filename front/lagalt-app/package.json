@@ -47,7 +47,15 @@
       "semi": "error",
       "no-trailing-spaces": "error",
       "eqeqeq": "warn",
-      "quotes": ["warn", "single"]
+      "quotes": [
+        "warn",
+        "single"
+      ],
+      "no-else-return": "warn",
+      "indent": [
+        "warn",
+        2
+      ]
     }
   },
   "browserslist": {
