@@ -45,7 +45,7 @@ function ProfileView(props) {
     } else {
         return(
             <div>
-                {/* <ProfileNavbarX /> */}                
+                {/* <ProfileNavbarX /> */}
                 <ProfilePageX
                     setUserName={props.setUserName}
                     user={user}

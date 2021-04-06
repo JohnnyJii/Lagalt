@@ -5,7 +5,7 @@ function GoogleLoginX(props) {
         const provider = new props.firebase.auth.GoogleAuthProvider();
         props.auth.signInWithPopup(provider);
     };
-    
+
     return(
         <div className="align-center">
         <div className="google-btn">

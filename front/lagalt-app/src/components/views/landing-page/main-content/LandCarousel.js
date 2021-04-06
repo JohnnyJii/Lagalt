@@ -15,7 +15,7 @@ function Carousel() {
         speed: 1000,
         autoplaySpeed: 5000,
         cssEase: "linear",
-        
+
       };
 
       return (

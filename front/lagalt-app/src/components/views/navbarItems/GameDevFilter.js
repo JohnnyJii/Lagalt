@@ -20,7 +20,7 @@ function GameDevFilter() {
             console.log(error);
         });
        }, []);
-    
+
     return (
         <div className="container">
             <LowerNav />
@@ -33,7 +33,7 @@ function GameDevFilter() {
                     return null;
                 }
             }).map((val,  key) => {
-                return( 
+                return(
                 <div className="container" key={key}>
                     <ProfileProjectsGridItemX
                         key={val.id}

@@ -20,7 +20,7 @@ function WebDevFilter() {
             console.log(error);
         });
        }, []);
-    
+
     return (
         <div className="container">
             <LowerNav />
@@ -33,7 +33,7 @@ function WebDevFilter() {
                     return null;
                 }
             }).map((val,  key) => {
-                return( 
+                return(
                 <div className="container" key={key}>
                     <ProfileProjectsGridItemX
                         key={val.id}

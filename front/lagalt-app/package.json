@@ -44,7 +44,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "semi":"error"
+      "semi": "error",
+      "no-trailing-spaces": "error"
     }
   },
   "browserslist": {

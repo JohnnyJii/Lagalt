@@ -20,7 +20,7 @@ class ChangeInfoTemplateX extends Component {
             portfolio: this.dbuser.portfolio
         };
     }
-    
+
     changeHandler = e => {
         this.setState({[e.target.name]: e.target.value});
     }

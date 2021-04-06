@@ -5,9 +5,9 @@ import { useAuth } from './auth/Auth';
 function PrivateRoute({ component: Component, ...rest }) {
   const isAuthenticated = useAuth();
   return(
-    <Route 
-        {...rest} 
-            render={(props) => 
+    <Route
+        {...rest}
+            render={(props) =>
                 isAuthenticated ? (
         <Component {...props} />
                 ) : (

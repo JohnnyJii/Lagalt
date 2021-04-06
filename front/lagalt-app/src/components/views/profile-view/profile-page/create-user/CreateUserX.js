@@ -22,7 +22,7 @@ class CreateUserX extends Component {
             redirect: false
         };
     }
-    
+
     changeHandler = e => {
         this.setState({[e.target.name]: e.target.value});
     }

@@ -16,10 +16,10 @@ function SearchBar () {
             console.log(error);
         });
        }, []);
-    
+
     return (
         <div className="searchBar">
-            <input 
+            <input
                 type="text"
                 placeholder="Search for projects"
                 onChange={event => {setSearchTerm(event.target.value);}}
@@ -33,7 +33,7 @@ function SearchBar () {
                     return null;
                 }
             }).map((val,  key) => {
-                return( 
+                return(
                 <div className="container" key={key}>
                     <ProfileProjectsGridItemX
                         key={val.id}

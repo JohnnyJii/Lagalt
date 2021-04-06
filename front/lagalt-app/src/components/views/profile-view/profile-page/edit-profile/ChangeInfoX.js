@@ -11,7 +11,7 @@ function ChangeInfoX(props) {
         <ChangeInfoTemplateX
             dbuser={props.dbuser}
             setload={props.setload}
-        />       
+        />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="success" onClick={props.onHide}>Close</Button>

@@ -26,7 +26,7 @@ function GoogleAuthenticationX(props) {
         <div className="FirebaseChat">
             <section>
                 {user ?
-                    <ProfileView                         
+                    <ProfileView
                         setUserName={props.setUserName}
                     /> :
                     <GoogleLoginX

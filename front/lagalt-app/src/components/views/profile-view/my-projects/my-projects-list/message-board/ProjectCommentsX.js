@@ -25,7 +25,7 @@ function ProjectCommentsX(props) {
                 userName: auth.currentUser.displayName
             });
         }
-        
+
         setFormvalue('');
         dummy.current.scrollIntoView({ behavior: 'smooth' });
     };
