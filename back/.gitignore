@@ -25,7 +25,6 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-!**/build/libs/lagalt-0.0.1-SNAPSHOT.jar
 
 ### NetBeans ###
 /nbproject/private/
@@ -36,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Other ###
+**/resources/serviceAccount.json

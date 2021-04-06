@@ -1,5 +1,7 @@
 package com.experis.lagalt.models;
 
+import com.experis.lagalt.models.role.Role;
+import com.experis.lagalt.models.role.RoleType;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements GetUserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,16 +53,25 @@ public class User {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "portfolio")
+    private String portfolio;
+
     @OneToMany(mappedBy = "user")
     private Set<Project> projects;
+
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "users")
     private Set<Project> projectsPartOf;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "applicants")
-    private Set<Project> applications;
+    @OneToMany(mappedBy = "user")
+    private Set<Applicant> applications;
 
     public User() {
         projects = new HashSet<>();
@@ -87,6 +98,20 @@ public class User {
         return projects
                 .stream()
                 .map(project -> String.valueOf(project.getId()))
+                .collect(Collectors.toList());
+    }
+
+    @JsonGetter("roles")
+    public List<RoleType> rolesGetter() {
+        if (roles == null) {
+            return null;
+        }
+        return rolesToArray();
+    }
+
+    private List<RoleType> rolesToArray() {
+        return roles.stream()
+                .map(role -> role.getRole())
                 .collect(Collectors.toList());
     }
 
@@ -171,6 +196,10 @@ public class User {
         this.projects = projects;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     public Set<Project> getProjectsPartOf() {
         return projectsPartOf;
     }
@@ -179,11 +208,23 @@ public class User {
         this.projectsPartOf = projectsPartOf;
     }
 
-    public Set<Project> getApplications() {
+    public Set<Applicant> getApplications() {
         return applications;
     }
 
-    public void setApplications(Set<Project> applications) {
+    public void setApplications(Set<Applicant> applications) {
         this.applications = applications;
+    }
+
+    public String getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(String portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

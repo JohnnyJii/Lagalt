@@ -26,6 +26,7 @@ class CreateProjectTemplateX extends Component {
 
     submitHandler = e => {
         e.preventDefault()
+
         const form = this.state;
         this.addProject(form)
     }
@@ -44,17 +45,17 @@ class CreateProjectTemplateX extends Component {
 
                             <Form.Check
                                 inline name="industry"
-                                label="Programming"
+                                label="Game Development"
                                 type={type}
-                                value={"Programming"}
+                                value={"Game Development"}
                                 id={`inline-${type}-1`}
                             />
 
                             <Form.Check
                                 inline name="industry"
-                                label="Movies and Art"
+                                label="Film"
                                 type={type}
-                                value={"Movies and Art"}
+                                value={"Film"}
                                 id={`inline-${type}-2`}
                             />
 
@@ -68,51 +69,54 @@ class CreateProjectTemplateX extends Component {
 
                             <Form.Check
                                 inline name="industry"
-                                label="Other"
+                                label="Web Development"
                                 type={type}
-                                value={"Other"}
+                                value={"Web Development"}
                                 id={`inline-${type}-4`}
                             />
                         </div>
-                    ))}
+                    ))
+                    }
                     <Form.Label>Progress</Form.Label>
-                    {['radio'].map((type) => (
-                        <div key={`inline-${type}`} className="mb-3" onChange={this.changeHandler}>
+                    {
+                        ['radio'].map((type) => (
+                            <div key={`inline-${type}`} className="mb-3" onChange={this.changeHandler}>
 
-                            <Form.Check
-                                inline name="progress"
-                                label="Not Started"
-                                type={type}
-                                value={"Not Started"}
-                                id={`inline-${type}-5`}
-                            />
+                                <Form.Check
+                                    inline name="progress"
+                                    label="Founding"
+                                    type={type}
+                                    value={"Founding"}
+                                    id={`inline-${type}-5`}
+                                />
 
-                            <Form.Check
-                                inline name="progress"
-                                label="Ongoing"
-                                type={type}
-                                value={"Ongoing"}
-                                id={`inline-${type}-6`}
-                            />
+                                <Form.Check
+                                    inline name="progress"
+                                    label="In Progress"
+                                    type={type}
+                                    value={"In Progress"}
+                                    id={`inline-${type}-6`}
+                                />
 
-                            <Form.Check
-                                inline name="progress"
-                                label="Needs Funding"
-                                type={type}
-                                value={"Needs Funding"}
-                                id={`inline-${type}-7`}
-                            />
+                                <Form.Check
+                                    inline name="progress"
+                                    label="Stalled"
+                                    type={type}
+                                    value={"Stalled"}
+                                    id={`inline-${type}-7`}
+                                />
 
-                            <Form.Check
-                                inline name="progress"
-                                label="Released"
-                                type={type}
-                                value={"Released"}
-                                id={`inline-${type}-8`}
-                            />
+                                <Form.Check
+                                    inline name="progress"
+                                    label="Completed"
+                                    type={type}
+                                    value={"Completed"}
+                                    id={`inline-${type}-8`}
+                                />
 
-                        </div>
-                    ))}
+                            </div>
+                        ))
+                    }
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Project Description</Form.Label>
                         <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler} />
@@ -121,8 +125,8 @@ class CreateProjectTemplateX extends Component {
                     <Form.Control name="gitlink" type="text" placeholder="Github repo link" value={gitlink} onChange={this.changeHandler} />
                     <br />
                     <Button variant="primary" type="submit">Create</Button>
-                </Form>
-            </div>
+                </Form >
+            </div >
         )
     }
 }

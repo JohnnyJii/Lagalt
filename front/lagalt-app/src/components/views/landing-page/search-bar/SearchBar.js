@@ -10,7 +10,6 @@ function SearchBar () {
     useEffect(() => {
         axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
         .then(response => {
-            console.log(response)
             setData([...response.data])
         })
         .catch(error => {

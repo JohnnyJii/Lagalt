@@ -1,7 +1,8 @@
 package com.experis.lagalt.controllers;
 
-import com.experis.lagalt.models.User;
+import com.experis.lagalt.models.Applicant;
 import com.experis.lagalt.services.ApplicantService;
+import com.experis.lagalt.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,15 @@ public class ApplicantController {
     @Autowired
     private ApplicantService applicantService;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping
-    public ResponseEntity<List<User>> getApplications(@PathVariable long projectId) {
-        List<User> applicants = applicantService.getApplicants(projectId);
+    public ResponseEntity<List<Applicant>> getApplications(@PathVariable long projectId) {
+        if (!authService.loggedUserIsPartOfProject(projectId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        List<Applicant> applicants = applicantService.getApplicants(projectId);
         if (applicants == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -27,26 +34,33 @@ public class ApplicantController {
     }
 
     @PostMapping(value = "/{userId}")
-    public ResponseEntity<User> createApplication(
+    public ResponseEntity<Applicant> createApplication(
             @PathVariable long projectId,
-            @PathVariable long userId
+            @PathVariable long userId,
+            @RequestBody Applicant applicant
     ) {
+        if (!authService.isLoggedUser(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         if (!applicantService.projectAndUserExists(projectId, userId)) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        User applicant = applicantService.apply(projectId, userId);
-        if (applicant == null) {
+        Applicant addedApplicant = applicantService.save(applicant, projectId, userId);
+        if (addedApplicant == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(applicant, HttpStatus.CREATED);
+        return new ResponseEntity<>(addedApplicant, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<User> getApplication(
+    public ResponseEntity<Applicant> getApplication(
             @PathVariable long projectId,
             @PathVariable long userId
     ) {
-        User applicant = applicantService.findApplicant(projectId, userId);
+        if (!authService.loggedUserIsPartOfProject(projectId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        Applicant applicant = applicantService.findApplicant(projectId, userId);
         if (applicant == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -57,7 +71,11 @@ public class ApplicantController {
     public ResponseEntity<Boolean> acceptApplication(
             @PathVariable long projectId,
             @PathVariable long userId,
-            @PathVariable boolean accepted) {
+            @PathVariable boolean accepted
+    ) {
+        if (!authService.loggedUserIsPartOfProject(projectId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         Boolean applicantAccepted =
                 applicantService.acceptApplicant(projectId, userId, accepted);
         if (applicantAccepted == null) {

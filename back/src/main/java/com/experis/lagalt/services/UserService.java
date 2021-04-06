@@ -20,6 +20,9 @@ public class UserService {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private ApplicantService applicantService;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -32,14 +35,24 @@ public class UserService {
         return userRepository.existsById(id);
     }
 
+    public boolean userExists(String googleid) {
+        return userRepository.existsByGoogleid(googleid);
+    }
+
     public User findUser(long id) {
         Optional<User> optionalUser = userRepository.findById(id);
+        return optionalUser.orElseGet(User::new);
+    }
+
+    public User findUser(String googleid) {
+        Optional<User> optionalUser = userRepository.findByGoogleid(googleid);
         return optionalUser.orElseGet(User::new);
     }
 
     public boolean deleteUser(long id) {
         if (userExists(id)) {
             projectService.deleteUsersProjects(findUser(id));
+            applicantService.deleteUserApplications(findUser(id));
             userRepository.deleteById(id);
             return true;
         }
@@ -62,14 +75,5 @@ public class UserService {
             projects.addAll(projectsPartOf);
         }
         return projects;
-    }
-
-    public boolean userExists(String googleId) {
-        return userRepository.existsByGoogleid(googleId);
-    }
-
-    public User findUser(String googleId) {
-        Optional<User> optionalUser = userRepository.findByGoogleid(googleId);
-        return optionalUser.orElseGet(User::new);
     }
 }
