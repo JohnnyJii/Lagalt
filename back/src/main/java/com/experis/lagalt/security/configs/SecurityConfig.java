@@ -26,17 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        try {
-            FileInputStream serviceAccount = new FileInputStream("src/main/resources/serviceAccount.json");
-            FirebaseOptions options = FirebaseOptions.builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl("http://lagalt-firebase-chat.firebaseapp.com/").build();
-            if(FirebaseApp.getApps().isEmpty()) {
-                FirebaseApp.initializeApp(options);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
         http
                 .cors()
                 .and()
