@@ -43,7 +43,17 @@ function ProfileJumbotronX(props) {
                             <div className="p-4 rounded shadow-sm bg-light">
                                 <p className="font-italic mb-0">{props.dbuser.description}</p>
                             </div>
-                            <hr></hr>
+                            <hr />
+                            <h5 className="mb-0">Portfolio</h5>
+                            <div className="p-4 rounded shadow-sm bg-light">
+                                <p className="font-italic mb-0">{props.dbuser.portfolio ? props.dbuser.portfolio : "Nothing to show. Yet!"}</p>
+                            </div>
+                            <hr />
+                            <h5 className="mb-0">Skillset</h5>
+                            <div className="p-4 rounded shadow-sm bg-light">
+                                <p className="font-italic mb-0">{props.dbuser.skills ? props.dbuser.skills : "Nothing to show. Yet!"}</p>
+                            </div>
+                            <hr />
                             <button className="btn btn-outline-dark btn-sm btn-block" onClick={() => {GoogleSignOut()}}>Log Out</button>
                         </div>
                     </div>

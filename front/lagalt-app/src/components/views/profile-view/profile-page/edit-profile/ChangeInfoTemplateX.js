@@ -16,11 +16,22 @@ class ChangeInfoTemplateX extends Component {
             imageSource: this.dbuser.imageSource,
             skills: this.dbuser.skills,
             description: this.dbuser.description,
+            portfolio: this.dbuser.portfolio
         }
     }
     
     changeHandler = e => {
         this.setState({[e.target.name]: e.target.value})
+        console.log(this.state)
+    }
+
+    setSkills() {
+        let skillsArray = this.state.skills.split(' ')
+        this.setState({
+            skills: skillsArray
+          })
+        console.log(skillsArray)
+        console.log("setSkills()", this.state)
     }
 
     submitHandler = e => {
@@ -30,7 +41,7 @@ class ChangeInfoTemplateX extends Component {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             }
           }
-        const form = this.state
+        const form = {...this.state, skills: this.state.skills.split(' ')}
         axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
             .then(response => {
                 console.log(response)
@@ -42,7 +53,7 @@ class ChangeInfoTemplateX extends Component {
     }
 
     render() {
-        const { username, eMail, firstname, lastname, description, imageSource } = this.state
+        const { username, eMail, firstname, lastname, description, imageSource, portfolio, skills } = this.state
         return (
             <div>
                 <Form onSubmit={this.submitHandler}>
@@ -67,6 +78,11 @@ class ChangeInfoTemplateX extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>About You</Form.Label>
                     <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler}/>
+                        <Form.Label>Portfolio</Form.Label>
+                    <Form.Control name="portfolio" as="textarea" rows={3} value={portfolio} onChange={this.changeHandler}/>
+                        <Form.Label>Skills</Form.Label>
+                    <Form.Control name="skills" placeholder="Skills separated with space" value={skills} onChange={this.changeHandler}/>
+                        <Form.Label>Image Link</Form.Label>
                     <Form.Control name="imageSource" placeholder="Link to your image (ie. LinkedIn)" value={imageSource} onChange={this.changeHandler}/>
                 </Form.Group>
                 <br/>

@@ -34,6 +34,15 @@ function ProfileProjectsModalX(props) {
           <br />
           <small><strong>Git Link:</strong> <a href="{props.gitlink}" target="blank_">{props.gitlink ? props.gitlink : "Gitlink"}</a></small>
           <div>
+          {
+            props.application.length ?
+            props.application.map(applicant =>
+                <p>{applicant.firstname} {applicant.lastname} wants to join your project!</p>
+            ) :
+                <p></p>
+          }
+          </div>
+          <div>
             { (props.guser) ? 
               <div>
                 <small><strong>Message Board</strong></small>
