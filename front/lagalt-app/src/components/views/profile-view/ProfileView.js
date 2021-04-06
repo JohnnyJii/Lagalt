@@ -10,6 +10,7 @@ function ProfileView(props) {
     let user = firebase.auth().currentUser;
     const [dbuser, setDbUser] = useState({})
     const [redirect, setRedirect] = useState(false)
+    const [load, setLoad] = useState(false)
 
     user.getIdToken().then(function(token){
         localStorage.setItem('jwt', token)
@@ -30,7 +31,7 @@ function ProfileView(props) {
             }
         }
         fetchDbUser();
-    }, [user.uid]);
+    }, [user.uid, load]);
     localStorage.setItem('dbuserid', dbuser.id);
 
     if (redirect) {
@@ -49,6 +50,7 @@ function ProfileView(props) {
                     setUserName={props.setUserName}
                     user={user}
                     dbuser={dbuser}
+                    setload={setLoad}
                 />
                 <ProfileProjectsX
                     dbuser={dbuser}

@@ -8,6 +8,7 @@ function ProfilePageX(props) {
                 setUserName={props.setUserName}
                 dbuser={props.dbuser}
                 user={props.user}
+                setload={props.setload}
             />
         </div>
     )

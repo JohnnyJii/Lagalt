@@ -12,8 +12,13 @@ function ProfileProjectsX(props) {
 
     useEffect(() => {
         async function fetchUserProjects() {
+            let config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+              }
             try {
-                const userResponse = await axios(`https://lagalt-server.herokuapp.com/api/v1/users/${dbuserid}/projects`);
+                const userResponse = await axios(`https://lagalt-server.herokuapp.com/api/v1/users/${dbuserid}/projects`, config);
                 setPosts(userResponse.data);
             } catch (error)  {
                 console.log(error)

@@ -5,6 +5,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 class ChangeInfoTemplateX extends Component {
     constructor(props) {
         super(props)
+        this.setLoad = this.props.setload
         this.dbuser = this.props.dbuser
         this.state = {
             id: this.dbuser.id,
@@ -22,16 +23,6 @@ class ChangeInfoTemplateX extends Component {
     
     changeHandler = e => {
         this.setState({[e.target.name]: e.target.value})
-        console.log(this.state)
-    }
-
-    setSkills() {
-        let skillsArray = this.state.skills.split(' ')
-        this.setState({
-            skills: skillsArray
-          })
-        console.log(skillsArray)
-        console.log("setSkills()", this.state)
     }
 
     submitHandler = e => {
@@ -44,7 +35,7 @@ class ChangeInfoTemplateX extends Component {
         const form = {...this.state, skills: this.state.skills.split(' ')}
         axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
             .then(response => {
-                console.log(response)
+                this.setLoad(true)
                 alert("Updated your profile!")
             })
             .catch(error => {

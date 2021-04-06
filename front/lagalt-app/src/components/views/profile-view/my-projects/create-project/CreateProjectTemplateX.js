@@ -37,7 +37,6 @@ class CreateProjectTemplateX extends Component {
         const form = this.state
         axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", form, config)
             .then(response => {
-                console.log(response)
                 this.setPosts(response.data)
                 this.setLoad(true)
                 alert("Created a new project successfully!")

@@ -10,6 +10,7 @@ function ChangeInfoX(props) {
       <Modal.Body>
         <ChangeInfoTemplateX
             dbuser={props.dbuser}
+            setload={props.setload}
         />       
       </Modal.Body>
       <Modal.Footer>

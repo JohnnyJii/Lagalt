@@ -13,9 +13,13 @@ function ProfileProjectsGridItemX(props) {
     const [application, setApplication] = React.useState([])
 
         useEffect(() => {
-            axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects/${props.id}/applications`)
+            let config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+              }
+            axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects/${props.id}/applications`, config)
             .then(response => {
-                console.log(response)
                 setApplication([...response.data])
             })
             .catch(error => {
