@@ -8,7 +8,6 @@ const useProjects = function () {
   useEffect(() => {
     const fetchProjects = async function () {
       const { data } = await axios.get(PROJECTS_URL);
-      console.log({ data }, PROJECTS_URL);
       setProjects(data);
     };
     fetchProjects();
