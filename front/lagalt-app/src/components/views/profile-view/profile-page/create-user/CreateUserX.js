@@ -28,9 +28,13 @@ class CreateUserX extends Component {
 
     submitHandler = e => {
         e.preventDefault()
+        let config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            }
+          }
         const form = this.state
-        console.log(form)
-        axios.post(`https://lagalt-server.herokuapp.com/api/v1/users`, form)
+        axios.post(`https://lagalt-server.herokuapp.com/api/v1/users`, form, config)
             .then(response => {
                 this.setDbUser(response.data)
                 this.setState({redirect: true})

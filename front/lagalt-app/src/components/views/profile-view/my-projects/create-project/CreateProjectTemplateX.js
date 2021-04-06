@@ -29,8 +29,13 @@ class CreateProjectTemplateX extends Component {
 
     submitHandler = e => {
         e.preventDefault()
+        let config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            }
+          }
         const form = this.state
-        axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", form)
+        axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", form, config)
             .then(response => {
                 console.log(response)
                 this.setPosts(response.data)

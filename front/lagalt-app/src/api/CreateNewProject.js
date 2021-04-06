@@ -22,7 +22,13 @@ class CreateNewProject extends Component {
       data = JSON.stringify(data)
       data = JSON.parse(data)
 
-      Axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", data);
+      let config = {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      }
+
+      Axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", data, config);
   }
 
 

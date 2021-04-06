@@ -11,10 +11,19 @@ function ProfileView(props) {
     const [dbuser, setDbUser] = useState({})
     const [redirect, setRedirect] = useState(false)
 
+    user.getIdToken().then(function(token){
+        localStorage.setItem('jwt', token)
+    });
+
     useEffect(() => {
+        let config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            }
+          }
         async function fetchDbUser() {
             try {
-                const userResponse = await Axios(`https://lagalt-server.herokuapp.com/api/v1/users/googleid/${user.uid}`);
+                const userResponse = await Axios(`https://lagalt-server.herokuapp.com/api/v1/users/googleid/${user.uid}`, config);
                 setDbUser(userResponse.data);
             } catch {
                 setRedirect(true)

@@ -25,9 +25,13 @@ class ChangeInfoTemplateX extends Component {
 
     submitHandler = e => {
         e.preventDefault()
+        let config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            }
+          }
         const form = this.state
-        console.log(form)
-        axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form)
+        axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
             .then(response => {
                 console.log(response)
                 alert("Updated your profile!")

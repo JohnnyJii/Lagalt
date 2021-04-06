@@ -5,7 +5,12 @@ import axios from 'axios'
 function ProfileProjectsModalX(props) {
   const myId = localStorage.getItem('dbuserid')
   function applyForProject() {
-    axios.post(`https://lagalt-server.herokuapp.com/api/v1/projects/${props.id}/applications/${myId}`);
+    let config = {
+      headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    }
+    axios.post(`https://lagalt-server.herokuapp.com/api/v1/projects/${props.id}/applications/${myId}`, config);
     alert('You have applied to be part of the project. The project owner(s) will answer you shortly.')
   }
 
