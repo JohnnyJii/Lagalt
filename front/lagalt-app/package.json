@@ -45,7 +45,9 @@
     ],
     "rules": {
       "semi": "error",
-      "no-trailing-spaces": "error"
+      "no-trailing-spaces": "error",
+      "eqeqeq": "warn",
+      "quotes": ["warn", "single"]
     }
   },
   "browserslist": {

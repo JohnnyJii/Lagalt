@@ -22,7 +22,7 @@ function ProfileProjectsModalX(props) {
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.title ? props.title : "Title"}
+          {props.title ? props.title : 'Title'}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -54,12 +54,12 @@ const ProjectInfo = function (props) {
   return (
     <div>
       <small><strong>Project Description</strong></small>
-      <p>{props.description ? props.description : "Description"}</p>
+      <p>{props.description ? props.description : 'Description'}</p>
       <small><strong>Project Info</strong></small>
       <br />
-      <small><strong>Industry:</strong> {props.industry ? props.industry : "Industry"}</small>
+      <small><strong>Industry:</strong> {props.industry ? props.industry : 'Industry'}</small>
       <br />
-      <small><strong>Owner:</strong> {props.creator ? props.creator : "User"}</small>
+      <small><strong>Owner:</strong> {props.creator ? props.creator : 'User'}</small>
       <br />
       {props.progress ?
         <small><strong>Progress:</strong> {props.progress}</small>

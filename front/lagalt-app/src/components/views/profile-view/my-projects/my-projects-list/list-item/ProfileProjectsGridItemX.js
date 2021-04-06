@@ -12,7 +12,7 @@ function ProfileProjectsGridItemX({ project = {} }) {
     const { id, industry, progress, title, description, gitlink, user: owner } = project;
 
     return (
-        <div style={{ margin: "20px", cursor: "pointer" }}>
+        <div style={{ margin: '20px', cursor: 'pointer' }}>
             <Card onClick={() => setModalShow(true)}>
                 <Card.Header>{industry ? industry : 'Industry'} <small>{progress ? progress : 'Progress'}</small></Card.Header>
                 <Card.Body>

@@ -7,11 +7,11 @@ import '../landing-page/main-content/LowerNav.css';
 
 
 function GameDevFilter() {
-    const [searchTerm] = useState("Game Development");
+    const [searchTerm] = useState('Game Development');
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
+        axios.get('https://lagalt-server.herokuapp.com/api/v1/projects')
         .then(response => {
             console.log(response);
             setData([...response.data]);
@@ -25,7 +25,7 @@ function GameDevFilter() {
         <div className="container">
             <LowerNav />
             { data.filter((val) => {
-                if (searchTerm === "") {
+                if (searchTerm === '') {
                     return val;
                 } else if (val.industry.toLowerCase().includes(searchTerm.toLowerCase())) {
                     return val;

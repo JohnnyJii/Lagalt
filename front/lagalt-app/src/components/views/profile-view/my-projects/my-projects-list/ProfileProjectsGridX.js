@@ -1,4 +1,4 @@
-import ProfileProjectsGridItemX from "./list-item/ProfileProjectsGridItemX";
+import ProfileProjectsGridItemX from './list-item/ProfileProjectsGridItemX';
 import React from 'react';
 
 function ProfileProjectsGridX({ projects }) {

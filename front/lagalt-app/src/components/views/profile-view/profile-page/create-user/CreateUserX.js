@@ -35,7 +35,7 @@ class CreateUserX extends Component {
             }
           };
         const form = this.state;
-        axios.post(`https://lagalt-server.herokuapp.com/api/v1/users`, form, config)
+        axios.post('https://lagalt-server.herokuapp.com/api/v1/users', form, config)
             .then(response => {
                 this.setDbUser(response.data);
                 this.setState({redirect: true});

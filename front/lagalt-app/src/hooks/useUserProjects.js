@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { PROJECTS_URL, USERS_PROJECTS_URL } from "../utils/serverUrl";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { PROJECTS_URL, USERS_PROJECTS_URL } from '../utils/serverUrl';
 
 const useUserProjects = function (userId) {
   const [projects, setProjects] = useState([]);
@@ -32,7 +32,7 @@ const useUserProjects = function (userId) {
       .then(({ data }) => {
         console.log('new project data', { data });
         setProjects(projects.concat(data));
-        alert("Created a new project successfully!");
+        alert('Created a new project successfully!');
       })
       .catch(error => {
         console.log(error);

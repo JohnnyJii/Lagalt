@@ -11,7 +11,7 @@ function ProfileProjectsX(props) {
 
     return (
         <div>
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: 'center' }}>
                 <CreateProjectX
                     show={modalShow}
                     onHide={() => setModalShow(false)}

@@ -28,7 +28,7 @@ class CreateNewProject extends Component {
         }
       };
 
-      Axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", data, config);
+      Axios.post('https://lagalt-server.herokuapp.com/api/v1/projects', data, config);
   }
     render() {
         return (

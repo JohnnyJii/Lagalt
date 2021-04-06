@@ -47,7 +47,7 @@ class CreateProjectTemplateX extends Component {
                                 inline name="industry"
                                 label="Game Development"
                                 type={type}
-                                value={"Game Development"}
+                                value={'Game Development'}
                                 id={`inline-${type}-1`}
                             />
 
@@ -55,7 +55,7 @@ class CreateProjectTemplateX extends Component {
                                 inline name="industry"
                                 label="Film"
                                 type={type}
-                                value={"Film"}
+                                value={'Film'}
                                 id={`inline-${type}-2`}
                             />
 
@@ -63,7 +63,7 @@ class CreateProjectTemplateX extends Component {
                                 inline name="industry"
                                 label="Music"
                                 type={type}
-                                value={"Music"}
+                                value={'Music'}
                                 id={`inline-${type}-3`}
                             />
 
@@ -71,7 +71,7 @@ class CreateProjectTemplateX extends Component {
                                 inline name="industry"
                                 label="Web Development"
                                 type={type}
-                                value={"Web Development"}
+                                value={'Web Development'}
                                 id={`inline-${type}-4`}
                             />
                         </div>
@@ -86,7 +86,7 @@ class CreateProjectTemplateX extends Component {
                                     inline name="progress"
                                     label="Founding"
                                     type={type}
-                                    value={"Founding"}
+                                    value={'Founding'}
                                     id={`inline-${type}-5`}
                                 />
 
@@ -94,7 +94,7 @@ class CreateProjectTemplateX extends Component {
                                     inline name="progress"
                                     label="In Progress"
                                     type={type}
-                                    value={"In Progress"}
+                                    value={'In Progress'}
                                     id={`inline-${type}-6`}
                                 />
 
@@ -102,7 +102,7 @@ class CreateProjectTemplateX extends Component {
                                     inline name="progress"
                                     label="Stalled"
                                     type={type}
-                                    value={"Stalled"}
+                                    value={'Stalled'}
                                     id={`inline-${type}-7`}
                                 />
 
@@ -110,7 +110,7 @@ class CreateProjectTemplateX extends Component {
                                     inline name="progress"
                                     label="Completed"
                                     type={type}
-                                    value={"Completed"}
+                                    value={'Completed'}
                                     id={`inline-${type}-8`}
                                 />
 

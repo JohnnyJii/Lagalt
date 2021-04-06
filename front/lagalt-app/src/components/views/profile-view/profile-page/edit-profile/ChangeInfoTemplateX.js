@@ -36,7 +36,7 @@ class ChangeInfoTemplateX extends Component {
         axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
             .then(response => {
                 this.setLoad(true);
-                alert("Updated your profile!");
+                alert('Updated your profile!');
             })
             .catch(error => {
                 console.log(error);

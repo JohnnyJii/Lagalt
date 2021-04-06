@@ -4,11 +4,11 @@ import './SearchBar.css';
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 
 function SearchBar () {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState('');
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
+        axios.get('https://lagalt-server.herokuapp.com/api/v1/projects')
         .then(response => {
             setData([...response.data]);
         })
@@ -25,7 +25,7 @@ function SearchBar () {
                 onChange={event => {setSearchTerm(event.target.value);}}
             />
             { data.filter((val) => {
-                if (searchTerm === "") {
+                if (searchTerm === '') {
                     return val;
                 } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
                     return val;
