@@ -4,7 +4,7 @@ import ProfileProjectsModalX from '../project-modal/ProfileProjectsModalX'
 import { Card } from 'react-bootstrap'
 import firebase from 'firebase/app'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import axios from 'axios'
+import Axios from 'axios'
 
 function ProfileProjectsGridItemX(props) {
     const [modalShow, setModalShow] = React.useState(false);
@@ -12,19 +12,28 @@ function ProfileProjectsGridItemX(props) {
     const [user] = useAuthState(auth);
     const [application, setApplication] = React.useState([])
 
-        useEffect(() => {
-            axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects/${props.id}/applications`)
-            .then(response => {
-                console.log(response)
-                setApplication([...response.data])
+    useEffect(() => {
+        const getApplications = function () {
+            Axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects/${props.id}/applications`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
             })
-            .catch(error => {
-                console.log(error)
-            })
-           }, [props.id])
+                .then(response => {
+                    console.log(response)
+                    setApplication([...response.data])
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+        if (props.id !== undefined) {
+            getApplications();
+        }
+    }, [props.id])
 
-    return(
-        <div style={{margin: "20px", cursor: "pointer"}}>
+    return (
+        <div style={{ margin: "20px", cursor: "pointer" }}>
             <Card onClick={() => setModalShow(true)}>
                 <Card.Header>{props.industry ? props.industry : 'Industry'} <small>{props.progress ? props.progress : 'Progress'}</small></Card.Header>
                 <Card.Body>

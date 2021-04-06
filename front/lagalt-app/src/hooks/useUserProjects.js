@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { USERS_PROJECTS_URL } from "../utils/serverUrl";
+import { PROJECTS_URL, USERS_PROJECTS_URL } from "../utils/serverUrl";
 
 const useUserProjects = function (userId) {
   const [projects, setProjects] = useState([]);
@@ -17,10 +17,26 @@ const useUserProjects = function (userId) {
     if (userId !== undefined) {
       fetchAndSetUserProjects();
     }
-  }, [userId, projects])
+  }, [userId])
 
   const addProject = function (projectToAdd) {
-    setProjects(projects.concat(projectToAdd));
+    const newProject = {
+      ...projectToAdd,
+      skills: []
+    }
+    axios.post(PROJECTS_URL, newProject, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+      .then(({ data }) => {
+        console.log('new project data', { data })
+        setProjects(projects.concat(data))
+        alert("Created a new project successfully!")
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   return [projects, addProject];
