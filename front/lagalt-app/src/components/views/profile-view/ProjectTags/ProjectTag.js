@@ -1,6 +1,7 @@
 import React from 'react'
 import { WithContext as ReactTags } from 'react-tag-input'
 import { LANGUAGES } from './Lang'
+import './ProjectTag.css'
 
 const suggestions = LANGUAGES.map((language) => {
     return {
@@ -22,8 +23,7 @@ class ProjectTag extends React.Component {
     super(props)
     this.state = {
         tags: [
-            {id: "JavaScript", text: "JavaScript"},
-            {id: "html", text: "html"}
+
         ],
         suggestios: suggestions,
     };
