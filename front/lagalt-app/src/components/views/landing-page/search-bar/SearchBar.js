@@ -3,10 +3,10 @@ import axios from 'axios';
 import './SearchBar.css';
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 
-function SearchBar () {
+function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
-
+  console.log(data);
   useEffect(() => {
     axios.get('https://lagalt-server.herokuapp.com/api/v1/projects')
       .then(response => {
@@ -22,7 +22,7 @@ function SearchBar () {
       <input
         type="text"
         placeholder="Search for projects"
-        onChange={event => {setSearchTerm(event.target.value);}}
+        onChange={event => { setSearchTerm(event.target.value); }}
       />
       { data.filter((val) => {
         if (searchTerm === '') {
@@ -32,18 +32,12 @@ function SearchBar () {
         }
         return null;
 
-      }).map((val,  key) => {
-        return(
+      }).map((val, key) => {
+        return (
           <div className="container" key={key}>
             <ProfileProjectsGridItemX
               key={val.id}
-              id={val.id}
-              industry={val.industry}
-              progress={val.progress}
-              title={val.title}
-              description={val.description}
-              gitlink={val.gitlink}
-              creator={val.user}
+              project={val}
             />
           </div>
         );

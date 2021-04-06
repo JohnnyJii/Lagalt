@@ -5,9 +5,7 @@ import LandingMain from './main-content/LandingMain';
 import LowerNav from './main-content/LowerNav';
 import './Landing.css';
 
-
 function Landing() {
-
 
   return (
     <div className="container">
