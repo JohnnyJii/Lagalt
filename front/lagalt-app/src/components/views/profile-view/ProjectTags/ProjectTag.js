@@ -22,11 +22,10 @@ class ProjectTag extends React.Component {
     constructor(props) {
     super(props)
     this.state = {
-        tags: [
-
-        ],
+        tags: [],
         suggestios: suggestions,
     };
+    
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
