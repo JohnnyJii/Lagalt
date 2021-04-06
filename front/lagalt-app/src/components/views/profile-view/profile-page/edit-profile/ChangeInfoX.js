@@ -1,5 +1,5 @@
-import { Modal, Button } from 'react-bootstrap'
-import ChangeInfoTemplateX from './ChangeInfoTemplateX'
+import { Modal, Button } from 'react-bootstrap';
+import ChangeInfoTemplateX from './ChangeInfoTemplateX';
 
 function ChangeInfoX(props) {
   return (
@@ -9,9 +9,9 @@ function ChangeInfoX(props) {
       </Modal.Header>
       <Modal.Body>
         <ChangeInfoTemplateX
-            dbuser={props.dbuser}
-            setload={props.setload}
-        />       
+          dbuser={props.dbuser}
+          setload={props.setload}
+        />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="success" onClick={props.onHide}>Close</Button>
@@ -20,4 +20,4 @@ function ChangeInfoX(props) {
   );
 }
 
-export default ChangeInfoX
+export default ChangeInfoX;

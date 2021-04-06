@@ -1,28 +1,28 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap'
-import ProjectCommentsX from '../message-board/ProjectCommentsX'
-import axios from 'axios'
+import { Modal, Button } from 'react-bootstrap';
+import ProjectCommentsX from '../message-board/ProjectCommentsX';
+import axios from 'axios';
 import Applications from '../Applications';
 import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrl';
 
 function ProfileProjectsModalX(props) {
-  const myId = localStorage.getItem('dbuserid')
+  const myId = localStorage.getItem('dbuserid');
 
   function applyForProject() {
     let config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
-    }
+    };
     axios.post(APPLY_PROJECT_URL(props.id, myId), config);
-    alert('You have applied to be part of the project. The project owner(s) will answer you shortly.')
+    alert('You have applied to be part of the project. The project owner(s) will answer you shortly.');
   }
 
   return (
     <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.title ? props.title : "Title"}
+          {props.title ? props.title : 'Title'}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -54,12 +54,12 @@ const ProjectInfo = function (props) {
   return (
     <div>
       <small><strong>Project Description</strong></small>
-      <p>{props.description ? props.description : "Description"}</p>
+      <p>{props.description ? props.description : 'Description'}</p>
       <small><strong>Project Info</strong></small>
       <br />
-      <small><strong>Industry:</strong> {props.industry ? props.industry : "Industry"}</small>
+      <small><strong>Industry:</strong> {props.industry ? props.industry : 'Industry'}</small>
       <br />
-      <small><strong>Owner:</strong> {props.creator ? props.creator : "User"}</small>
+      <small><strong>Owner:</strong> {props.creator ? props.creator : 'User'}</small>
       <br />
       {props.progress ?
         <small><strong>Progress:</strong> {props.progress}</small>
@@ -75,7 +75,7 @@ const ProjectInfo = function (props) {
           null
       }
     </div>
-  )
-}
+  );
+};
 
-export default ProfileProjectsModalX
+export default ProfileProjectsModalX;
