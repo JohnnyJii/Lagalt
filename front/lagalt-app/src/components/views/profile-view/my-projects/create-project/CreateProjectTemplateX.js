@@ -60,17 +60,17 @@ class CreateProjectTemplateX extends Component {
 
                             <Form.Check
                                 inline name="industry"
-                                label="Programming"
+                                label="Game Development"
                                 type={type}
-                                value={"Programming"} 
+                                value={"Game Development"} 
                                 id={`inline-${type}-1`}
                             />
 
                             <Form.Check 
                                 inline name="industry" 
-                                label="Movies and Art" 
+                                label="Film" 
                                 type={type} 
-                                value={"Movies and Art"} 
+                                value={"Film"} 
                                 id={`inline-${type}-2`}
                             />
 
@@ -84,9 +84,9 @@ class CreateProjectTemplateX extends Component {
 
                             <Form.Check 
                                 inline name="industry" 
-                                label="Other" 
+                                label="Web Development" 
                                 type={type}
-                                value={"Other"} 
+                                value={"Web Development"} 
                                 id={`inline-${type}-4`}
                             />
                         </div>
@@ -97,33 +97,33 @@ class CreateProjectTemplateX extends Component {
 
                             <Form.Check
                                 inline name="progress"
-                                label="Not Started"
+                                label="Founding"
                                 type={type}
-                                value={"Not Started"} 
+                                value={"Founding"} 
                                 id={`inline-${type}-5`}
                             />
 
                             <Form.Check 
                                 inline name="progress" 
-                                label="Ongoing" 
+                                label="In Progress" 
                                 type={type} 
-                                value={"Ongoing"} 
+                                value={"In Progress"} 
                                 id={`inline-${type}-6`}
                             />
 
                             <Form.Check 
                                 inline name="progress" 
-                                label="Needs Funding" 
+                                label="Stalled" 
                                 type={type} 
-                                value={"Needs Funding"} 
+                                value={"Stalled"} 
                                 id={`inline-${type}-7`}
                             />
 
                             <Form.Check 
                                 inline name="progress" 
-                                label="Released" 
+                                label="Completed" 
                                 type={type}
-                                value={"Released"} 
+                                value={"Completed"} 
                                 id={`inline-${type}-8`}
                             />
                             
