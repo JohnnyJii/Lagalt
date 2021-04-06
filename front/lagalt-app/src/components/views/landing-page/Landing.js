@@ -4,6 +4,7 @@ import Carousel from './main-content/LandCarousel'
 import LandingMain from './main-content/LandingMain'
 import LowerNav from './main-content/LowerNav'
 import './Landing.css'
+import ToggleUser from '../profile-view/profile-page/ProfileToggle/ProfileToggleSwitch'
  
 
 function Landing() {
@@ -20,6 +21,7 @@ function Landing() {
       </Container>
       <LowerNav />
       <LandingMain />
+      <ToggleUser />
     </div>
   );
 }

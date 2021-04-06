@@ -64,6 +64,7 @@ class ChangeInfoTemplateX extends Component {
                         <Form.Label>About You</Form.Label>
                     <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler}/>
                     <Form.Control name="imageSource" placeholder="Link to your image (ie. LinkedIn)" value={imageSource} onChange={this.changeHandler}/>
+                    
                 </Form.Group>
                 <br/>
                 <Button variant="primary" type="submit">Update</Button>
