@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
 class CreateUserX extends Component {
     constructor(props) {
-        super(props)
-        this.user = this.props.user.uid
-        this.setRedirect = this.props.setRedirect
-        this.setDbUser = this.props.setDbUser
+        super(props);
+        this.user = this.props.user.uid;
+        this.setRedirect = this.props.setRedirect;
+        this.setDbUser = this.props.setDbUser;
         this.state = {
             id: 0,
             googleid: this.user,
@@ -20,35 +20,35 @@ class CreateUserX extends Component {
             portfolio: '',
             imageSource: '',
             redirect: false
-        }
+        };
     }
     
     changeHandler = e => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]: e.target.value});
     }
 
     submitHandler = e => {
-        e.preventDefault()
+        e.preventDefault();
         let config = {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             }
-          }
-        const form = this.state
+          };
+        const form = this.state;
         axios.post(`https://lagalt-server.herokuapp.com/api/v1/users`, form, config)
             .then(response => {
-                this.setDbUser(response.data)
-                this.setState({redirect: true})
-                this.setRedirect(false)
+                this.setDbUser(response.data);
+                this.setState({redirect: true});
+                this.setRedirect(false);
             }
             )
             .catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
     }
 
     render () {
-        const { username, eMail, firstname, lastname, description, portfolio, imageSource } = this.state
+        const { username, eMail, firstname, lastname, description, portfolio, imageSource } = this.state;
         const { redirect } = this.state;
         if (redirect) {
             return <Redirect to='/profile' />;

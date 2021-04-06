@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import './LowerNav.css'
+import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './LowerNav.css';
 
 function LowerNav() {
     return (
@@ -25,7 +25,7 @@ function LowerNav() {
                 </Nav.Item>
             </Nav>
         </div>
-    )
+    );
 }
 
 export default LowerNav;

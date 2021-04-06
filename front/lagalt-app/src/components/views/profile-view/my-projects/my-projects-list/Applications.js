@@ -11,7 +11,7 @@ function Applications({ projectId }) {
         handleApplication={handleApplication}
       />
     )
-  )
+  );
 }
 
 function Application({ application, handleApplication }) {
@@ -29,7 +29,7 @@ function Application({ application, handleApplication }) {
 
   const processApplication = (accepted) => {
     handleApplication(projectId, userId, accepted);
-  }
+  };
   return (
     <div>
       <img style={{ width: 100, height: 100 }} src={imageSource} alt={''} />
@@ -42,7 +42,7 @@ function Application({ application, handleApplication }) {
       <button type="button" value="Decline" onClick={() => processApplication(false)}>Decline</button>
       <hr />
     </div>
-  )
+  );
 }
 
 export default Applications;

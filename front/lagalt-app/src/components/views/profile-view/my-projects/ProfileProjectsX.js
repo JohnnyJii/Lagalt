@@ -1,12 +1,12 @@
-import ProfileProjectsGridX from './my-projects-list/ProfileProjectsGridX'
+import ProfileProjectsGridX from './my-projects-list/ProfileProjectsGridX';
 import CreateProjectX from './create-project/CreateProjectX';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 import React from 'react';
 import useUserProjects from '../../../../hooks/useUserProjects';
 
 function ProfileProjectsX(props) {
     const [modalShow, setModalShow] = React.useState(false);
-    const dbuserid = props.dbuser.id
+    const dbuserid = props.dbuser.id;
     const [projects, addProject] = useUserProjects(dbuserid);
 
     return (
@@ -27,7 +27,7 @@ function ProfileProjectsX(props) {
                 projects={projects}
             />
         </div>
-    )
+    );
 }
 
-export default ProfileProjectsX
+export default ProfileProjectsX;

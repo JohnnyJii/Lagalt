@@ -11,35 +11,35 @@ const useUserProjects = function (userId) {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
-      })
+      });
       setProjects(response.data);
-    }
+    };
     if (userId !== undefined) {
       fetchAndSetUserProjects();
     }
-  }, [userId])
+  }, [userId]);
 
   const addProject = function (projectToAdd) {
     const newProject = {
       ...projectToAdd,
       skills: []
-    }
+    };
     axios.post(PROJECTS_URL, newProject, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
     })
       .then(({ data }) => {
-        console.log('new project data', { data })
-        setProjects(projects.concat(data))
-        alert("Created a new project successfully!")
+        console.log('new project data', { data });
+        setProjects(projects.concat(data));
+        alert("Created a new project successfully!");
       })
       .catch(error => {
-        console.log(error)
-      })
-  }
+        console.log(error);
+      });
+  };
 
   return [projects, addProject];
-}
+};
 
 export default useUserProjects;

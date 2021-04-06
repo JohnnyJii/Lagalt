@@ -1,5 +1,5 @@
-import { Modal, Button } from 'react-bootstrap'
-import CreateProjectTemplateX from './CreateProjectTemplateX'
+import { Modal, Button } from 'react-bootstrap';
+import CreateProjectTemplateX from './CreateProjectTemplateX';
 
 function CreateProjectX({ show, onHide, dbuserid, addProject }) {
   return (
@@ -26,4 +26,4 @@ function CreateProjectX({ show, onHide, dbuserid, addProject }) {
   );
 }
 
-export default CreateProjectX
+export default CreateProjectX;

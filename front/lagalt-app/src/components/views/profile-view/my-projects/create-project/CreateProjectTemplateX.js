@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Form, Button } from 'react-bootstrap';
 
 class CreateProjectTemplateX extends Component {
     constructor(props) {
-        super(props)
-        this.addProject = this.props.addProject
-        this.dbuserid = props.dbuserid
+        super(props);
+        this.addProject = this.props.addProject;
+        this.dbuserid = props.dbuserid;
         this.state = {
             title: '',
             industry: '',
@@ -17,22 +17,22 @@ class CreateProjectTemplateX extends Component {
             user: {
                 id: this.dbuserid
             }
-        }
+        };
     }
 
     changeHandler = e => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     submitHandler = e => {
-        e.preventDefault()
+        e.preventDefault();
 
         const form = this.state;
-        this.addProject(form)
+        this.addProject(form);
     }
 
     render() {
-        const { title, description, gitlink } = this.state
+        const { title, description, gitlink } = this.state;
         return (
             <div>
                 <Form onSubmit={this.submitHandler}>
@@ -127,7 +127,7 @@ class CreateProjectTemplateX extends Component {
                     <Button variant="primary" type="submit">Create</Button>
                 </Form >
             </div >
-        )
+        );
     }
 }
 

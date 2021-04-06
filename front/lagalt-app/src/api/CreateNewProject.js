@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Axios from 'axios'
+import React, { Component } from 'react';
+import Axios from 'axios';
 
 class CreateNewProject extends Component {
     constructor() {
@@ -19,14 +19,14 @@ class CreateNewProject extends Component {
   handleSubmit(event) {
       event.preventDefault();
       let data = new FormData(event.target);
-      data = JSON.stringify(data)
-      data = JSON.parse(data)
+      data = JSON.stringify(data);
+      data = JSON.parse(data);
 
       let config = {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
-      }
+      };
 
       Axios.post("https://lagalt-server.herokuapp.com/api/v1/projects", data, config);
   }
@@ -55,7 +55,7 @@ class CreateNewProject extends Component {
 
                     <button>Create</button>
                 </form>
-        )
+        );
     }
 }
 

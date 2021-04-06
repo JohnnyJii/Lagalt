@@ -1,6 +1,6 @@
-import React from 'react'
-import './StyleNav.css'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import './StyleNav.css';
+import { Link } from 'react-router-dom';
 
 function About(props) {
   return (

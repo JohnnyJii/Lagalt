@@ -12,13 +12,13 @@ function useApplications(projectId) {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
-      })
+      });
       setApplications(data);
-    }
+    };
     if (projectId !== undefined) {
       fetchAndSetApplications();
     }
-  }, [projectId])
+  }, [projectId]);
 
   const handleApplication = async function (projectId, userId, accept) {
     await axios.post(HANDLE_APPLICATION_URL(projectId, userId, accept), null, {
@@ -32,8 +32,8 @@ function useApplications(projectId) {
       }
       return true;
     }));
-  }
-  return [applications, handleApplication]
+  };
+  return [applications, handleApplication];
 }
 
 export default useApplications;

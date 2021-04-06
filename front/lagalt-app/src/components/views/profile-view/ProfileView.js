@@ -1,19 +1,19 @@
 /* import ProfileNavbarX from './profile-nav/ProfileNavbarX' */
-import ProfilePageX from './profile-page/ProfilePageX'
-import ProfileProjectsX from './my-projects/ProfileProjectsX'
+import ProfilePageX from './profile-page/ProfilePageX';
+import ProfileProjectsX from './my-projects/ProfileProjectsX';
 import { useEffect, useState } from 'react';
-import Axios from 'axios'
-import firebase from 'firebase/app'
-import CreateUserX from './profile-page/create-user/CreateUserX'
+import Axios from 'axios';
+import firebase from 'firebase/app';
+import CreateUserX from './profile-page/create-user/CreateUserX';
 
 function ProfileView(props) {
     let user = firebase.auth().currentUser;
-    const [dbuser, setDbUser] = useState({})
-    const [redirect, setRedirect] = useState(false)
-    const [load, setLoad] = useState(false)
+    const [dbuser, setDbUser] = useState({});
+    const [redirect, setRedirect] = useState(false);
+    const [load, setLoad] = useState(false);
 
     user.getIdToken().then(function(token){
-        localStorage.setItem('jwt', token)
+        localStorage.setItem('jwt', token);
     });
 
     useEffect(() => {
@@ -21,13 +21,13 @@ function ProfileView(props) {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             }
-          }
+          };
         async function fetchDbUser() {
             try {
                 const userResponse = await Axios(`https://lagalt-server.herokuapp.com/api/v1/users/googleid/${user.uid}`, config);
                 setDbUser(userResponse.data);
             } catch {
-                setRedirect(true)
+                setRedirect(true);
             }
         }
         fetchDbUser();
@@ -41,7 +41,7 @@ function ProfileView(props) {
                 setDbUser={setDbUser}
                 setRedirect={setRedirect}
             />
-        )
+        );
     } else {
         return(
             <div>
@@ -56,8 +56,8 @@ function ProfileView(props) {
                     dbuser={dbuser}
                 />
             </div>
-        )
+        );
     }
 }
 
-export default ProfileView
+export default ProfileView;

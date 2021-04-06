@@ -1,5 +1,5 @@
-import { Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function ProfileNavbarX() {
     return(
@@ -17,7 +17,7 @@ function ProfileNavbarX() {
                 </Nav.Item>
             </Nav>
         </div>
-    )
+    );
 }
 
-export default ProfileNavbarX
+export default ProfileNavbarX;

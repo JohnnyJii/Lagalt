@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import './SearchBar.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './SearchBar.css';
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 
 function SearchBar () {
@@ -10,27 +10,27 @@ function SearchBar () {
     useEffect(() => {
         axios.get(`https://lagalt-server.herokuapp.com/api/v1/projects`)
         .then(response => {
-            setData([...response.data])
+            setData([...response.data]);
         })
         .catch(error => {
-            console.log(error)
-        })
-       }, [])
+            console.log(error);
+        });
+       }, []);
     
     return (
         <div className="searchBar">
             <input 
                 type="text"
                 placeholder="Search for projects"
-                onChange={event => {setSearchTerm(event.target.value)}}
+                onChange={event => {setSearchTerm(event.target.value);}}
             />
             { data.filter((val) => {
                 if (searchTerm === "") {
-                    return val
+                    return val;
                 } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-                    return val
+                    return val;
                 } else {
-                    return null
+                    return null;
                 }
             }).map((val,  key) => {
                 return( 
@@ -46,10 +46,10 @@ function SearchBar () {
                         creator={val.user}
                     />
                 </div>
-                )
+                );
             })}
         </div>
-    )
+    );
 };
 
 export default SearchBar;

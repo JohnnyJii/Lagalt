@@ -1,9 +1,9 @@
-import './ProfileProjectsGridItemX.css'
-import React from 'react'
-import ProfileProjectsModalX from '../project-modal/ProfileProjectsModalX'
-import { Card } from 'react-bootstrap'
-import firebase from 'firebase/app'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import './ProfileProjectsGridItemX.css';
+import React from 'react';
+import ProfileProjectsModalX from '../project-modal/ProfileProjectsModalX';
+import { Card } from 'react-bootstrap';
+import firebase from 'firebase/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function ProfileProjectsGridItemX({ project = {} }) {
     const [modalShow, setModalShow] = React.useState(false);
@@ -33,8 +33,8 @@ function ProfileProjectsGridItemX({ project = {} }) {
                 onHide={() => setModalShow(false)}
             />
         </div>
-    )
+    );
 }
 
-export default ProfileProjectsGridItemX
+export default ProfileProjectsGridItemX;
 

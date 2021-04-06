@@ -5,7 +5,7 @@ function ProjectCommentX(props) {
             <small>{ userName }</small>
             <p>{ text }</p>
         </div>
-    )
+    );
 }
 
-export default ProjectCommentX
+export default ProjectCommentX;

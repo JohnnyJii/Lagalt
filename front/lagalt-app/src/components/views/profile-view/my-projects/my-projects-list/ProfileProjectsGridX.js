@@ -1,5 +1,5 @@
 import ProfileProjectsGridItemX from "./list-item/ProfileProjectsGridItemX";
-import React from 'react'
+import React from 'react';
 
 function ProfileProjectsGridX({ projects }) {
     return (
@@ -15,7 +15,7 @@ function ProfileProjectsGridX({ projects }) {
                     <h1>No projects</h1>
             }
         </div>
-    )
+    );
 }
 
-export default ProfileProjectsGridX
+export default ProfileProjectsGridX;

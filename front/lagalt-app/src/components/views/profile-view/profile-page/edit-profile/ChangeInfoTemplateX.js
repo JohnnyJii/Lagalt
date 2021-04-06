@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 class ChangeInfoTemplateX extends Component {
     constructor(props) {
-        super(props)
-        this.setLoad = this.props.setload
-        this.dbuser = this.props.dbuser
+        super(props);
+        this.setLoad = this.props.setload;
+        this.dbuser = this.props.dbuser;
         this.state = {
             id: this.dbuser.id,
             googleid: this.dbuser.googleid,
@@ -18,33 +18,33 @@ class ChangeInfoTemplateX extends Component {
             skills: this.dbuser.skills,
             description: this.dbuser.description,
             portfolio: this.dbuser.portfolio
-        }
+        };
     }
     
     changeHandler = e => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]: e.target.value});
     }
 
     submitHandler = e => {
-        e.preventDefault()
+        e.preventDefault();
         let config = {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             }
-          }
-        const form = {...this.state, skills: this.state.skills.split(' ')}
+          };
+        const form = {...this.state, skills: this.state.skills.split(' ')};
         axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
             .then(response => {
-                this.setLoad(true)
-                alert("Updated your profile!")
+                this.setLoad(true);
+                alert("Updated your profile!");
             })
             .catch(error => {
-                console.log(error)
-            })
+                console.log(error);
+            });
     }
 
     render() {
-        const { username, eMail, firstname, lastname, description, imageSource, portfolio, skills } = this.state
+        const { username, eMail, firstname, lastname, description, imageSource, portfolio, skills } = this.state;
         return (
             <div>
                 <Form onSubmit={this.submitHandler}>
@@ -80,7 +80,7 @@ class ChangeInfoTemplateX extends Component {
                 <Button variant="primary" type="submit">Update</Button>
                 </Form>
             </div>
-        )
+        );
     }
 }
 

@@ -1,5 +1,5 @@
-import ProfileJumbotronX from './profile-jumbotron/ProfileJumbotronX'
-import React from 'react'
+import ProfileJumbotronX from './profile-jumbotron/ProfileJumbotronX';
+import React from 'react';
 
 function ProfilePageX(props) {
     return(
@@ -11,7 +11,7 @@ function ProfilePageX(props) {
                 setload={props.setload}
             />
         </div>
-    )
+    );
 }
 
-export default ProfilePageX
+export default ProfilePageX;

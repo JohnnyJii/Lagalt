@@ -1,21 +1,21 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap'
-import ProjectCommentsX from '../message-board/ProjectCommentsX'
-import axios from 'axios'
+import { Modal, Button } from 'react-bootstrap';
+import ProjectCommentsX from '../message-board/ProjectCommentsX';
+import axios from 'axios';
 import Applications from '../Applications';
 import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrl';
 
 function ProfileProjectsModalX(props) {
-  const myId = localStorage.getItem('dbuserid')
+  const myId = localStorage.getItem('dbuserid');
 
   function applyForProject() {
     let config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
-    }
+    };
     axios.post(APPLY_PROJECT_URL(props.id, myId), config);
-    alert('You have applied to be part of the project. The project owner(s) will answer you shortly.')
+    alert('You have applied to be part of the project. The project owner(s) will answer you shortly.');
   }
 
   return (
@@ -75,7 +75,7 @@ const ProjectInfo = function (props) {
           null
       }
     </div>
-  )
-}
+  );
+};
 
-export default ProfileProjectsModalX
+export default ProfileProjectsModalX;

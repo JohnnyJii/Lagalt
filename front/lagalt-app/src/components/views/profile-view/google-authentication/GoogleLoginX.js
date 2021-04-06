@@ -1,10 +1,10 @@
-import './FirebaseChatX.css'
+import './FirebaseChatX.css';
 
 function GoogleLoginX(props) {
     const signInWithGoogle = () => {
         const provider = new props.firebase.auth.GoogleAuthProvider();
-        props.auth.signInWithPopup(provider)
-    }
+        props.auth.signInWithPopup(provider);
+    };
     
     return(
         <div className="align-center">
@@ -15,7 +15,7 @@ function GoogleLoginX(props) {
             <p className="btn-text" onClick={signInWithGoogle}><b>Sign in with Google</b></p>
         </div>
         </div>
-    )
+    );
 }
 
-export default GoogleLoginX
+export default GoogleLoginX;

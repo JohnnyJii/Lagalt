@@ -1,5 +1,5 @@
-import { Modal, Button } from 'react-bootstrap'
-import ChangeInfoTemplateX from './ChangeInfoTemplateX'
+import { Modal, Button } from 'react-bootstrap';
+import ChangeInfoTemplateX from './ChangeInfoTemplateX';
 
 function ChangeInfoX(props) {
   return (
@@ -20,4 +20,4 @@ function ChangeInfoX(props) {
   );
 }
 
-export default ChangeInfoX
+export default ChangeInfoX;

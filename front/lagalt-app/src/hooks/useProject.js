@@ -9,12 +9,12 @@ const useProject = function (projectId) {
     const fetchAndSetProject = async () => {
       const response = await axios.get(PROJECT_URL(projectId));
       setProject(response.data);
-    }
+    };
     if (projectId !== undefined) {
-      fetchAndSetProject()
+      fetchAndSetProject();
     }
-  }, [projectId])
-  return [project]
-}
+  }, [projectId]);
+  return [project];
+};
 
 export default useProject;

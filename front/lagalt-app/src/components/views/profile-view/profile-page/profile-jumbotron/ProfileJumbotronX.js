@@ -1,7 +1,7 @@
-import './ProfilePageX.css'
-import firebase from 'firebase/app'
-import React from 'react'
-import ChangeInfoX from '../edit-profile/ChangeInfoX'
+import './ProfilePageX.css';
+import firebase from 'firebase/app';
+import React from 'react';
+import ChangeInfoX from '../edit-profile/ChangeInfoX';
 
 function ProfileJumbotronX(props) {
 /*     const projects = props.dbuser.projects.length
@@ -54,7 +54,7 @@ function ProfileJumbotronX(props) {
                                 <p className="font-italic mb-0">{props.dbuser.skills}</p>
                             </div>
                             <hr />
-                            <button className="btn btn-outline-dark btn-sm btn-block" onClick={() => {GoogleSignOut()}}>Log Out</button>
+                            <button className="btn btn-outline-dark btn-sm btn-block" onClick={() => {GoogleSignOut();}}>Log Out</button>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function ProfileJumbotronX(props) {
                 setload={props.setload}
             />
         </div>
-    )
+    );
 }
 
-export default ProfileJumbotronX
+export default ProfileJumbotronX;
