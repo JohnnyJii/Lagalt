@@ -1,48 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './SearchBar.css';
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 
-function SearchBar() {
+function SearchBar({ projects }) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [data, setData] = useState([]);
-  console.log(data);
-  useEffect(() => {
-    axios.get('https://lagalt-server.herokuapp.com/api/v1/projects')
-      .then(response => {
-        setData([...response.data]);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+
+  const filterByTitle = ({ title }) => {
+    if (searchTerm === '') {
+      return true;
+    }
+    if (title.toLowerCase().includes(searchTerm)) {
+      return true;
+    }
+    return false;
+  };
+
+  const filteredArray = projects.filter(filterByTitle);
 
   return (
     <div className="searchBar">
-      <input
-        type="text"
-        placeholder="Search for projects"
-        onChange={event => { setSearchTerm(event.target.value); }}
-      />
-      { data.filter((val) => {
-        if (searchTerm === '') {
-          return val;
-        } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return val;
-        }
-        return null;
-
-      }).map((val, key) => {
-        return (
-          <div className="container" key={key}>
-            <ProfileProjectsGridItemX
-              key={val.id}
-              project={val}
-            />
-          </div>
-        );
-      })}
+      <SearchInput setSearchTerm={setSearchTerm} />
+      {filteredArray.length ?
+        <ProjectList projects={filteredArray} />
+        :
+        <h1 style={{ color: 'white' }}>
+          No results. Try different search term
+        </h1>
+      }
     </div>
+  );
+};
+
+const SearchInput = function ({ setSearchTerm }) {
+  return (
+    <input
+      type="text"
+      placeholder="Search for projects"
+      onChange={event => { setSearchTerm(event.target.value.toLowerCase()); }}
+    />
+  );
+};
+
+const ProjectList = function ({ projects }) {
+  return (
+    projects.map((project) => (
+      <div className="container" key={project.id}>
+        <ProfileProjectsGridItemX
+          project={project}
+        />
+      </div>
+    ))
   );
 };
 
