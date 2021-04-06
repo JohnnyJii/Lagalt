@@ -2,6 +2,7 @@ package com.experis.lagalt.controllers;
 
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.services.ProjectService;
+import com.experis.lagalt.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectService.getAllProjects();
@@ -27,6 +31,9 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Project> createProject(@Valid @RequestBody Project project) {
+        if (!authService.isLoggedUsersProject(project)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         Project newProject = projectService.saveProject(project);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newProject, status);
@@ -46,15 +53,18 @@ public class ProjectController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable long id, @Valid @RequestBody Project newProject) {
-        Project returnProject = new Project();
-        HttpStatus status;
+    public ResponseEntity<Project> updateProject(
+            @PathVariable long id, @Valid @RequestBody Project newProject
+    ) {
+        if (!authService.isLoggedUsersProject(newProject)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         if (id != newProject.getId()) {
-            status = HttpStatus.BAD_REQUEST;
-            return new ResponseEntity<>(returnProject, status);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         boolean projectFound = projectService.projectExists(id);
-        returnProject = projectService.saveProject(newProject);
+        Project returnProject = projectService.saveProject(newProject);
+        HttpStatus status;
         if (projectFound) {
             status = HttpStatus.NO_CONTENT;
         } else {
@@ -65,13 +75,14 @@ public class ProjectController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Project> deleteProject(@PathVariable long id) {
-        HttpStatus status;
-        if (projectService.projectExists(id)) {
-            projectService.deleteProject(id);
-            status = HttpStatus.NO_CONTENT;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (!projectService.projectExists(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.canDeleteProject(id)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        HttpStatus status = HttpStatus.NO_CONTENT;
+        projectService.deleteProject(id);
         return new ResponseEntity<>(null, status);
     }
 }

@@ -1,5 +1,7 @@
 package com.experis.lagalt.models;
 
+import com.experis.lagalt.models.role.Role;
+import com.experis.lagalt.models.role.RoleType;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -57,6 +59,12 @@ public class User implements GetUserDetails {
     @OneToMany(mappedBy = "user")
     private Set<Project> projects;
 
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "users")
     private Set<Project> projectsPartOf;
@@ -90,6 +98,20 @@ public class User implements GetUserDetails {
         return projects
                 .stream()
                 .map(project -> String.valueOf(project.getId()))
+                .collect(Collectors.toList());
+    }
+
+    @JsonGetter("roles")
+    public List<RoleType> rolesGetter() {
+        if (roles == null) {
+            return null;
+        }
+        return rolesToArray();
+    }
+
+    private List<RoleType> rolesToArray() {
+        return roles.stream()
+                .map(role -> role.getRole())
                 .collect(Collectors.toList());
     }
 
@@ -174,6 +196,10 @@ public class User implements GetUserDetails {
         this.projects = projects;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     public Set<Project> getProjectsPartOf() {
         return projectsPartOf;
     }
@@ -196,5 +222,9 @@ public class User implements GetUserDetails {
 
     public void setPortfolio(String portfolio) {
         this.portfolio = portfolio;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

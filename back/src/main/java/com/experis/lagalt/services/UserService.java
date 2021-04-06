@@ -35,8 +35,17 @@ public class UserService {
         return userRepository.existsById(id);
     }
 
+    public boolean userExists(String googleid) {
+        return userRepository.existsByGoogleid(googleid);
+    }
+
     public User findUser(long id) {
         Optional<User> optionalUser = userRepository.findById(id);
+        return optionalUser.orElseGet(User::new);
+    }
+
+    public User findUser(String googleid) {
+        Optional<User> optionalUser = userRepository.findByGoogleid(googleid);
         return optionalUser.orElseGet(User::new);
     }
 
@@ -66,14 +75,5 @@ public class UserService {
             projects.addAll(projectsPartOf);
         }
         return projects;
-    }
-
-    public boolean userExists(String googleId) {
-        return userRepository.existsByGoogleid(googleId);
-    }
-
-    public User findUser(String googleId) {
-        Optional<User> optionalUser = userRepository.findByGoogleid(googleId);
-        return optionalUser.orElseGet(User::new);
     }
 }

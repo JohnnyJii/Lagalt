@@ -2,6 +2,7 @@ package com.experis.lagalt.controllers;
 
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.models.User;
+import com.experis.lagalt.services.AuthService;
 import com.experis.lagalt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
+        if (!authService.isAdmin()) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         List<User> users = userService.getAllUsers();
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(users, status);
@@ -28,6 +35,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        if (!authService.isLoggedUser(user)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         User newUser = userService.saveUser(user);
         HttpStatus status = HttpStatus.CREATED;
         return new ResponseEntity<>(newUser, status);
@@ -35,18 +45,22 @@ public class UserController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {
-        User user = userService.findUser(id);
-        HttpStatus status;
-        if (userService.userExists(id)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (!userService.userExists(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.isLoggedUser(id)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        User user = userService.findUser(id);
+        HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(user, status);
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @Valid @RequestBody User newUser) {
+        if (!authService.isLoggedUser(newUser)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         User returnUser = new User();
         HttpStatus status;
         if (id != newUser.getId()) {
@@ -64,49 +78,52 @@ public class UserController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable long id) {
-        HttpStatus status;
-        boolean userDeleted = userService.deleteUser(id);
-        if (userDeleted) {
-            status = HttpStatus.NO_CONTENT;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (!userService.userExists(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.isLoggedUser(id)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        userService.deleteUser(id);
+        HttpStatus status = HttpStatus.NO_CONTENT;
         return new ResponseEntity<>(null, status);
     }
 
     @GetMapping(value = "/{id}/projects")
     public ResponseEntity<List<Project>> getUserProjects(@PathVariable long id) {
-        List<Project> projects = userService.getUserProjects(id);
-        HttpStatus status;
-        if (userService.userExists(id)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (!userService.userExists(id)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+        if (!authService.isLoggedUser(id)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        List<Project> projects = userService.getUserProjects(id);
+        HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(projects, status);
+    }
+
+    @GetMapping(value = "/googleid/{googleId}")
+    public ResponseEntity<User> getUser(@PathVariable String googleId) {
+        if (!userService.userExists(googleId)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        if (!authService.isLoggedUser(googleId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        User user = userService.findUser(googleId);
+        HttpStatus status = HttpStatus.OK;
+        return new ResponseEntity<>(user, status);
     }
 
     @GetMapping(value = "/{userId}/projects/participant")
-    public ResponseEntity<List<Project>> getProjectsUserPartOf(@PathVariable long userId){
+    public ResponseEntity<List<Project>> getProjectsUserPartOf(@PathVariable long userId) {
+        if (!userService.userExists(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        if (!authService.isLoggedUser(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
         List<Project> projects = userService.getUserProjectsPartOf(userId);
-        HttpStatus status;
-        if (userService.userExists(userId)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
-        }
-        return new ResponseEntity<>(projects, status);
-    }
-
-    @GetMapping(value = "/googleid/{googleid}")
-    public ResponseEntity<User> getUser(@PathVariable String googleid) {
-        User user = userService.findUser(googleid);
-        HttpStatus status;
-        if (userService.userExists(googleid)) {
-            status = HttpStatus.OK;
-        } else {
-            status = HttpStatus.NOT_FOUND;
-        }
-        return new ResponseEntity<>(user, status);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 }
