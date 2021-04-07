@@ -2,9 +2,8 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 import useProjects from '../../../../hooks/useProjects';
-import Projects from '../Projects';
+import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 
 
 function Carousel() {
@@ -30,7 +29,7 @@ function Carousel() {
       <Slider {...settings}>
         {max6Projects.map((project) => (
           <div key={project.id}>
-            <Projects project={project} />
+            <ProfileProjectsGridItemX project={project} />
           </div>
         ))}
       </Slider>
