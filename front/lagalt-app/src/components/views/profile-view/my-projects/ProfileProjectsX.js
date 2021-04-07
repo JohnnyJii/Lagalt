@@ -15,6 +15,7 @@ function ProfileProjectsX(props) {
       />
       <ProfileProjectsGridX
         userProjects={projects}
+        projectsPartOf={props.dbuser.projectsPartOf}
       />
     </div>
   );
