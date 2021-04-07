@@ -1,6 +1,7 @@
 package com.experis.lagalt.security.configs;
 
-import com.experis.lagalt.security.jwt.AuthTokenFilter;
+import com.experis.lagalt.security.filter.AuthTokenFilter;
+import com.experis.lagalt.security.filter.RateLimitingFilter;
 import com.experis.lagalt.security.util.AuthEntryPointJwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -50,15 +51,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/v1/projects/*").permitAll()
                 .anyRequest().authenticated();
 
-        http.addFilterBefore(
-                authenticationJwtTokenFilter(),
-                UsernamePasswordAuthenticationFilter.class
-        );
+        http
+                .addFilterBefore(
+                        getRateLimitingFilter(),
+                        UsernamePasswordAuthenticationFilter.class
+                )
+                .addFilterBefore(
+                        authenticationJwtTokenFilter(),
+                        UsernamePasswordAuthenticationFilter.class
+                );
     }
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
+    }
+
+    @Bean
+    public RateLimitingFilter getRateLimitingFilter() {
+        return new RateLimitingFilter();
     }
 
     @Bean
