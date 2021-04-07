@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
+import { ProjectCard } from '../Projects';
 
 function SearchBar({ projects }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -46,7 +47,7 @@ const ProjectList = function ({ projects }) {
   return (
     projects.map((project) => (
       <div className="container" key={project.id}>
-        <ProfileProjectsGridItemX
+        <ProjectCard
           project={project}
         />
       </div>

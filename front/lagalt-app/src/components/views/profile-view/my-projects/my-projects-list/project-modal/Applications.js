@@ -36,7 +36,7 @@ function Application({ application, handleApplication }) {
       { firstname && lastname && <p><strong>Applicant:</strong> {firstname} {lastname}</p>}
       { description && <p><strong>Description:</strong> {description}</p>}
       { eMail && <p><strong>Email:</strong> {eMail}</p>}
-      {skills.length && <p><strong>Skills:</strong> {skills.join(', ')}</p>}
+      {skills.length > 0 && <p><strong>Skills:</strong> {skills.join(', ')}</p>}
       {motivationLetter && <p>{motivationLetter}</p>}
       <button
         className="btn btn-primary"

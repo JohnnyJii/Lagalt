@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProfileProjectsGridItemX from '../../profile-view/my-projects/my-projects-list/list-item/ProfileProjectsGridItemX';
 import useProjects from '../../../../hooks/useProjects';
+import Projects from '../Projects';
 
 
 function Carousel() {
@@ -29,7 +30,7 @@ function Carousel() {
       <Slider {...settings}>
         {max6Projects.map((project) => (
           <div key={project.id}>
-            <ProfileProjectsGridItemX project={project} />
+            <Projects project={project} />
           </div>
         ))}
       </Slider>
