@@ -16,8 +16,8 @@ copy paste the url from previous img like this.
 
 after cloning has stopped. 
 type 
-# cd front 
-# cd lagalt-app
+### cd front 
+### cd lagalt-app
 
 now you are in applications front end root folder
 if yout type ls, you should see something like this.
@@ -32,6 +32,8 @@ this command runs the app in the development mode.
 this will start server automatically on [http://localhost:3000](http://localhost:3000) in the browser.
 
 The page will automatically reload if you make edits.\
+
+# Happy hacking :D
 
 ### `npm test`
 
