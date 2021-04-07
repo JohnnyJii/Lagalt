@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { PROJECTS_URL } from '../utils/serverUrl';
+import { PROJECTS_URL } from '../utils/serverUrls/serverUrl';
 
 const useProjects = function () {
   const [projects, setProjects] = useState([]);
