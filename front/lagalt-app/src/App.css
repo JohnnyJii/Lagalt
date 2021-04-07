@@ -29,6 +29,19 @@ body {
 
 .btn-primary {
     background-color: #7388DA;
+    margin-left: 5px;
+}
+
+.btn-success {
+    background-color: #7388DA;
+}
+
+.btn-success:hover {
+    background-color: #8FA1E1;
+}
+
+.btn-warning {
+    margin-left: 5px;
 }
 
 .btn-primary:hover {

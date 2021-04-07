@@ -32,7 +32,7 @@ class ChangeInfoTemplateX extends Component {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
       };
-      const form = {...this.state, skills: this.state.skills.split(' ')};
+      const form = {...this.state, skills: this.state.skills.split(',')};
       axios.put(`https://lagalt-server.herokuapp.com/api/v1/users/${this.dbuser.id}`, form, config)
         .then(response => {
           this.setLoad(true);
@@ -72,7 +72,7 @@ class ChangeInfoTemplateX extends Component {
               <Form.Label>Portfolio</Form.Label>
               <Form.Control name="portfolio" as="textarea" rows={3} value={portfolio} onChange={this.changeHandler}/>
               <Form.Label>Skills</Form.Label>
-              <Form.Control name="skills" placeholder="Skills separated with space" value={skills} onChange={this.changeHandler}/>
+              <Form.Control name="skills" placeholder="Skills separated with comma" value={skills} onChange={this.changeHandler}/>
               <Form.Label>Image Link</Form.Label>
               <Form.Control name="imageSource" placeholder="Link to your image (ie. LinkedIn)" value={imageSource} onChange={this.changeHandler}/>
             </Form.Group>
