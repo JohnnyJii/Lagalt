@@ -1,5 +1,7 @@
 # Getting Started with Lagalt App
 
+## Lagalt App is a Noroff Java Full Stack developer intensive course Case.  
+
 Download directory as zip 
 or 
 use git clone https://github.com/Lagalt/Lagalt.git
@@ -94,3 +96,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+# Team MyLagalt members
+## Jesse Saarimaa, Front end
+## Jukka Juntunen, Front end, team management
+## Lauri Lehtola, Back end
+## Nicolas J. Valentine, Back end
