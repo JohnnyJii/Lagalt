@@ -6,11 +6,44 @@ html {
 body {
     margin: 0 0 100px;
     bottom: 35px;
-    background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
-    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
-}
+    background-color: #292841; /* For browsers that do not support gradients */
+/*     background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
+ */}
 
 .App {
 }
 
+.card {
+    background-color: #1C1C29;
+    color: #fff;
+}
 
+.card-header:first-child {
+    color: #61C5C8;
+}
+
+.modal-content {
+    background-color: #1C1C29;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #7388DA;
+}
+
+.btn-primary:hover {
+    background-color: #8FA1E1;
+}
+
+.close {
+    color: #fff;
+}
+
+.close:hover {
+    color:#61C5C8;
+}
+
+.search-bar-input {
+    background-color: #1C1C29;
+    color: #fff;
+}

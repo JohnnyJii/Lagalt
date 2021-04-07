@@ -54,7 +54,8 @@ class CreateUserX extends Component {
         return <Redirect to='/profile' />;
       }
       return(
-        <div>
+        <div className="container">
+          <br />
           <Form onSubmit={this.submitHandler}>
             <Row>
               <Col>
@@ -75,9 +76,10 @@ class CreateUserX extends Component {
             </Row>
             <br />
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>About You</Form.Label>
               <Form.Control name="description" as="textarea" placeholder="Tell about yourself" rows={3} value={description} onChange={this.changeHandler}/>
+              <br />
               <Form.Control name="portfolio" as="textarea" placeholder="Tell about your recent projects or link Github / Linkedin" rows={3} value={portfolio} onChange={this.changeHandler}/>
+              <br />
               <Form.Control name="imageSource" placeholder="Link to your image (ie. from LinkedIn)" value={imageSource} onChange={this.changeHandler}/>
             </Form.Group>
             <br/>
