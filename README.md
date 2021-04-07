@@ -7,7 +7,7 @@ or
 use git clone https://github.com/Lagalt/Lagalt.git
 
 ![image](https://user-images.githubusercontent.com/34025182/113900660-bd521200-97d6-11eb-89dc-5b500ee9ffc5.png)
-img src="https://user-images.githubusercontent.com/34025182/113900660-bd521200-97d6-11eb-89dc-5b500ee9ffc5.png" width="200" heigth="150">
+<img src="https://user-images.githubusercontent.com/34025182/113900660-bd521200-97d6-11eb-89dc-5b500ee9ffc5.png" width="200" heigth="150">
 In this example we use git clone.
 
 copy paste the url from previous img like this.
