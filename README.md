@@ -8,6 +8,11 @@ use git clone https://github.com/Lagalt/Lagalt.git
 
 In this example we use git clone.
 
+copy paste the url from previous img, like this 
+remember to clone project to exact folder where you the project to exist
+
+![image](https://user-images.githubusercontent.com/34025182/113901244-584aec00-97d7-11eb-866c-789b6dfe675d.png)
+
 cd front
 
 now you are in applications front end root folder
