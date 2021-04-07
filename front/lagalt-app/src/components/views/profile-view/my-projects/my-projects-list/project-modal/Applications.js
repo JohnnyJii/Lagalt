@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Applications({ applications, handleApplication }) {
-
   return (
     applications.map(application =>
       <Application
@@ -34,25 +33,23 @@ function Application({ application, handleApplication }) {
       <img style={{ width: 100, height: 100, borderRadius: 25 }} src={imageSource} alt={''} />
       <br />
       <br />
-      { firstname && lastname ? <p><strong>Applicant:</strong> {firstname} {lastname}</p> : null}
-      { description ? <p><strong>Description:</strong> {description}</p> : null}
-      { eMail ? <p><strong>Email:</strong> {eMail}</p> : null}
-      {skills.length ? <p><strong>Skills:</strong> {skills.join(', ')}</p> : null}
-      {motivationLetter ? <p>{motivationLetter}</p> : null}
+      { firstname && lastname && <p><strong>Applicant:</strong> {firstname} {lastname}</p>}
+      { description && <p><strong>Description:</strong> {description}</p>}
+      { eMail && <p><strong>Email:</strong> {eMail}</p>}
+      {skills.length && <p><strong>Skills:</strong> {skills.join(', ')}</p>}
+      {motivationLetter && <p>{motivationLetter}</p>}
       <button
         className="btn btn-primary"
         type="button"
         value="Accept"
-        onClick={() => processApplication(true)}
-      >
+        onClick={() => processApplication(true)}>
         Accept
       </button>
       <button
         className="btn btn-warning"
         type="button"
         value="Decline"
-        onClick={() => processApplication(false)}
-      >
+        onClick={() => processApplication(false)}>
         Decline
       </button>
       <hr />
