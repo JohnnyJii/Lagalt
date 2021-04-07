@@ -4,7 +4,6 @@ import com.experis.lagalt.security.jwt.AuthTokenFilter;
 import com.experis.lagalt.security.util.AuthEntryPointJwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +15,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
@@ -24,6 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthEntryPointJwt authEntryPointJwt;
+
+    // TOTO Remove localhost from final production
+    private final String LOCALHOST_ORIGIN = "https://localhost:3000";
+    private final String VERCEL_ORIGIN = "https://lagalt-ten.vercel.app";
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -55,5 +59,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(getAllowedOrigins());
+        configuration.setAllowedMethods(getAllowedMethods());
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+    private List<String> getAllowedOrigins() {
+        List<String> origins = new ArrayList<>();
+        origins.add(LOCALHOST_ORIGIN);
+        origins.add(VERCEL_ORIGIN);
+        return origins;
+    }
+
+    private List<String> getAllowedMethods() {
+        List<String> methods = new ArrayList<>();
+        methods.add("GET");
+        methods.add("POST");
+        methods.add("PUT");
+        methods.add("DELETE");
+        return methods;
     }
 }
