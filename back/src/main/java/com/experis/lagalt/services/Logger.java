@@ -12,7 +12,7 @@ public class Logger {
     }
 
     public void errorToConsole(String message) {
-        System.out.println("ERROR: " + timeStamp() + " - " + message);
+        System.err.println("ERROR: " + timeStamp() + " - " + message);
     }
 
     private String timeStamp() {
@@ -23,19 +23,26 @@ public class Logger {
         int hours = calendar.get(Calendar.HOUR);
         int minutes = calendar.get(Calendar.MINUTE);
         int seconds = calendar.get(Calendar.SECOND);
+        int milliSeconds = calendar.get(Calendar.MILLISECOND);
         return year + "/" +
-                month + "/" +
-                day + "-" +
-                doubleDigits(hours) +
-                ":" +
-                doubleDigits(minutes)
-                + ":"
-                + doubleDigits(seconds);
+                doubleDigits(month) + "/" +
+                doubleDigits(day) + " " +
+                doubleDigits(hours) + ":" +
+                doubleDigits(minutes) + ":" +
+                doubleDigits(seconds) + ":" +
+                tripleDigits(milliSeconds);
     }
 
     private String doubleDigits(int digit) {
         if (digit < 10) {
             return "0" + digit;
+        }
+        return digit + "";
+    }
+
+    private String tripleDigits(int digit) {
+        if (digit < 100) {
+            return "0" + doubleDigits(digit);
         }
         return digit + "";
     }
