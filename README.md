@@ -28,8 +28,13 @@ you can run:
 ### npm i
 ### npm start
 
+![image](https://user-images.githubusercontent.com/34025182/113902358-76fdb280-97d8-11eb-9b90-0891b2bb6c92.png)
+
+
 this command runs the app in the development mode.
 this will start server automatically on [http://localhost:3000](http://localhost:3000) in the browser.
+
+![image](https://user-images.githubusercontent.com/34025182/113902494-9e547f80-97d8-11eb-9e8e-f7703a179826.png)
 
 The page will automatically reload if you make edits.\
 
