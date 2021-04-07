@@ -4,12 +4,14 @@ import ProfileProjectsModalX from '../project-modal/ProfileProjectsModalX';
 import { Card } from 'react-bootstrap';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import useApplications from '../../../../../../hooks/useApplications';
 
 function ProfileProjectsGridItemX({ project = {} }) {
   const [modalShow, setModalShow] = React.useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
   const { id, industry, progress, title, description, gitlink, user: owner } = project;
+  const [applications, handleApplication] = useApplications(id);
 
   return (
     <div style={{ margin: '20px', cursor: 'pointer' }}>
@@ -18,6 +20,7 @@ function ProfileProjectsGridItemX({ project = {} }) {
         <Card.Body>
           <Card.Title>{title ? title : 'Title'}</Card.Title>
           <Card.Text>{description ? description : 'Description'}</Card.Text>
+          {applications.length > 0 && <p>NEW APPLICATIONS</p>}
         </Card.Body>
       </Card>
       <ProfileProjectsModalX
@@ -31,6 +34,8 @@ function ProfileProjectsGridItemX({ project = {} }) {
         show={modalShow}
         user={user}
         onHide={() => setModalShow(false)}
+        applications={applications}
+        handleApplication={handleApplication}
       />
     </div>
   );

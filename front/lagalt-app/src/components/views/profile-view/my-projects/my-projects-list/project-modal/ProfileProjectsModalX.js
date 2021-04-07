@@ -7,7 +7,7 @@ import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrls/serverUrl'
 
 function ProfileProjectsModalX(props) {
   const myId = localStorage.getItem('dbuserid');
-
+  // TODO move from Profile projects to projects
   function applyForProject() {
     let config = {
       headers: {
@@ -19,60 +19,86 @@ function ProfileProjectsModalX(props) {
   }
 
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.title ? props.title : 'Title'}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <ProjectInfo {...props} />
-        <hr />
-        <Applications projectId={props.id} />
-        <div>
-          {(props.user) ?
-            <div>
-              <small><strong>Message Board</strong></small>
-              <ProjectCommentsX projectId={props.id} />
-            </div>
-            : ''
-          }
-        </div>
-        {(props.creator === myId) || (!props.guser) ?
-          null
-          : <Button onClick={() => applyForProject()}>Apply</Button>
+    <ModalContainer
+      show={props.show}
+      onHide={props.onHide}
+      title={props.title}
+    >
+      <ProjectInfo {...props} />
+      <hr />
+      <Applications
+        applications={props.applications}
+        handleApplication={props.handleApplication}
+      />
+      <div>
+        {(props.user) &&
+          <div>
+            <small><strong>Message Board</strong></small>
+            <ProjectCommentsX projectId={props.id} />
+          </div>
         }
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+      </div>
+      {(props.creator === myId) || (!props.user) ?
+        null
+        : <Button onClick={() => applyForProject()}>Apply</Button>
+      }
+    </ModalContainer>
   );
 }
 
-const ProjectInfo = function (props) {
+const ModalContainer = function ({ title = '', show, onHide, children }) {
+  return (
+    <Modal
+      show={show}
+      onHide={onHide}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {title ? title : 'Title'}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {children}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+const ProjectInfo = function ({
+  description = '',
+  industry = '',
+  progress = '',
+  gitlink = ''
+}) {
   return (
     <div>
       <small><strong>Project Description</strong></small>
-      <p>{props.description ? props.description : 'Description'}</p>
+      <p>{description && description}</p>
       <small><strong>Project Info</strong></small>
       <br />
-      <small><strong>Industry:</strong> {props.industry ? props.industry : 'Industry'}</small>
+      {industry &&
+        <small><strong>Industry:</strong>{industry}</small>
+      }
       <br />
-      <small><strong>Owner:</strong> {props.creator ? props.creator : 'User'}</small>
+      {/* owner info not part of the project. Only owner id
+        <small><strong>Owner:</strong> {creator ? creator : 'User'}</small>
       <br />
-      {props.progress ?
-        <small><strong>Progress:</strong> {props.progress}</small>
-        : null
+      */}
+      {progress &&
+        <small><strong>Progress:</strong> {progress}</small>
       }
       < br />
-      {
-        props.gitlink ?
-          <small>
-            <strong>Git Link:</strong>
-            <a href={props.gitlink} target="blank_">{props.gitlink}</a>
-          </small> :
-          null
+      {gitlink &&
+        <small>
+          <strong>Git Link:</strong>
+          <a href={gitlink} target="blank_">{gitlink}</a>
+        </small>
       }
     </div>
   );

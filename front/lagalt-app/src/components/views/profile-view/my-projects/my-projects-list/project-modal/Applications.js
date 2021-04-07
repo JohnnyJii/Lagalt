@@ -1,8 +1,8 @@
 import React from 'react';
 import useApplications from '../../../../../../hooks/useApplications';
 
-function Applications({ projectId }) {
-  const [applications, handleApplication] = useApplications(projectId);
+function Applications({ applications, handleApplication }) {
+
   return (
     applications.map(application =>
       <Application
