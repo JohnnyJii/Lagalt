@@ -14,7 +14,7 @@ function ProfileProjectsX(props) {
         addProject={addProject}
       />
       <ProfileProjectsGridX
-        projects={projects}
+        userProjects={projects}
       />
     </div>
   );

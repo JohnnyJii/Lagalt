@@ -1,12 +1,12 @@
 import ProfileProjectsGridItemX from './list-item/ProfileProjectsGridItemX';
 import React from 'react';
 
-function ProfileProjectsGridX({ projects }) {
+function ProfileProjectsGridX({ userProjects }) {
   return (
     <div className="container">
       {
-        projects.length ?
-          projects.map(project =>
+        userProjects.length ?
+          userProjects.map(project =>
             <ProfileProjectsGridItemX
               key={project.id}
               project={project}
