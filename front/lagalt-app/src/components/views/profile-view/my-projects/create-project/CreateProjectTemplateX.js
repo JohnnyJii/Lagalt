@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { SUGGESTIONS } from './ProjectTagSuccestions';
+import  { WithContext as Tags } from 'react-tag-input';
+
+const suggestions = SUGGESTIONS.map((language) => {
+  return {
+    id: language,
+    text: language
+  };
+});
+
+const KeyCodes = {
+  comma: 188,
+  enter: 13,
+};
+
+const delimeters = [KeyCodes.comma, KeyCodes.enter];
 
 class CreateProjectTemplateX extends Component {
   constructor(props) {
@@ -12,13 +28,43 @@ class CreateProjectTemplateX extends Component {
       description: '',
       progress: '',
       skills: [],
-      tags: [],
+      tags: [{id: 'thai'}],
+      suggestions: suggestions,
       gitlink: '',
       user: {
         id: this.dbuserid
       }
     };
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddition = this.handleAddition.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
+    this.handleTagClick = this.handleTagClick.bind(this);
   }
+
+    handleDelete(i) {
+      const { tags } = this.state;
+      this.setState({
+        tags: tags.filter((tag, index) => { index !== i }),
+      });
+    }
+
+    handleAddition(tag) {
+      this.setState(state => ({ tags: [...state.tags, tag]}));
+    }
+
+    handleDrag(tag, currPos, newPos) {
+      const tags = [...this.state.tags];
+      const newTags = tags.slice();
+
+      newTags.splice(currPos, 1);
+      newTags.splice(newPos, 0, tag);
+
+      this.setState({ tags: newTags });
+    }
+
+    handleTagClick(index) {
+      console.log(index);
+    }
 
     changeHandler = e => {
       this.setState({ [e.target.name]: e.target.value });
@@ -121,6 +167,16 @@ class CreateProjectTemplateX extends Component {
               <Form.Label>Project Description</Form.Label>
               <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler} />
             </Form.Group>
+            <Form.Check.Tags 
+              tags={tags}
+              suggestions={suggestions}
+              delimiters={delimiters}
+              handleDelete={this.handleDelete}
+              handleAddition={this.handleAddition}
+              handleDrag={this.handleDrag}
+              handleTagClick={this.handleTagClick}
+            />
+            <br />
             <Form.Label>Git Link</Form.Label>
             <Form.Control name="gitlink" type="text" placeholder="Github repo link" value={gitlink} onChange={this.changeHandler} />
             <br />
