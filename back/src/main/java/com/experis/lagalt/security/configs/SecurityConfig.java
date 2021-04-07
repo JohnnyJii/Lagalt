@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthEntryPointJwt authEntryPointJwt;
 
-    // TOTO Remove localhost from final production
+    // TODO Remove localhost from final production
     private final String LOCALHOST_ORIGIN = "https://localhost:3000";
     private final String VERCEL_ORIGIN = "https://lagalt-ten.vercel.app";
 
