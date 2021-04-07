@@ -1,5 +1,4 @@
 import React from 'react';
-import useApplications from '../../../../../../hooks/useApplications';
 
 function Applications({ applications, handleApplication }) {
 
