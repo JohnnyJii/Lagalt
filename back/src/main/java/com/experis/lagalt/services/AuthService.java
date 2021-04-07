@@ -95,7 +95,7 @@ public class AuthService {
         return isLoggedUser(projectUser);
     }
 
-    private String getLoggedGoogleId() {
+    public String getLoggedGoogleId() {
         return getLoggedUser().getGoogleid();
     }
 
