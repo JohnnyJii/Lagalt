@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { APPLICATIONS_URL, HANDLE_APPLICATION_URL } from '../utils/serverUrl';
+import { APPLICATIONS_URL, HANDLE_APPLICATION_URL } from '../utils/serverUrls/serverUrl';
 
 function useApplications(projectId) {
   const [applications, setApplications] = useState([]);
