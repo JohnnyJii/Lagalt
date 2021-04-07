@@ -23,7 +23,7 @@ type
 now you are in applications front end root folder
 if yout type ls, you should see something like this.
 
-![image](https://user-images.githubusercontent.com/34025182/113902060-2c7c3600-97d8-11eb-844f-abb685792637.png)
+<img src="(https://user-images.githubusercontent.com/34025182/113902060-2c7c3600-97d8-11eb-844f-abb685792637.png" width="700" heigth="400">
 
 you can run:
 ### npm i
