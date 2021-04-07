@@ -1,7 +1,7 @@
 import ProfileProjectsGridItemX from './list-item/ProfileProjectsGridItemX';
 import React from 'react';
 
-function ProfileProjectsGridX({ userProjects = [], projectPartOf = [] }) {
+function ProfileProjectsGridX({ userProjects, projectPartOf }) {
   return (
     <div className="container">
       <h1 style={{ color: 'white' }}>Own projects</h1>
@@ -12,7 +12,7 @@ function ProfileProjectsGridX({ userProjects = [], projectPartOf = [] }) {
   );
 }
 
-const ProjectList = function ({ projects }) {
+const ProjectList = function ({ projects = [] }) {
   return (
     <div>
       {
