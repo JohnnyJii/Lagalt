@@ -1,10 +1,10 @@
-/* import ProfileNavbarX from './profile-nav/ProfileNavbarX' */
 import ProfileProjectsX from './my-projects/ProfileProjectsX';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import firebase from 'firebase/app';
 import CreateUserX from './profile-page/create-user/CreateUserX';
 import ProfileJumbotronX from './profile-page/profile-jumbotron/ProfileJumbotronX';
+import { USER_BY_GOOGLE_ID } from '../../../utils/serverUrls/userUrls';
 
 function ProfileView(props) {
   let user = firebase.auth().currentUser;
@@ -12,26 +12,23 @@ function ProfileView(props) {
   const [redirect, setRedirect] = useState(false);
   const [load, setLoad] = useState(false);
 
-  user.getIdToken().then(function (token) {
-    localStorage.setItem('jwt', token);
-  });
-
   useEffect(() => {
-    let config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    };
     async function fetchDbUser() {
+      const token = await user.getIdToken();
+      localStorage.setItem('jwt', token);
       try {
-        const userResponse = await Axios(`https://lagalt-server.herokuapp.com/api/v1/users/googleid/${user.uid}`, config);
-        setDbUser(userResponse.data);
+        const { data } = await Axios(USER_BY_GOOGLE_ID(user.uid), {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+          }
+        });
+        setDbUser(data);
       } catch {
         setRedirect(true);
       }
     }
     fetchDbUser();
-  }, [user.uid, load]);
+  }, [user, load]);
   localStorage.setItem('dbuserid', dbuser.id);
 
   if (redirect) {
@@ -45,7 +42,6 @@ function ProfileView(props) {
   }
   return (
     <div>
-      {/* <ProfileNavbarX /> */}
       <ProfileJumbotronX
         setUserName={props.setUserName}
         user={user}

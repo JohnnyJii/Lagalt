@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import ProjectCommentsX from '../message-board/ProjectCommentsX';
 import axios from 'axios';
 import Applications from '../Applications';
-import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrl';
+import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrls/serverUrl';
 
 function ProfileProjectsModalX(props) {
   const myId = localStorage.getItem('dbuserid');
