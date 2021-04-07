@@ -1,10 +1,10 @@
 /* import ProfileNavbarX from './profile-nav/ProfileNavbarX' */
-import ProfilePageX from './profile-page/ProfilePageX';
 import ProfileProjectsX from './my-projects/ProfileProjectsX';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import firebase from 'firebase/app';
 import CreateUserX from './profile-page/create-user/CreateUserX';
+import ProfileJumbotronX from './profile-page/profile-jumbotron/ProfileJumbotronX';
 
 function ProfileView(props) {
   let user = firebase.auth().currentUser;
@@ -46,7 +46,7 @@ function ProfileView(props) {
   return (
     <div>
       {/* <ProfileNavbarX /> */}
-      <ProfilePageX
+      <ProfileJumbotronX
         setUserName={props.setUserName}
         user={user}
         dbuser={dbuser}
@@ -57,7 +57,6 @@ function ProfileView(props) {
       />
     </div>
   );
-
 }
 
 export default ProfileView;
