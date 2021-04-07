@@ -12,7 +12,7 @@ In this example we use git clone.
 
 copy paste the url from previous img like this.
 
-# remember to clone project to the exact folder where you the project to exist
+# remember to clone project to the exact folder where you the want the project to exist
 
 ![image](https://user-images.githubusercontent.com/34025182/113901244-584aec00-97d7-11eb-866c-789b6dfe675d.png)
 
