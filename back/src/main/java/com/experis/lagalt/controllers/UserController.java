@@ -106,7 +106,7 @@ public class UserController {
         if (!userService.userExists(googleId)) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        if (!authService.isLoggedUser(googleId)) {
+        if (!authService.getLoggedGoogleId().equals(googleId)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         User user = userService.findUser(googleId);
