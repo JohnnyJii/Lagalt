@@ -1,4 +1,4 @@
-package com.experis.lagalt.security.jwt;
+package com.experis.lagalt.security.util;
 
 import com.experis.lagalt.models.User;
 import com.experis.lagalt.security.models.UserDetail;

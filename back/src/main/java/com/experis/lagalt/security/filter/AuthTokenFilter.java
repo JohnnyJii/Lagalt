@@ -1,6 +1,6 @@
 package com.experis.lagalt.security.filter;
 
-import com.experis.lagalt.security.jwt.JwtUtil;
+import com.experis.lagalt.security.util.JwtUtil;
 import com.experis.lagalt.services.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
