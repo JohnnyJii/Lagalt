@@ -16,9 +16,10 @@ copy paste the url from previous img like this.
 ![image](https://user-images.githubusercontent.com/34025182/113901244-584aec00-97d7-11eb-866c-789b6dfe675d.png)
 
 after cloning has stopped. 
-type 
-### cd front 
-### cd lagalt-app
+type in the following
+
+cd front 
+cd lagalt-app
 
 now you are in applications front end root folder
 if yout type ls, you should see something like this.
@@ -26,8 +27,8 @@ if yout type ls, you should see something like this.
 <img src="(https://user-images.githubusercontent.com/34025182/113902060-2c7c3600-97d8-11eb-844f-abb685792637.png" width="700" heigth="400">
 
 you can run:
-### npm i
-### npm start
+npm i
+npm start
 
 ![image](https://user-images.githubusercontent.com/34025182/113902358-76fdb280-97d8-11eb-9b90-0891b2bb6c92.png)
 
