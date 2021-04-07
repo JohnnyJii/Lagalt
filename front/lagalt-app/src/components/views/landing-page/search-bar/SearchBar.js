@@ -35,6 +35,7 @@ const SearchInput = function ({ setSearchTerm }) {
   return (
     <input
       type="text"
+      className="search-bar-input"
       placeholder="Search for projects"
       onChange={event => { setSearchTerm(event.target.value.toLowerCase()); }}
     />

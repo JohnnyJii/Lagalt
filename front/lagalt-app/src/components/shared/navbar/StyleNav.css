@@ -4,9 +4,9 @@
     display: flex;
     align-items: center;
     min-height: 10vh;
-    background-color: rgb(44, 38, 38); /* For browsers that do not support gradients */
-    background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
-}
+    background-color: #1C1B29; /* For browsers that do not support gradients */
+/*     background-image: linear-gradient(to bottom right, rgb(51, 12, 110), rgb(172, 23, 115));
+ */}
 
 .navbar-container .container {
     display: flex;
