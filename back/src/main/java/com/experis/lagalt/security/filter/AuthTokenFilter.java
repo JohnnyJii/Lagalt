@@ -1,5 +1,6 @@
-package com.experis.lagalt.security.jwt;
+package com.experis.lagalt.security.filter;
 
+import com.experis.lagalt.security.jwt.JwtUtil;
 import com.experis.lagalt.services.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +28,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private Logger logger;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws ServletException, IOException {
         try {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtil.validateJwtToken(jwt)) {
