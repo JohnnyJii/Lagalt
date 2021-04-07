@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { SUGGESTIONS } from './ProjectTagSuccestions';
-import  { WithContext as Tags } from 'react-tag-input';
+import { WithContext as Tags } from 'react-tag-input';
 
 const suggestions = SUGGESTIONS.map((language) => {
   return {
@@ -10,12 +10,12 @@ const suggestions = SUGGESTIONS.map((language) => {
   };
 });
 
-const KeyCodes = {
-  comma: 188,
-  enter: 13,
-};
+// const KeyCodes = {
+//   comma: 188,
+//   enter: 13,
+// };
 
-const delimeters = [KeyCodes.comma, KeyCodes.enter];
+// const delimeters = [KeyCodes.comma, KeyCodes.enter];
 
 class CreateProjectTemplateX extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class CreateProjectTemplateX extends Component {
       description: '',
       progress: '',
       skills: [],
-      tags: [{id: 'thai'}],
+      tags: [],
       suggestions: suggestions,
       gitlink: '',
       user: {
@@ -41,44 +41,43 @@ class CreateProjectTemplateX extends Component {
     this.handleTagClick = this.handleTagClick.bind(this);
   }
 
-    handleDelete(i) {
-      const { tags } = this.state;
-      this.setState({
-        tags: tags.filter((tag, index) => { index !== i }),
-      });
-    }
+  handleDelete(i) {
+    const { tags } = this.state;
+    this.setState({ tags: tags.filter((tag, index) => index !== i),
+    });
+  }
 
-    handleAddition(tag) {
-      this.setState(state => ({ tags: [...state.tags, tag]}));
-    }
+  handleAddition(tag) {
+    this.setState(state => ({ tags: [...state.tags, tag] }));
+  }
 
-    handleDrag(tag, currPos, newPos) {
-      const tags = [...this.state.tags];
-      const newTags = tags.slice();
+  handleDrag(tag, currPos, newPos) {
+    const tags = [...this.state.tags];
+    const newTags = tags.slice();
 
-      newTags.splice(currPos, 1);
-      newTags.splice(newPos, 0, tag);
+    newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, tag);
 
-      this.setState({ tags: newTags });
-    }
+    this.setState({ tags: newTags });
+  }
 
-    handleTagClick(index) {
-      console.log(index);
-    }
+  handleTagClick(index) {
+    console.log(index);
+  }
 
-    changeHandler = e => {
-      this.setState({ [e.target.name]: e.target.value });
-    }
+  changeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-    submitHandler = e => {
-      e.preventDefault();
+  submitHandler = e => {
+    e.preventDefault();
 
-      const form = this.state;
-      this.addProject(form);
+  const form = this.state;
+  this.addProject(form);
     }
 
     render() {
-      const { title, description, gitlink } = this.state;
+      const { title, description, gitlink, tags, suggestions } = this.state;
       return (
         <div>
           <Form onSubmit={this.submitHandler}>
@@ -167,10 +166,10 @@ class CreateProjectTemplateX extends Component {
               <Form.Label>Project Description</Form.Label>
               <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler} />
             </Form.Group>
-            <Form.Check.Tags 
+            <Tags
               tags={tags}
               suggestions={suggestions}
-              delimiters={delimiters}
+              // delimiters={delimiters}
               handleDelete={this.handleDelete}
               handleAddition={this.handleAddition}
               handleDrag={this.handleDrag}

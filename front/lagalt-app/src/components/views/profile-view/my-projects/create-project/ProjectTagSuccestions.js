@@ -1,4 +1,4 @@
 export const SUGGESTIONS = [
-    "Java",
-    "JavaScript",
-]
+  'java',
+  'javascript',
+];
