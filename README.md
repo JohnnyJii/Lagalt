@@ -6,7 +6,7 @@ use git clone https://github.com/Lagalt/Lagalt.git
 
 cd front
 
-## In src folder
+now you are in applications front end root folder
 
 you can run:
 ### npm i
