@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { SUGGESTIONS } from './ProjectTagSuccestions';
 import { WithContext as Tags } from 'react-tag-input';
+import './TagStyles.css';
 
 const suggestions = SUGGESTIONS.map((language) => {
   return {
@@ -166,15 +167,17 @@ class CreateProjectTemplateX extends Component {
               <Form.Label>Project Description</Form.Label>
               <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler} />
             </Form.Group>
-            <Tags
-              tags={tags}
-              suggestions={suggestions}
-              // delimiters={delimiters}
-              handleDelete={this.handleDelete}
-              handleAddition={this.handleAddition}
-              handleDrag={this.handleDrag}
-              handleTagClick={this.handleTagClick}
-            />
+              <div>
+                <Tags
+                  tags={tags}
+                  suggestions={suggestions}
+                  // delimiters={delimiters}
+                  handleDelete={this.handleDelete}
+                  handleAddition={this.handleAddition}
+                  handleDrag={this.handleDrag}
+                  handleTagClick={this.handleTagClick}
+                />
+              </div>
             <br />
             <Form.Label>Git Link</Form.Label>
             <Form.Control name="gitlink" type="text" placeholder="Github repo link" value={gitlink} onChange={this.changeHandler} />
