@@ -44,7 +44,7 @@
       "react-app/jest"
     ],
     "rules": {
-      "semi": "error",
+      "semi": "warn",
       "no-trailing-spaces": "error",
       "eqeqeq": "warn",
       "quotes": [
