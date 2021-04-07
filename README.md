@@ -6,7 +6,7 @@ Download directory as zip
 or 
 use git clone https://github.com/Lagalt/Lagalt.git
 
-![image](https://user-images.githubusercontent.com/34025182/113900660-bd521200-97d6-11eb-89dc-5b500ee9ffc5.png=100x)
+![image](https://user-images.githubusercontent.com/34025182/113900660-bd521200-97d6-11eb-89dc-5b500ee9ffc5.png | width=100)
 
 In this example we use git clone.
 
