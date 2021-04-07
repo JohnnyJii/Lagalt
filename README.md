@@ -8,14 +8,21 @@ use git clone https://github.com/Lagalt/Lagalt.git
 
 In this example we use git clone.
 
-copy paste the url from previous img, like this 
-remember to clone project to exact folder where you the project to exist
+copy paste the url from previous img like this.
+
+# remember to clone project to the exact folder where you the project to exist
 
 ![image](https://user-images.githubusercontent.com/34025182/113901244-584aec00-97d7-11eb-866c-789b6dfe675d.png)
 
-cd front
+after cloning has stopped. 
+type 
+# cd front 
+# cd lagalt-app
 
 now you are in applications front end root folder
+if yout type ls, you should see something like this.
+
+![image](https://user-images.githubusercontent.com/34025182/113902060-2c7c3600-97d8-11eb-844f-abb685792637.png)
 
 you can run:
 ### npm i
