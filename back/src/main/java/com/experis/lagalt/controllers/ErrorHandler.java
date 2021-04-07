@@ -1,5 +1,7 @@
 package com.experis.lagalt.controllers;
 
+import com.experis.lagalt.services.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +14,13 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ErrorHandler {
 
-    // TODO log errors via logger
+    @Autowired
+    private Logger logger;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
+        logger.errorToConsole(ex.getMessage());
         ObjectError e = ex.getBindingResult().getAllErrors().get(0);
         String name = ((FieldError) e).getField();
         String message = e.getDefaultMessage();
@@ -25,6 +29,7 @@ public class ErrorHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleIntegrityViolations(DataIntegrityViolationException ex) {
+        logger.errorToConsole(ex.getMessage());
         String detail = getDataIntegrityDetailMessage(ex);
         if (detail.contains("is not present in table")) {
             return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);

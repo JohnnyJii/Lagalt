@@ -2,6 +2,7 @@ package com.experis.lagalt.security.jwt;
 
 import com.experis.lagalt.models.User;
 import com.experis.lagalt.security.models.UserDetail;
+import com.experis.lagalt.services.Logger;
 import com.experis.lagalt.services.UserService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -18,7 +19,10 @@ public class JwtUtil {
     @Autowired
     private UserService userService;
 
-    public UserDetails getUser(String token){
+    @Autowired
+    private Logger logger;
+
+    public UserDetails getUser(String token) {
         String googleId = getUID(token);
         User user = userService.findUser(googleId);
         if (user.getGoogleid() == null) {
@@ -31,7 +35,7 @@ public class JwtUtil {
         try {
             return getToken(token).getUid();
         } catch (FirebaseAuthException ex) {
-            System.out.println("ERROR getUID -Firebase auth ex- " + ex.getMessage());
+            logger.errorToConsole(ex.getMessage());
         }
         return null;
     }
@@ -41,7 +45,7 @@ public class JwtUtil {
             getToken(authToken);
             return true;
         } catch (FirebaseAuthException ex) {
-            System.out.println("ERROR validateJwt -Firebase auth ex- " + ex.getMessage());
+            logger.errorToConsole(ex.getMessage());
         }
         return false;
     }
