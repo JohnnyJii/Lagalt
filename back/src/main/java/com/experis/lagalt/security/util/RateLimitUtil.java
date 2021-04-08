@@ -11,7 +11,7 @@ public class RateLimitUtil {
 
     public boolean allowAccess(String ip) {
         if (!ipMap.containsKey(ip)) {
-            ipMap.put(ip, new BucketAlgorithm(20, 2, 500));
+            ipMap.put(ip, new BucketAlgorithm(200, 20, 500));
         }
         BucketAlgorithm usersBucket = ipMap.get(ip);
         return usersBucket.tryConsume(1);
