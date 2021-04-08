@@ -4,18 +4,15 @@ import ProjectCommentsX from '../message-board/ProjectCommentsX';
 import axios from 'axios';
 import Applications from './Applications';
 import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrls/serverUrl';
-import useProject from '../../../../../../hooks/useProject';
-
 
 function ProfileProjectsModalX(props) {
-  const [project, updateProject] = useProject(props.id);
   const [newProgress, setNewProgress] = useState(props.progress);
   const myId = localStorage.getItem('dbuserid');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateProject({
-      ...project,
+    props.updateProject({
+      ...props.project,
       progress: newProgress,
     });
   };
@@ -26,7 +23,7 @@ function ProfileProjectsModalX(props) {
       onHide={props.onHide}
       title={props.title}
     >
-      <ProjectInfo {...project} />
+      <ProjectInfo {...props.project} />
       <hr />
       {(props.creator === myId) &&
         <Form onSubmit={handleSubmit}>

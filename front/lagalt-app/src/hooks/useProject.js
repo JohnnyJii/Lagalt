@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { PROJECT_URL } from '../utils/serverUrls/serverUrl';
 
 const useProject = function (projectId) {
-  const [project, setProject] = useState(null);
+  const [project, setProject] = useState({});
 
   useEffect(() => {
     const fetchAndSetProject = async () => {
