@@ -11,7 +11,7 @@ function ProfileProjectsGridItemX({ project = {} }) {
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
   const { id, industry, progress, title, description, gitlink, user: owner } = project;
-  const [applications, handleApplication] = useApplications(id);
+  const [applications, handleApplication] = useApplications(id, owner);
 
   return (
     <div style={{ margin: '20px', cursor: 'pointer' }}>
