@@ -78,7 +78,7 @@ class CreateProjectTemplateX extends Component {
     }
 
     render() {
-      const { title, description, gitlink, tags, suggestions } = this.state;
+      const { title, description, gitlink, tags, skills, suggestions } = this.state;
       return (
         <div>
           <Form onSubmit={this.submitHandler}>
@@ -168,7 +168,18 @@ class CreateProjectTemplateX extends Component {
               <Form.Control name="description" as="textarea" rows={3} value={description} onChange={this.changeHandler} />
             </Form.Group>
               <div>
+              <Tags
+                  placeholder="Enter needed skills"
+                  skills={skills}
+                  // delimiters={delimiters}
+                  handleDelete={this.handleDelete}
+                  handleAddition={this.handleAddition}
+                  handleDrag={this.handleDrag}
+                  handleTagClick={this.handleTagClick}
+                />
+                <br />
                 <Tags
+                  placeholder="Tag the project"
                   tags={tags}
                   suggestions={suggestions}
                   // delimiters={delimiters}

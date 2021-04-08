@@ -1,7 +1,7 @@
 import './ProfileProjectsGridItemX.css';
 import React from 'react';
 import ProfileProjectsModalX from '../project-modal/ProfileProjectsModalX';
-import { Card } from 'react-bootstrap';
+import { Card, Badge } from 'react-bootstrap';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -9,8 +9,7 @@ function ProfileProjectsGridItemX({ project = {} }) {
   const [modalShow, setModalShow] = React.useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
-  const { id, industry, progress, title, description, gitlink, user: owner } = project;
-
+  const { id, industry, progress, title, description, gitlink, user: owner, tags, skills } = project;
   return (
     <div style={{ margin: '20px', cursor: 'pointer' }}>
       <Card onClick={() => setModalShow(true)}>
@@ -18,6 +17,10 @@ function ProfileProjectsGridItemX({ project = {} }) {
         <Card.Body>
           <Card.Title>{title ? title : 'Title'}</Card.Title>
           <Card.Text>{description ? description : 'Description'}</Card.Text>
+              <Badge variant="danger">{skills ? skills : 'Skills'}skills</Badge>
+          <Card.Footer>
+              <Badge variant="primary">{tags ? tags : 'Tags'}Tags</Badge>
+          </Card.Footer>
         </Card.Body>
       </Card>
       <ProfileProjectsModalX
