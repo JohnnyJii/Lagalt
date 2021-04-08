@@ -40,7 +40,7 @@ function ProfileProjectsModalX(props) {
       </div>
       {(props.creator === myId) || (!props.user) ?
         null
-        : <Button onClick={() => applyForProject()}>Apply</Button>
+        : <ApplyForm />
       }
     </ModalContainer>
   );
@@ -101,6 +101,13 @@ const ProjectInfo = function ({
         </small>
       }
     </div>
+  );
+};
+
+const ApplyForm = function (props) {
+// <Button onClick={() => applyForProject()}>Apply</Button>
+  return (
+    <p>poop</p>
   );
 };
 
