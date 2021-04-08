@@ -6,12 +6,12 @@ import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import useApplications from '../../../../../../hooks/useApplications';
 
-function ProfileProjectsGridItemX({ project = {} }) {
+function ProfileProjectsGridItemX({ project = {}, userId }) {
   const [modalShow, setModalShow] = React.useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
   const { id, industry, progress, title, description, gitlink, user: owner, tags: tag, skills: skill } = project;
-  const [applications, handleApplication] = useApplications(id, owner);
+  const [applications, handleApplication] = useApplications(id, userId, owner);
 
   return (
     <div style={{ margin: '20px', cursor: 'pointer' }}>

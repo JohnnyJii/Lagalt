@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { APPLICATIONS_URL, HANDLE_APPLICATION_URL } from '../utils/serverUrls/serverUrl';
 
-function useApplications(projectId, projectOwnerId) {
+function useApplications(projectId, userId, projectOwnerId) {
   const [applications, setApplications] = useState([]);
   useEffect(() => {
     const fetchAndSetApplications = async () => {
@@ -15,11 +15,11 @@ function useApplications(projectId, projectOwnerId) {
         });
       setApplications(data);
     };
-    const userId = localStorage.getItem('dbuserid');
-    if ((projectId !== undefined) && (userId === projectOwnerId)) {
+    if ((projectId !== undefined) && ('' + userId === projectOwnerId)) {
+      console.log('fetch applications', { userId }, { projectOwnerId });
       fetchAndSetApplications();
     }
-  }, [projectId, projectOwnerId]);
+  }, [projectId, userId, projectOwnerId]);
 
   const handleApplication = async function (projectId, userId, accept) {
     await axios.post(HANDLE_APPLICATION_URL(projectId, userId, accept), null, {
