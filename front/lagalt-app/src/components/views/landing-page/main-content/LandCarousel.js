@@ -7,7 +7,8 @@ import useProjects from '../../../../hooks/useProjects';
 
 
 function Carousel() {
-  const [projects] = useProjects();
+  const userId = localStorage.getItem('dbuserid');
+  const [projects] = useProjects(userId);
   const settings = {
     dots: false,
     infinite: true,
@@ -18,12 +19,11 @@ function Carousel() {
     autoplaySpeed: 5000,
     cssEase: 'linear',
   };
-
   const max6Projects = [...projects];
-  while (max6Projects.length > 5) {
+  while (max6Projects.length > 6) {
     max6Projects.pop();
   }
-
+  console.log(max6Projects);
   return (
     <div className="landing-carousel">
       <Slider {...settings}>
