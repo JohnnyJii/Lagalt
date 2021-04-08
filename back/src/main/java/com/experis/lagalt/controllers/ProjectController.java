@@ -28,13 +28,6 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectService.getAllProjects();
-
-        if(!authService.isLoggedUser(authService.getLoggedGoogleId())){
-            for(Project proj: projects){
-                proj.setGitlink("");
-            }
-        }
-
         HttpStatus status = HttpStatus.OK;
         historyService.addViewedFromMain(projects);
         return new ResponseEntity<>(projects, status);
