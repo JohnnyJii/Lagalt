@@ -30,6 +30,7 @@ function ProfileView(props) {
     fetchDbUser();
   }, [user, load]);
   localStorage.setItem('dbuserid', dbuser.id);
+  localStorage.setItem('userskills', JSON.stringify(dbuser.skills));
 
   if (redirect) {
     return (

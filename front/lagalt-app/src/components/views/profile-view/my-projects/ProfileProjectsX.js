@@ -16,6 +16,7 @@ function ProfileProjectsX(props) {
       <ProfileProjectsGridX
         userProjects={projects}
         userId={dbuserid}
+        dbuser={props.dbuser}
       />
     </div>
   );
