@@ -1,8 +1,8 @@
 package com.experis.lagalt.models;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "view_history")
@@ -19,19 +19,19 @@ public class ViewHistory {
 
     @OneToMany
     @JoinColumn(name = "main")
-    Set<Project> projectSeenFromMain = new HashSet<>();
+    List<Project> projectSeenFromMain = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "clicked")
-    Set<Project> clickedProjects = new HashSet<>();
+    List<Project> clickedProjects = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "applied")
-    Set<Project> appliedProjects = new HashSet<>();
+    List<Project> appliedProjects = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "contributed")
-    Set<Project> contributedProjects = new HashSet<>();
+    List<Project> contributedProjects = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -49,35 +49,35 @@ public class ViewHistory {
         this.user = user;
     }
 
-    public Set<Project> getProjectSeenFromMain() {
+    public List<Project> getProjectSeenFromMain() {
         return projectSeenFromMain;
     }
 
-    public void setProjectSeenFromMain(Set<Project> projectSeenFromMain) {
+    public void setProjectSeenFromMain(List<Project> projectSeenFromMain) {
         this.projectSeenFromMain = projectSeenFromMain;
     }
 
-    public Set<Project> getClickedProjects() {
+    public List<Project> getClickedProjects() {
         return clickedProjects;
     }
 
-    public void setClickedProjects(Set<Project> clickedProjects) {
+    public void setClickedProjects(List<Project> clickedProjects) {
         this.clickedProjects = clickedProjects;
     }
 
-    public Set<Project> getAppliedProjects() {
+    public List<Project> getAppliedProjects() {
         return appliedProjects;
     }
 
-    public void setAppliedProjects(Set<Project> appliedProjects) {
+    public void setAppliedProjects(List<Project> appliedProjects) {
         this.appliedProjects = appliedProjects;
     }
 
-    public Set<Project> getContributedProjects() {
+    public List<Project> getContributedProjects() {
         return contributedProjects;
     }
 
-    public void setContributedProjects(Set<Project> contributedProjects) {
+    public void setContributedProjects(List<Project> contributedProjects) {
         this.contributedProjects = contributedProjects;
     }
 }

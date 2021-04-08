@@ -3,6 +3,7 @@ package com.experis.lagalt.controllers;
 import com.experis.lagalt.models.Applicant;
 import com.experis.lagalt.services.ApplicantService;
 import com.experis.lagalt.services.AuthService;
+import com.experis.lagalt.services.ViewHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class ApplicantController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private ViewHistoryService historyService;
 
     @GetMapping
     public ResponseEntity<List<Applicant>> getApplications(@PathVariable long projectId) {
@@ -48,6 +52,7 @@ public class ApplicantController {
         if (addedApplicant == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+        historyService.addAppliedProject(projectId);
         return new ResponseEntity<>(addedApplicant, HttpStatus.CREATED);
     }
 
@@ -80,6 +85,7 @@ public class ApplicantController {
         if (applicantAccepted == null) {
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
+        historyService.addContributedProjects(projectId);
         return new ResponseEntity<>(applicantAccepted, HttpStatus.OK);
     }
 }

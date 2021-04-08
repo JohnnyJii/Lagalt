@@ -99,8 +99,13 @@ public class AuthService {
         return getLoggedUser().getGoogleid();
     }
 
-    private User getLoggedUser() {
-        return getLoggedUserDetail().getUser();
+    public User getLoggedUser() {
+        UserDetail userDetail = getLoggedUserDetail();
+        if (userDetail == null) {
+            return null;
+        }
+        User user = userDetail.getUser();
+        return user;
     }
 
     public boolean isAdmin() {
@@ -114,6 +119,9 @@ public class AuthService {
 
     private UserDetail getLoggedUserDetail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal().equals("anonymousUser")) {
+            return null;
+        }
         return (UserDetail) authentication.getPrincipal();
     }
 }
