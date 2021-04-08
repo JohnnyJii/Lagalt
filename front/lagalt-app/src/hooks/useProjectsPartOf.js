@@ -7,12 +7,11 @@ const useProjectsPartOf = function (userId) {
 
   useEffect(() => {
     const fetchProjects = async function () {
-      const { data } = await axios.get(USER_PROJECTS_PARTICIPANT(userId),
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('jwt')}`
-          }
-        });
+      const { data } = await axios.get(USER_PROJECTS_PARTICIPANT(userId), {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      });
       setProjects(data);
     };
     if (userId !== undefined) {

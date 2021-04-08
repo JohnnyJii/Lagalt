@@ -6,13 +6,11 @@ function useApplications(projectId, userId, projectOwnerId) {
   const [applications, setApplications] = useState([]);
   useEffect(() => {
     const fetchAndSetApplications = async () => {
-      const { data } = await axios.get(
-        APPLICATIONS_URL(projectId),
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('jwt')}`
-          }
-        });
+      const { data } = await axios.get(APPLICATIONS_URL(projectId), {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      });
       setApplications(data);
     };
     if ((projectId !== undefined) && ('' + userId === projectOwnerId)) {
