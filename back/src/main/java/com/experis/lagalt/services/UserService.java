@@ -7,10 +7,7 @@ import com.experis.lagalt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -84,7 +81,8 @@ public class UserService {
     public List<Project> getProjectsNewContentForUser(long id) {
         ArrayList<Project> projects = new ArrayList<>();
         if (userExists(id)) {
-            Set<Project> allProjects = (Set) projectRepository.findAll();
+            Set<Project> allProjects = new HashSet<Project>();
+            allProjects.addAll(projectRepository.findAll());
             User user = findUser(id);
             Set<Project> projectsPartOf = user.getProjectsPartOf();
 
