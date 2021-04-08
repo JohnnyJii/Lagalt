@@ -27,7 +27,7 @@ function ProfileProjectsGridItemX({ project = {} }) {
                 {tag ? tag : 'Tag'}
               </Badge>
             ))}
-            {skill.map(skills => (
+            {skill.map(skill => (
               <Badge variant="warning">
                 {skill ? skill : 'Skill'}
               </Badge>
