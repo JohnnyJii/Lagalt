@@ -15,13 +15,16 @@ function ProfileProjectsGridItemX({ project = {}, userId, dbuser }) {
   const userSkills = JSON.parse(localStorage.getItem('userskills'));
   const matchingSkills = [];
 
-  for (let i = 0; skills.length > i; i++) {
-    for (let j = 0; userSkills.length > j; j++) {
-      if (skills[i] === userSkills[j]) {
-        matchingSkills.push(skills[i]);
+  if (userSkills && skills) {
+    for (let i = 0; skills.length > i; i++) {
+      for (let j = 0; userSkills.length > j; j++) {
+        if (skills[i] === userSkills[j]) {
+          matchingSkills.push(skills[i]);
+        }
       }
     }
   }
+
 
   return (
     <div style={{ margin: '20px', cursor: 'pointer' }}>
