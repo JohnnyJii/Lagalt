@@ -16,7 +16,6 @@ function useApplications(projectId, userId, projectOwnerId) {
       setApplications(data);
     };
     if ((projectId !== undefined) && ('' + userId === projectOwnerId)) {
-      console.log('fetch applications', { userId }, { projectOwnerId });
       fetchAndSetApplications();
     }
   }, [projectId, userId, projectOwnerId]);
