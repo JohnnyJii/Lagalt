@@ -12,25 +12,4 @@ import java.util.Optional;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    @Query("SELECT p.id," +
-            "p.title," +
-            "p.industry," +
-            "p.description," +
-            "p.progress," +
-            "p.tags," +
-            "p.skills," +
-            "p.user" +
-            " FROM Project p where p.id = :id")
-    Optional<Project> findProjectByIdPreLogin(@Param("id") Long id);
-
-    @Query("SELECT p.id," +
-            "p.title," +
-            "p.industry," +
-            "p.description," +
-            "p.progress," +
-            "p.tags," +
-            "p.skills," +
-            "p.user" +
-            " FROM Project p")
-    List<Project> getAllProjectsPreLogin();
 }

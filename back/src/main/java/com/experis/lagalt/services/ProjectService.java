@@ -22,8 +22,6 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-    public List<Project> getAllProjectsPreLogin(){return projectRepository.getAllProjectsPreLogin();}
-
     public Project saveProject(Project project) {
         return projectRepository.save(project);
     }
@@ -34,11 +32,6 @@ public class ProjectService {
 
     public Project findProject(long id) {
         Optional<Project> optionalProject = projectRepository.findById(id);
-        return optionalProject.orElseGet(Project::new);
-    }
-
-    public Project findProjectPreLogin(long id) {
-        Optional<Project> optionalProject = projectRepository.findProjectByIdPreLogin(id);
         return optionalProject.orElseGet(Project::new);
     }
 
