@@ -20,7 +20,6 @@ const useProjects = function (userId = null) {
       });
       setProjects(data);
     };
-    console.log(userId);
     if (userId) {
       fetchRecommendedProjects();
     } else {
