@@ -10,7 +10,7 @@ function ProfileProjectsGridItemX({ project = {}, userId }) {
   const [modalShow, setModalShow] = React.useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
-  const { id, industry, progress, title, description, gitlink, user: owner, tags: tag, skills: skill } = project;
+  const { id, industry, progress, title, description, gitlink, user: owner, tags, skills } = project;
   const [applications, handleApplication] = useApplications(id, userId, owner);
 
   return (
@@ -22,13 +22,13 @@ function ProfileProjectsGridItemX({ project = {}, userId }) {
           <Card.Title>{title ? title : 'Title'}</Card.Title>
           <Card.Text>{description ? description : 'Description'}</Card.Text>
           <Card.Footer>
-            {tag.map(tag => (
-              <Badge variant="primary">
+            {tags.map(tag => (
+              <Badge key={tag} variant="primary">
                 {tag ? tag : 'Tag'}
               </Badge>
             ))}
-            {skill.map(skill => (
-              <Badge variant="warning">
+            {skills.map(skill => (
+              <Badge key={skill} variant="warning">
                 {skill ? skill : 'Skill'}
               </Badge>
             ))}
@@ -44,8 +44,8 @@ function ProfileProjectsGridItemX({ project = {}, userId }) {
         gitlink={gitlink}
         creator={owner}
         show={modalShow}
-        skill={skill}
-        tag={tag}
+        skill={skills}
+        tag={tags}
         user={user}
         onHide={() => setModalShow(false)}
         applications={applications}
