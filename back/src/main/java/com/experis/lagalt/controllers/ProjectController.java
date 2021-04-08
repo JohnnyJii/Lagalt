@@ -25,9 +25,9 @@ public class ProjectController {
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectService.getAllProjects();
 
-        for(Project proj: projects){
-            if (!authService.loggedUserIsPartOfProject(proj)) {
-                proj.setGitlink(null);
+        if(!authService.isLoggedUser(authService.getLoggedGoogleId())){
+            for(Project proj: projects){
+                proj.setGitlink("");
             }
         }
 
