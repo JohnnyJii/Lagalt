@@ -11,14 +11,9 @@ function ProfileProjectsModalX(props) {
   const [project, updateProject] = useProject(props.id);
   const [newProgress, setNewProgress] = useState(props.progress);
   const myId = localStorage.getItem('dbuserid');
-  // console.log(props);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('new project', {
-      ...project,
-      progress: newProgress,
-    }, newProgress);
     updateProject({
       ...project,
       progress: newProgress,
