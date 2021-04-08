@@ -60,3 +60,7 @@ body {
     background-color: #1C1C29;
     color: #fff;
 }
+
+.badge {
+    margin: 0 5px 0 5px;
+}
