@@ -24,11 +24,13 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectService.getAllProjects();
-        if (!authService.isLoggedUser(authService.getLoggedGoogleId())) {
-            for(Project proj: projects){
+
+        for(Project proj: projects){
+            if (!authService.loggedUserIsPartOfProject(proj)) {
                 proj.setGitlink(null);
             }
         }
+
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(projects, status);
     }
