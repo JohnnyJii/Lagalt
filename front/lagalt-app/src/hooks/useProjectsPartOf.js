@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { USER_PROJECTS_PARTICIPANT } from '../utils/serverUrls/userUrls';
 
-
 const useProjectsPartOf = function (userId) {
   const [projectsPartOf, setProjects] = useState([]);
 
