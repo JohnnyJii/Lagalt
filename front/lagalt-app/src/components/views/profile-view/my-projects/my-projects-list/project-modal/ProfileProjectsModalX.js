@@ -1,19 +1,82 @@
 import React, { useState } from 'react';
-import { Modal, Button, Card, Badge } from 'react-bootstrap';
+import { Modal, Button, Card, Badge, Form } from 'react-bootstrap';
 import ProjectCommentsX from '../message-board/ProjectCommentsX';
 import axios from 'axios';
 import Applications from './Applications';
 import { APPLY_PROJECT_URL } from '../../../../../../utils/serverUrls/serverUrl';
+import useProject from '../../../../../../hooks/useProject';
+
 
 function ProfileProjectsModalX(props) {
+  const [project, updateProject] = useProject(props.id);
+  const [newProgress, setNewProgress] = useState(props.progress);
   const myId = localStorage.getItem('dbuserid');
+  // console.log(props);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('new project', {
+      ...project,
+      progress: newProgress,
+    }, newProgress);
+    updateProject({
+      ...project,
+      progress: newProgress,
+    });
+  };
+
   return (
     <ModalContainer
       show={props.show}
       onHide={props.onHide}
       title={props.title}
     >
-      <ProjectInfo {...props} />
+      <ProjectInfo {...project} />
+      <hr />
+      {(props.creator === myId) &&
+        <Form onSubmit={handleSubmit}>
+          <Form.Label>Update Progress</Form.Label>
+          {
+            ['radio'].map((type) => (
+              <div
+                key={`inline-${type}`}
+                className="mb-3"
+                onChange={(e) => setNewProgress(e.target.value)}
+              >
+                <Form.Check
+                  inline name="progress"
+                  label="Founding"
+                  type={type}
+                  value={'Founding'}
+                  id={`inline-${type}-5`}
+                />
+                <Form.Check
+                  inline name="progress"
+                  label="In Progress"
+                  type={type}
+                  value={'In Progress'}
+                  id={`inline-${type}-6`}
+                />
+                <Form.Check
+                  inline name="progress"
+                  label="Stalled"
+                  type={type}
+                  value={'Stalled'}
+                  id={`inline-${type}-7`}
+                />
+                <Form.Check
+                  inline name="progress"
+                  label="Completed"
+                  type={type}
+                  value={'Completed'}
+                  id={`inline-${type}-8`}
+                />
+              </div>
+            ))
+          }
+          <Button variant="primary" type="submit">Update progress</Button>
+        </Form>
+      }
       <hr />
       <Applications
         applications={props.applications}
@@ -64,8 +127,8 @@ const ProjectInfo = function ({
   industry = '',
   progress = '',
   gitlink = '',
-  tag = '',
-  skill = ''
+  tag = [],
+  skill = []
 }) {
   return (
     <div>
@@ -77,10 +140,6 @@ const ProjectInfo = function ({
         <small><strong>Industry:</strong>{industry}</small>
       }
       <br />
-      {/* owner info not part of the project. Only owner id
-        <small><strong>Owner:</strong> {creator ? creator : 'User'}</small>
-      <br />
-      */}
       {progress &&
         <small><strong>Progress:</strong> {progress}</small>
       }
