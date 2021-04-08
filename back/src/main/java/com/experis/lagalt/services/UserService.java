@@ -133,9 +133,9 @@ public class UserService {
         }
 
         if(projectAScore>projectBScore){
-            return true;
-        } else{
             return false;
+        } else{
+            return true;
         }
     }
 
