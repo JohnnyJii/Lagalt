@@ -14,7 +14,7 @@ function ProfileProjectsModalX(props) {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
     };
-    axios.post(APPLY_PROJECT_URL(props.id, myId), config);
+    axios.post(APPLY_PROJECT_URL(props.id, myId), {}, config);
     alert('You have applied to be part of the project. The project owner(s) will answer you shortly.');
   }
 
