@@ -2,17 +2,14 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { PROJECTS_URL } from '../utils/serverUrls/serverUrl';
 import { USERS_PROJECTS_URL } from '../utils/serverUrls/userUrls';
+import { authHeader } from './hookHelper';
 
 const useUserProjects = function (userId) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     const fetchAndSetUserProjects = async function () {
-      const response = await axios.get(USERS_PROJECTS_URL(userId), {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      });
+      const response = await axios.get(USERS_PROJECTS_URL(userId), authHeader);
       setProjects(response.data);
     };
     if (userId !== undefined) {
