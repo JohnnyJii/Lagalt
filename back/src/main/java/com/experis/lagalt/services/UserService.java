@@ -106,8 +106,8 @@ public class UserService {
             for (int j = i + 1; j < unorderedProjects.size(); j++) {
                 if (compareSkills(unordered.get(i),unordered.get(j),user)){
                     temp = unordered.get(i);
-                    unordered.add(i,unordered.get(j));
-                    unordered.add(j,temp);
+                    unordered.set(i,unordered.get(j));
+                    unordered.set(j,temp);
                 }
             }
         }
