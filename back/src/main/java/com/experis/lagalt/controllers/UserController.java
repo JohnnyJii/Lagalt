@@ -125,4 +125,16 @@ public class UserController {
         List<Project> projects = userService.getUserProjectsPartOf(userId);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/{userId}/projects/newcontent")
+    public ResponseEntity<List<Project>> getProjectsNewContentForUser(@PathVariable long userId){
+        List<Project> projects = userService.getProjectsNewContentForUser(userId);
+        HttpStatus status;
+        if (userService.userExists(userId)) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(projects, status);
+    }
 }
