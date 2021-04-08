@@ -5,12 +5,24 @@ import { Card, Badge } from 'react-bootstrap';
 import firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import useApplications from '../../../../../../hooks/useApplications';
+import useProject from '../../../../../../hooks/useProject';
 
-function ProfileProjectsGridItemX({ project = {}, userId, dbuser }) {
+function ProfileProjectsGridItemX({ project: projectProps = {}, userId, dbuser }) {
   const [modalShow, setModalShow] = React.useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
-  const { id, industry, progress, title, description, gitlink, user: owner, tags, skills } = project;
+  const [project, updateProject] = useProject(projectProps.id);
+  const {
+    id,
+    industry,
+    progress,
+    title,
+    description,
+    gitlink,
+    user: owner,
+    tags = [],
+    skills = []
+  } = project;
   const [applications, handleApplication] = useApplications(id, userId, owner);
   const userSkills = JSON.parse(localStorage.getItem('userskills'));
   const matchingSkills = [];
@@ -68,6 +80,8 @@ function ProfileProjectsGridItemX({ project = {}, userId, dbuser }) {
         onHide={() => setModalShow(false)}
         applications={applications}
         handleApplication={handleApplication}
+        project={project}
+        updateProject={updateProject}
       />
     </div>
   );

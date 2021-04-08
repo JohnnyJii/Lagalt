@@ -3,6 +3,7 @@ package com.experis.lagalt.controllers;
 import com.experis.lagalt.models.Project;
 import com.experis.lagalt.services.ProjectService;
 import com.experis.lagalt.services.AuthService;
+import com.experis.lagalt.services.ViewHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +22,14 @@ public class ProjectController {
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private ViewHistoryService historyService;
+
     @GetMapping
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectService.getAllProjects();
-
-        if(!authService.isLoggedUser(authService.getLoggedGoogleId())){
-            for(Project proj: projects){
-                proj.setGitlink("");
-            }
-        }
-
         HttpStatus status = HttpStatus.OK;
+        historyService.addViewedFromMain(projects);
         return new ResponseEntity<>(projects, status);
     }
 
@@ -42,6 +40,7 @@ public class ProjectController {
         }
         Project newProject = projectService.saveProject(project);
         HttpStatus status = HttpStatus.CREATED;
+        historyService.addContributedProjects(newProject);
         return new ResponseEntity<>(newProject, status);
     }
 
@@ -55,6 +54,7 @@ public class ProjectController {
         } else {
             status = HttpStatus.NOT_FOUND;
         }
+        historyService.addClickedProject(project);
         return new ResponseEntity<>(project, status);
     }
 

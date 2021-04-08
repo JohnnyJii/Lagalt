@@ -18,8 +18,17 @@ public class ProjectService {
     @Autowired
     private ApplicantService applicantService;
 
+    @Autowired
+    private AuthService authService;
+
     public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+        List<Project> allProjects = projectRepository.findAll();
+        if (authService.getLoggedUser() == null) {
+            for (Project project : allProjects) {
+                project.setGitlink(null);
+            }
+        }
+        return allProjects;
     }
 
     public Project saveProject(Project project) {
@@ -32,6 +41,11 @@ public class ProjectService {
 
     public Project findProject(long id) {
         Optional<Project> optionalProject = projectRepository.findById(id);
+        if (optionalProject.isPresent() && authService.getLoggedUser() == null) {
+            Project project = optionalProject.get();
+            project.setGitlink(null);
+            return project;
+        }
         return optionalProject.orElseGet(Project::new);
     }
 
