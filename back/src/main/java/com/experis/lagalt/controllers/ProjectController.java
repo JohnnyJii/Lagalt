@@ -24,6 +24,9 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<List<Project>> getProjects() {
         List<Project> projects = projectService.getAllProjects();
+        if (!authService.isLoggedUser(authService.getLoggedGoogleId())) {
+            projects = projectService.getAllProjectsPreLogin();
+        }
         HttpStatus status = HttpStatus.OK;
         return new ResponseEntity<>(projects, status);
     }
@@ -47,6 +50,10 @@ public class ProjectController {
             status = HttpStatus.OK;
         } else {
             status = HttpStatus.NOT_FOUND;
+        }
+        if (!(authService.loggedUserIsPartOfProject(project.getId()))&&
+                authService.isLoggedUsersProject(project)) {
+            project = projectService.findProjectPreLogin(id);
         }
         return new ResponseEntity<>(project, status);
     }
