@@ -1,13 +1,17 @@
 import ProfileProjectsGridItemX from './list-item/ProfileProjectsGridItemX';
 import React from 'react';
+import useProjectsPartOf from '../../../../../hooks/useProjectsPartOf';
 
-function ProfileProjectsGridX({ userProjects, projectPartOf, userId }) {
+function ProfileProjectsGridX({ userProjects, userId }) {
+  const [projectsPartOf] = useProjectsPartOf(userId);
+
   return (
     <div className="container">
       <h1 style={{ color: 'white' }}>Own projects</h1>
       <ProjectList projects={userProjects} userId={userId} />
       <h1 style={{ color: 'white' }}>Projects part of</h1>
-      <ProjectList projects={projectPartOf} />
+      <ProjectList projects={projectsPartOf} />
+      <br />
     </div >
   );
 }
