@@ -22,8 +22,7 @@ const useUserProjects = function (userId) {
 
   const addProject = function (projectToAdd) {
     const newProject = {
-      ...projectToAdd,
-      skills: []
+      ...projectToAdd
     };
     axios.post(PROJECTS_URL, newProject, {
       headers: {
