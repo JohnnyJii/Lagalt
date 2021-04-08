@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Card } from 'react-bootstrap';
+import { Modal, Button, Card, Badge } from 'react-bootstrap';
 import ProjectCommentsX from '../message-board/ProjectCommentsX';
 import axios from 'axios';
 import Applications from './Applications';
@@ -63,7 +63,9 @@ const ProjectInfo = function ({
   description = '',
   industry = '',
   progress = '',
-  gitlink = ''
+  gitlink = '',
+  tag = '',
+  skill = ''
 }) {
   return (
     <div>
@@ -89,6 +91,17 @@ const ProjectInfo = function ({
           <a href={gitlink} target="blank_">{gitlink}</a>
         </small>
       }
+      <br />
+      {tag.map(tag => (
+        <Badge variant="primary">
+          {tag ? tag : 'Tag'}
+        </Badge>
+      ))}
+      {skill.map(skill => (
+        <Badge variant="warning">
+          {skill ? skill : 'Skill'}
+        </Badge>
+      ))}
     </div>
   );
 };
