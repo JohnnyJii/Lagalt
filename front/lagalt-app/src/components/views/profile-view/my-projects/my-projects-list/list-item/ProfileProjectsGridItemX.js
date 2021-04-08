@@ -9,7 +9,7 @@ function ProfileProjectsGridItemX({ project = {} }) {
   const [modalShow, setModalShow] = React.useState(false);
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
-  const { id, industry, progress, title, description, gitlink, user: owner, tags, skills } = project;
+  const { id, industry, progress, title, description, gitlink, user: owner, tags: tag, skills: skill } = project;
   return (
     <div style={{ margin: '20px', cursor: 'pointer' }}>
       <Card onClick={() => setModalShow(true)}>
@@ -17,9 +17,17 @@ function ProfileProjectsGridItemX({ project = {} }) {
         <Card.Body>
           <Card.Title>{title ? title : 'Title'}</Card.Title>
           <Card.Text>{description ? description : 'Description'}</Card.Text>
-              <Badge variant="danger">{skills ? skills : 'Skills'}skills</Badge>
+              {skill.map(skill => (
+              <Badge variant="danger">
+                {skill ? skill : 'Skill'}
+              </Badge>
+              ))};
           <Card.Footer>
-              <Badge variant="primary">{tags ? tags : 'Tags'}Tags</Badge>
+            {tag.map(tag => (
+              <Badge variant="primary">
+                  {tag ? tag : 'Tag '}
+              </Badge>
+              ))};
           </Card.Footer>
         </Card.Body>
       </Card>
