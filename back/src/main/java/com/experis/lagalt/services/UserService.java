@@ -81,7 +81,7 @@ public class UserService {
     public List<Project> getProjectsNewContentForUser(long id) {
         ArrayList<Project> projects = new ArrayList<>();
         if (userExists(id)) {
-            Set<Project> allProjects = new HashSet<Project>();
+            ArrayList<Project> allProjects = new ArrayList<>();
             allProjects.addAll(projectRepository.findAll());
             User user = findUser(id);
             Set<Project> projectsPartOf = user.getProjectsPartOf();
@@ -96,14 +96,11 @@ public class UserService {
     }
 
     // Helper method for new content ordering by user skills
-    private ArrayList<Project> orderByUserSkills(Set<Project> unorderedProjects, User user) {
-        ArrayList<Project> projects = new ArrayList<>();
-        ArrayList<Project> unordered = new ArrayList<>();
-        unordered.addAll(unorderedProjects);
+    private ArrayList<Project> orderByUserSkills(ArrayList<Project> unordered, User user) {
         Project temp;
 
         for (int i = 0; i < unordered.size() - 1; i++) {
-            for (int j = i + 1; j < unorderedProjects.size(); j++) {
+            for (int j = i + 1; j < unordered.size(); j++) {
                 if (compareSkills(unordered.get(i),unordered.get(j),user)){
                     temp = unordered.get(i);
                     unordered.set(i,unordered.get(j));
