@@ -4,14 +4,22 @@ V1 is running at [heroku](https://lagalt-server.herokuapp.com/api/v1/health).
 
 Developed using Java version 15.0.1 and build using Gradle.
 
-Application uses spring-boot, hibernate and Postgres db.
+Server uses spring-boot, spring-security, hibernate and PostgreSQL.
+
+## Table of contents
 
 - [Back end Lagalt-project](#back-end-lagalt-project)
+  - [Table of contents](#table-of-contents)
+  - [Main features](#main-features)
+    - [New content algorithm](#new-content-algorithm)
+    - [Rate limiting policy](#rate-limiting-policy)
+    - [User view history](#user-view-history)
   - [V1 usage](#v1-usage)
     - [Security](#security)
       - [Access non public endpoints](#access-non-public-endpoints)
       - [HTTP 401](#http-401)
       - [HTTP 403](#http-403)
+      - [HTTP 429](#http-429)
     - [Set Authorization header using Axios](#set-authorization-header-using-axios)
     - [Models](#models)
       - [User object](#user-object)
@@ -23,6 +31,7 @@ Application uses spring-boot, hibernate and Postgres db.
       - [GET user by google id](#get-user-by-google-id)
       - [GET user projects](#get-user-projects)
       - [GET projects that user is part of](#get-projects-that-user-is-part-of)
+      - [GET recommended projects](#get-recommended-projects)
       - [POST user](#post-user)
       - [PUT user](#put-user)
       - [DELETE user](#delete-user)
@@ -38,11 +47,50 @@ Application uses spring-boot, hibernate and Postgres db.
       - [POST application](#post-application)
       - [POST accept application](#post-accept-application)
 
+## Main features
+
+- [Project and user CRUD](#models)
+- New content algorithm
+- Rate limiting policy
+- User view history
+- [Security](#security)
+
+### New content algorithm
+New content algorithm can be accessed [here](#new-content-algorithm).
+
+It sorts projects according the users matching skills. Project with most skill-matches is on top of the list. 
+
+[&#8593; TOP](#back-end-lagalt-project)
+### Rate limiting policy
+Server has a rate limiting policy.
+
+Server responses to too many requests (in a short time period) with a status code of HTTP 429. It uses clients IP address to decide if the users request should be allowed.
+
+Rate limiting policy is implemented using [Bucket algorithm](https://en.wikipedia.org/wiki/Token_bucket).
+
+[&#8593; TOP](#back-end-lagalt-project)
+### User view history
+Server stores user view history to database.
+
+For logged user (user with valid JWT token in request) the project information is stored in a data table.
+
+Storing information happend with that specific HTTP request made to server.
+
+Server maintains history related to
+- All projects shown to user from the client main page ([GET all projects](#get-projects))
+- Project user has clicked ([GET project](#get-project))
+- Projects user has applied to
+- Projects user has contributet to. This includes all projects user created and all projects user is part of.
+
+[&#8593; TOP](#back-end-lagalt-project)
+<hr/>
+
 ## V1 usage
 Base url for V1 API is [https://lagalt-server.herokuapp.com/api/v1/](https://lagalt-server.herokuapp.com/api/v1/)
 
 [&#8593; TOP](#back-end-lagalt-project)
 <hr/>
+
 ### Security
 
 API has three public endpoints
@@ -66,6 +114,15 @@ Using invalid or expired token results in HTTP status code 401 for non public en
 Clients can not access resources that they do not own. Trying to access resources not owned by the users results in HTTP status 403.
 
 Status code 403 is also returned when adding resources with another users id.
+
+#### HTTP 429
+
+This server has a rate limiting policy.
+
+If you get this error code: 
+
+
+**Stop spamming our server!**
 
 
 [&#8593; TOP](#back-end-lagalt-project)
@@ -154,7 +211,9 @@ Project id, user id and motivation letter are only attributes part of applicatio
 ### User endpoints
 Contains
 - CRUD functionality
-- Get user projects
+- [Get user projects](#get-user-projects)
+- [Get projects user is part of](#get-projects-that-user-is-part-of)
+- [Get recommended projects](#get-recommended-projects)
 
 
 #### GET users
@@ -209,6 +268,18 @@ returns list of [projectObjects](#projectObject) for that user
 [https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/participant](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/participant)
 
 returns list of [projectObjects](#projectObject) where user is participant but not the owner.
+```JSON
+[
+  "projectObject",
+]
+```
+
+[&#8593; TOP](#back-end-lagalt-project)
+
+#### GET recommended projects
+[https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/newcontent](https://lagalt-server.herokuapp.com/api/v1/users/:id/projects/newcontent)
+
+returns list of [projectObjects](#projectObject) sorted by user skills.
 ```JSON
 [
   "projectObject",
