@@ -13,12 +13,16 @@ const useProjects = function (userId = null) {
 
   useEffect(() => {
     const fetchRecommendedProjects = async function () {
-      const { data } = await axios.get(RECOMMENDED_USER_PROJECTS(userId), {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      });
-      setProjects(data);
+      try {
+        const { data } = await axios.get(RECOMMENDED_USER_PROJECTS(userId), {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+          }
+        });
+        setProjects(data);
+      } catch (e) {
+        fetchProjects();
+      }
     };
     if (userId) {
       fetchRecommendedProjects();
