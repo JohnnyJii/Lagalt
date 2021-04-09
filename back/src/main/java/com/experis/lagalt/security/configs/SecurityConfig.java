@@ -26,8 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthEntryPointJwt authEntryPointJwt;
 
-    // TODO Remove localhost from final production
-    private final String LOCALHOST_ORIGIN = "https://localhost:3000";
     private final String VERCEL_ORIGIN = "https://lagalt-ten.vercel.app";
 
     @Override
@@ -84,7 +82,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private List<String> getAllowedOrigins() {
         List<String> origins = new ArrayList<>();
-        origins.add(LOCALHOST_ORIGIN);
         origins.add(VERCEL_ORIGIN);
         return origins;
     }

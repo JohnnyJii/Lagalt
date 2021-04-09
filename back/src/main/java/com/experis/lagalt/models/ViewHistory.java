@@ -17,20 +17,28 @@ public class ViewHistory {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "main")
+    @ManyToMany
+    @JoinTable(name = "history_projects",
+            joinColumns = @JoinColumn(name = "view_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
     List<Project> projectSeenFromMain = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "clicked")
+    @ManyToMany
+    @JoinTable(name = "history_project",
+            joinColumns = @JoinColumn(name = "view_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
     List<Project> clickedProjects = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "applied")
+    @ManyToMany
+    @JoinTable(name = "history_applied",
+            joinColumns = @JoinColumn(name = "view_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
     List<Project> appliedProjects = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "contributed")
+    @ManyToMany
+    @JoinTable(name = "history_contributed",
+            joinColumns = @JoinColumn(name = "view_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
     List<Project> contributedProjects = new ArrayList<>();
 
     public long getId() {
