@@ -92,6 +92,9 @@ Base url for V1 API is [https://lagalt-server.herokuapp.com/api/v1/](https://lag
 <hr/>
 
 ### Security
+All endpoints supports Authoriaztion header.
+
+Server enforces communication over HTTPS
 
 API has three public endpoints
 - [GET projects](#get-projects)
